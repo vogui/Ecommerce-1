@@ -1,10 +1,11 @@
 "use strict";
 const path = require("path");
-var users = require("../routes/users");
-
-var router = express.Router();
-var passport = require("passport");
+const users = require("../routes/users");
+const product = require('../routes/product')
+const router = express.Router();
+const passport = require("passport");
 // escriban sus rutas acá
 router.use("/users", users);
+router.use("/product",product)
 
 module.exports = router;
