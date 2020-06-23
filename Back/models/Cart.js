@@ -1,25 +1,28 @@
-const db = require('../db');
-const S = require('sequelize');
-const User = require('./user');
+const db = require("../db");
+const S = require("sequelize");
+const User = require("./user");
 
-class Cart extends S.Model{}
+class Cart extends S.Model {}
 
-Cart.init({
-    user_id: {
-        type: S.STRING,
-        references: {
-            model: User,
-            key: 'id'
-        }
-    },
+Cart.init(
+  {
+    /*  user_id: {
+      type: S.STRING,
+      references: {
+        model: User,
+        key: "id",
+      },
+    }, */
     total: {
-        type: S.NUMBER
+      type: S.INTEGER,
     },
     adress: {
-        type: S.TEXT
-    }
-}, {sequelize: db, modelName: 'Cart'})
+      type: S.TEXT,
+    },
+  },
+  { sequelize: db, modelName: "Cart" }
+);
 
-Cart.hasOne(User);
+//Cart.hasOne(User);
 
 module.exports = Cart;

@@ -1,12 +1,13 @@
-const db = require('../db');
-const S = require('sequelize');
-const Product = require('./Product');
-const User = require('./User');
+const db = require("../db");
+const S = require("sequelize");
+const Product = require("./Product");
+const User = require("./User");
 
-class Review extends S.Model{}
+class Review extends S.Model {}
 
-Review.init({
-    product_id: {
+Review.init(
+  {
+    /* product_id: {
         type: S.STRING,
         references: {
             model: Product,
@@ -19,21 +20,23 @@ Review.init({
             model: User,
             key: 'id'
         }
-    },
+    }, */
     review: {
-        type: S.TEXT,
-        allowNull: false
+      type: S.TEXT,
+      allowNull: false,
     },
     stars: {
-        type: S.NUMBER,
-        validate: {
-            max: 5,
-            min: 1
-        }
-    }
-}, {sequelize: db, modelName: 'Review'})
+      type: S.INTEGER,
+      validate: {
+        max: 5,
+        min: 1,
+      },
+    },
+  },
+  { sequelize: db, modelName: "Review" }
+);
 
-Review.hasOne(User);
-Review.hasOne(Product);
+//Review.hasOne(User);
+//Review.hasOne(Product);
 
 module.exports = Review;

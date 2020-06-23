@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var path = require("path");
-const { userInfo } = require("os");
+const User = require("../models/User");
 // Esto se modifica cuando Henry me diga como se llama el modelo de User
 var passport = require("passport");
 router.get("/", (req, res, next) => {

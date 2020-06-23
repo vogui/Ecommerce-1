@@ -1,15 +1,18 @@
-const db = require('../db');
-const S = require('sequelize');
-const Product = require('./Product');
+const db = require("../db");
+const S = require("sequelize");
+const Product = require("./Product");
 
-class Category extends S.Model{}
+class Category extends S.Model {}
 
-Category.init({
+Category.init(
+  {
     name: {
-        type: S.STRING
-    }
-}, {sequelize: db, modelName: 'Category'})
+      type: S.STRING,
+    },
+  },
+  { sequelize: db, modelName: "Category" }
+);
 
-Category.hasMany(Product);
+//Category.hasMany(Product);
 
 module.exports = Category;
