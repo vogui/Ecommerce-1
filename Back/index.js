@@ -1,10 +1,26 @@
+
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy
 const session = require('express-session'); 
 const express = require('express');
+const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+const routes = require("./routes");
+const app = express();
+const path = require("path");
+const volleyball = require("volleyball");
+const db = require('./db');
 
 
-const router = express.Router();
+app.use(volleyball);
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, "public")));
+
+app.use("/api", routes);
+
+
 
 /* ------------CONFIG PASSPORT -----------*/
 passport.use(new LocalStrategy(
@@ -50,7 +66,7 @@ function isLogedIn(req, res, next) {
 
 //---------- INICIO DE RUTAS
 
-router.get('/', (req, res) => {
+app.get('/', (req, res) => {
     console.log("---------------------------")
     console.log("req.session: ", req.session) // express-session
     console.log("req.sessionID: ", req.sessionID) // express-session
@@ -59,5 +75,11 @@ router.get('/', (req, res) => {
     console.log("---------------------------")
 });
 
+db.sync({force: true}).then(() => {
+    console.log('DB synched');    
+    app.listen(3000, () => console.log('listening on 3000'));
+}).catch(console.log)
 
-module.exports = router;
+
+module.exports = app;
+
