@@ -2,13 +2,14 @@ var express = require("express");
 var router = express.Router();
 var path = require("path");
 const { userInfo } = require("os");
-var User = require("user"); // Esto se modifica cuando Henry me diga como se llama el modelo de User
+// Esto se modifica cuando Henry me diga como se llama el modelo de User
 var passport = require("passport");
 router.get("/", (req, res, next) => {
   //Aca llegan de /api/users/
 });
 
 router.post("/register", (req, res, next) => {
+  res.send("Estas en register con POST");
   User.create(req.body)
     .then((user) => {
       res.status(201).send(user);
@@ -19,6 +20,7 @@ router.post("/register", (req, res, next) => {
 });
 
 router.get("/login", function (req, res, next) {
+  res.send("Estas en login con GET");
   console.log("ESTA AUTENTICADO:", req.isAuthenticated());
   if (req.isAuthenticated()) {
     console.log("Registro y login OK");
@@ -26,6 +28,17 @@ router.get("/login", function (req, res, next) {
   } else {
     //Definir que hacer si el usuario no esta logeado
   }
+});
+
+router.post("/login", passport.authenticate("local"), function (
+  req,
+  res,
+  next
+) {
+  console.log(req.session);
+  console.log(req.user);
+  console.log(req.authenticate);
+  res.render("userHome", { user: req.user });
 });
 
 router.post("/toAdmin/:id", (req, res, next) => {
