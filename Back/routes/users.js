@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var path = require("path");
-const User = require("../models/User");
+const { User } = require("../models/index");
 // Esto se modifica cuando Henry me diga como se llama el modelo de User
 var passport = require("passport");
 router.get("/", (req, res, next) => {
@@ -9,18 +9,19 @@ router.get("/", (req, res, next) => {
 });
 
 router.post("/register", (req, res, next) => {
-  res.send("Estas en register con POST");
+  console.log('Esto es reqBody', req.body)
   User.create(req.body)
     .then((user) => {
+      console.log(user, 'user')
       res.status(201).send(user);
     })
     .catch((err) => {
+      console.log(err)
       res.status(502).send(err);
     });
 });
 
 router.get("/login", function (req, res, next) {
-  res.send("Estas en login con GET");
   console.log("ESTA AUTENTICADO:", req.isAuthenticated());
   if (req.isAuthenticated()) {
     console.log("Registro y login OK");

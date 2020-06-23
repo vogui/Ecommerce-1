@@ -1,6 +1,7 @@
 const db = require("../db");
 const S = require("sequelize");
 const Review = require("./Review");
+const crypto = require("crypto")
 
 class User extends S.Model {}
 
@@ -21,6 +22,11 @@ User.init(
         notEmpty: true,
       },
     },
+    isAdmin:{
+       type:S.BOOLEAN,
+       defaultValue:false
+    },
+
     salt: {
       type: S.STRING,
     },
@@ -38,7 +44,7 @@ User.init(
       allowNull: false,
     },
   },
-  { sequelize: db, modelName: "user " }
+  { sequelize: db, modelName: "User" }
 );
 
 User.addHook("beforeCreate", (user) => {

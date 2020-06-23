@@ -1,31 +1,31 @@
 const express = require("express");
 const router = express.Router();
 const path = require("path");
-const Product = require("../models/Product");
+const {Products}  = require("../models/index");
 
 router.get("/", (req, res, next) => {
-  Product.findAll().then((productos) => res.status(200).send(productos));
+  Products.findAll().then((productos) => res.status(200).send(productos));
   //.catch(()=> res.sendStatus(400))
 });
 
 router.get("/:id", (req, res, next) => {
   let id = req.params.id;
-  Product.findByPk(id)
-    .then((producto) => res.status(200).send(producto.data))
+  Products.findByPk(id)
+    .then((producto) => res.status(200).send(producto))
     .catch(() => {
       res.sendStatus(404);
     });
 });
 
 router.post("/", (req, res, next) => {
-  Product.create(req.body).then(() => {
+  Products.create(req.body).then(() => {
     res.status(201).send("Su producto a sido creado exitosamente");
   });
 });
 
 router.put("/:id", (req, res, next) => {
   const id = req.params.id;
-  Product.update(req.body, {
+  Products.update(req.body, {
     returnig: true,
     where: {
       id,
@@ -41,7 +41,7 @@ router.put("/:id", (req, res, next) => {
 
 router.delete("/:id", (req, res, next) => {
   const id = req.params.id;
-  Product.destroy({
+  Products.destroy({
     where: {
       id,
     },

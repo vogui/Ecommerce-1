@@ -13,7 +13,7 @@ const db = require('./db');
 
 
 app.use(volleyball);
-app.use(express.json());
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
@@ -75,7 +75,7 @@ app.get('/', (req, res) => {
     console.log("---------------------------")
 });
 
-db.sync({force: true}).then(() => {
+db.sync({force: false}).then(() => {
     console.log('DB synched');    
     app.listen(3000, () => console.log('listening on 3000'));
 }).catch(console.log)

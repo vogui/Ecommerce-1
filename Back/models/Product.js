@@ -22,7 +22,7 @@ Product.init(
       type: S.STRING,
     },
     price: {
-      type: S.INTEGER,
+      type: S.STRING,
     },
   },
   { sequelize: db, modelName: "Product" }

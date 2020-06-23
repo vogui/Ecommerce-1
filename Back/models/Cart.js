@@ -1,6 +1,6 @@
 const db = require("../db");
 const S = require("sequelize");
-const User = require("./user");
+const User = require("./User");
 
 class Cart extends S.Model {}
 
