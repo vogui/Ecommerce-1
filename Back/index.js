@@ -13,4 +13,9 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/api", routes);
 
+db.sync({force: true}).then(() => {
+    console.log('DB synched');    
+    app.listen(3000, () => console.log('listening on 3000'));
+}).catch(console.log)
+
 module.exports = app;
