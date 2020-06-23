@@ -8,6 +8,10 @@ class Product extends S.Model {}
 Product.init({
     category_id: {
         type: S.STRING,
+        references: {
+            model: Category,
+            key: 'id'
+        }
     },
     title: {
         type: S.STRING,
