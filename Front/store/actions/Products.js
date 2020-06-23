@@ -1,4 +1,4 @@
-import { TRAE_PRODUCTS } from '../constans'
+import { TRAE_PRODUCTS , TRAE_PRODUCT} from '../constans'
 import axios from 'axios'
 
 const findProducts = (products)=>({
@@ -6,6 +6,18 @@ const findProducts = (products)=>({
     products
 })
 
-export const giveMeProducts = ()=> dispatch =>{
-    
+const findProduct = (product)=>({
+    type:TRAE_PRODUCT,
+    product
+})
+
+
+export const giveMeProducts = (products)=> dispatch =>{
+    axios.get("/api/products", products)
+    .then((listProducts)=> dispatch(findProducts(listProducts)))
+}
+
+export const giveTheProduct = (productId)=> dispatch =>{
+    axios.get(`/api/product/${productId}`)
+    .then((product)=> dispatch(findProducts(product)))
 }

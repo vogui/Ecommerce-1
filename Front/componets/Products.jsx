@@ -1,20 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default ()=>{
+export default ({products})=>{
     return(
         <div>
       <h3>Product List</h3>
      <div>
-       { peliculas && peliculas.map(pelicula => (
-    <div key={pelicula.imdbID} >
-      <Link  to={``}>
+       { products && products.map(product => (
+    <div key={product.id} >
+      <Link  to={`/product/${product.id}`}>
         <img />
         <div>
           <h5>
-            <span>{pelicula.Title}</span>
+            <span>{product.title}</span>
           </h5>
-          <small>{pelicula.Year}</small>
+        <p><strong>{products.price}</strong></p>
         </div>
        </Link>
      </div>
