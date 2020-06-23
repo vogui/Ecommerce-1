@@ -1,10 +1,20 @@
 import React from "react";
-import { Switch, Router } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
+import Test from "./Test";
+import store from "../store/index";
+class Main extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = store.getState();
+  }
 
-export default () => {
-  return (
-    <Switch>
-      <Router />
-    </Switch>
-  );
-};
+  render() {
+    return (
+      <Switch>
+        <Route exact path="/" render={() => <Test />} />
+      </Switch>
+    );
+  }
+}
+
+export default Main;
