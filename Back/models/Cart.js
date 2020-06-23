@@ -19,6 +19,10 @@ Cart.init(
     adress: {
       type: S.TEXT,
     },
+    completed: {
+      type: S.BOOLEAN,
+      defaultValue: false
+    }
   },
   { sequelize: db, modelName: "Cart" }
 );
