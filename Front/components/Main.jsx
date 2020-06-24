@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import MainContainer from "./MainContainer";
+import MainContainer from "./Test";
 import store from "../store/index";
 import Login from "../components/Login";
 import Register from "../components/Register";
