@@ -4,18 +4,13 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
-import { makeStyles } from "@material-ui/core/styles";
-import axios from "axios";
 import { connect } from "react-redux";
 import { loginUser } from "../store/actions/Login";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
-
+import { Redirect } from "react-router-dom";
 const mapStateToProps = (state, ownProps) => {
-  {
-    console.log("OWNProps:", ownProps);
-  }
   return {
-    login: state.login,
+    login: state.login.data,
   };
 };
 const mapDispatchToProps = { loginUser };
@@ -34,9 +29,7 @@ class Login extends React.Component {
 
   submitInfo(e) {
     e.preventDefault();
-    this.props.loginUser(this.state.email, this.state.password).then(() => {
-      this.setState({ email: "", password: "" });
-    });
+    this.props.loginUser(this.state.email, this.state.password);
   }
 
   changeEmail(e) {
@@ -48,6 +41,9 @@ class Login extends React.Component {
   }
 
   render() {
+    if (this.props.login.redirect) {
+      return <Redirect push to="/" />;
+    }
     return (
       <div>
         <Container maxWidth="sm">
@@ -108,7 +104,7 @@ class Login extends React.Component {
             </Grid>
 
             <Grid item xs={12}>
-              {this.props.login.data.failLogin ? (
+              {this.props.login.failLogin ? (
                 <Button
                   variant="contained"
                   color="secondary"
