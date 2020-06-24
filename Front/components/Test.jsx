@@ -7,6 +7,8 @@ class MainContainer extends React.Component {
         <Link to="/login">Go to login</Link>
         <br></br>
         <Link to="/register">Go to register</Link>
+        <br></br>
+        <Link to="/cart">Go to cart</Link>
       </div>
     );
   }
