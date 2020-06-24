@@ -1,14 +1,13 @@
-import { TRAE_PRODUCTS } from "../constans";
+import { LOGIN_USER } from "../constans";
 
 const initialState = {
-  product: {},
-  products: [],
+  data: { dataUser: {}, failLogin: false },
 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case TRAE_PRODUCTS:
-      return { ...state, products: action.products };
+    case LOGIN_USER:
+      return { ...state, data: action.data };
     default:
       return state;
   }
