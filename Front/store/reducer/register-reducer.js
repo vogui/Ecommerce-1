@@ -1,12 +1,12 @@
-import { LOGIN_USER } from "../constans";
+import { REGISTER_USER } from "../constans";
 
 const initialState = {
-  data: { dataUser: {}, failLogin: false, redirect: false },
+  data: { dataUser: {}, failRegister: false, redirect: false },
 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case LOGIN_USER:
+    case REGISTER_USER:
       return { ...state, data: action.data };
     default:
       return state;

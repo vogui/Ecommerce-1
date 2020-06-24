@@ -1,10 +1,19 @@
 import React from "react";
-
 import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
+import { connect } from "react-redux";
+import { registerUser } from "../store/actions/Register";
+import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
+import { Redirect } from "react-router-dom";
+const mapStateToProps = (state, ownProps) => {
+  return {
+    register: state.register.data,
+  };
+};
+const mapDispatchToProps = { registerUser };
 
 class Register extends React.Component {
   constructor(props) {
@@ -12,40 +21,51 @@ class Register extends React.Component {
     this.state = {
       email: "",
       password: "",
-      redirect: false,
-      wrongData: false,
+      username: "",
+      name: "",
+      adress: "",
     };
     this.submitInfo = this.submitInfo.bind(this);
     this.changeEmail = this.changeEmail.bind(this);
     this.changePassword = this.changePassword.bind(this);
+    this.changeUsername = this.changeUsername.bind(this);
+    this.changeName = this.changeName.bind(this);
+    this.changeAdress = this.changeAdress.bind(this);
   }
 
   submitInfo(e) {
     e.preventDefault();
-    console.log(e);
-    axios
-      .post("/users/Login", this.state)
-      .then((resp) => {
-        if (resp.request.status == 200) {
-          this.setState({ redirect: true });
-        }
-      })
-      .catch((err) => {
-        this.setState({ email: "", password: "", wrongData: true });
-      });
+    this.props.registerUser(
+      this.state.email,
+      this.state.password,
+      this.state.username,
+      this.state.name,
+      this.state.adress
+    );
   }
 
   changeEmail(e) {
-    console.log(e.target.value);
-    this.setState({ email: e.target.value, wrongData: false });
+    this.setState({ email: e.target.value });
   }
 
   changePassword(e) {
-    console.log(e.target.value);
-    this.setState({ password: e.target.value, wrongData: false });
+    this.setState({ password: e.target.value });
+  }
+
+  changeUsername(e) {
+    this.setState({ username: e.target.value });
+  }
+  changeName(e) {
+    this.setState({ name: e.target.value });
+  }
+  changeAdress(e) {
+    this.setState({ adress: e.target.value });
   }
 
   render() {
+    if (this.props.register.redirect) {
+      return <Redirect push to="/login" />;
+    }
     return (
       <div>
         <Container maxWidth="sm">
@@ -59,10 +79,19 @@ class Register extends React.Component {
               <h2>Register</h2>
             </Grid>
             <Grid item xs={12}>
-              <form autoComplete="off" className="loginContainer">
+              <form
+                autoComplete="off"
+                className="loginContainer"
+                action="/api/users/register"
+                method="POST"
+                id="form-register"
+                onSubmit={(e) => {
+                  this.submitInfo(e);
+                }}
+              >
                 <Grid
                   container
-                  spacing={2}
+                  spacing={3}
                   direction="row"
                   justify="center"
                   alignItems="center"
@@ -71,8 +100,11 @@ class Register extends React.Component {
                     <TextField
                       required
                       id="outlined-required"
-                      label="Email"
+                      label="email"
+                      name="email"
                       variant="outlined"
+                      value={this.state.email}
+                      onChange={this.changeEmail}
                     />
                   </Grid>
 
@@ -82,8 +114,56 @@ class Register extends React.Component {
                       id="outlined-password-input"
                       label="Password"
                       type="password"
+                      name="password"
+                      value={this.state.password}
                       autoComplete="current-password"
                       variant="outlined"
+                      onChange={this.changePassword}
+                    />
+                  </Grid>
+
+                  <Grid item xs>
+                    <TextField
+                      required
+                      id="outlined-required"
+                      label="username"
+                      type="text"
+                      name="username"
+                      variant="outlined"
+                      onChange={this.changeUsername}
+                    />
+                  </Grid>
+                </Grid>
+
+                <Grid
+                  style={{ marginTop: "15px" }}
+                  container
+                  spacing={2}
+                  direction="row"
+                  justify="center"
+                  alignItems="center"
+                >
+                  <Grid item xs>
+                    <TextField
+                      required
+                      label="name"
+                      type="text"
+                      name="name"
+                      value={this.state.name}
+                      variant="outlined"
+                      onChange={this.changeName}
+                    />
+                  </Grid>
+
+                  <Grid item xs>
+                    <TextField
+                      required
+                      label="adress"
+                      type="text"
+                      name="adress"
+                      value={this.state.adress}
+                      variant="outlined"
+                      onChange={this.changeAdress}
                     />
                   </Grid>
                 </Grid>
@@ -91,14 +171,31 @@ class Register extends React.Component {
             </Grid>
 
             <Grid item xs={12}>
-              <Button
-                variant="contained"
-                color="primary"
-                endIcon={<Icon>send</Icon>}
-                className="buttonInput"
-              >
-                Sign Up
-              </Button>
+              {this.props.register.failRegister ? (
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  endIcon={<ErrorOutlineIcon></ErrorOutlineIcon>}
+                  className="buttonInput"
+                  type="submit"
+                  form="form-register"
+                  label="Submit"
+                >
+                  Not valid data
+                </Button>
+              ) : (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  endIcon={<Icon>send</Icon>}
+                  className="buttonInput"
+                  type="submit"
+                  form="form-register"
+                  label="Submit"
+                >
+                  Sing Up
+                </Button>
+              )}
             </Grid>
           </Grid>
         </Container>
@@ -107,4 +204,4 @@ class Register extends React.Component {
   }
 }
 
-export default Register;
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
