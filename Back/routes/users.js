@@ -36,11 +36,7 @@ router.post("/login", passport.authenticate("local"), function (
   res,
   next
 ) {
-  console.log("REQ BODY:", req.body);
-  console.log(req.session);
-  console.log(req.user);
-  console.log(req.authenticate);
-  res.send("hola");
+  res.send(req.user.dataValues);
 });
 
 router.post("/toAdmin/:id", (req, res, next) => {

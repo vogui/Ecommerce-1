@@ -85,8 +85,8 @@ passport.serializeUser(function (user, done) {
 
 // deserialize: how we look for the user
 passport.deserializeUser(function (id, done) {
-  User.findByPk(id, function (err, user) {
-    done(err, user);
+  User.findByPk(id).then((user) => {
+    done(null, user);
   });
 });
 
@@ -103,13 +103,15 @@ function isLogedIn(req, res, next) {
 //---------- INICIO DE RUTAS
 
 app.use("/api", routes);
+
 app.get("/", (req, res) => {
-  console.log("---------------------------");
+  res.sendFile(path.join(__dirname, "../public", "index.html"));
+  /* console.log("---------------------------");
   console.log("req.session: ", req.session); // express-session
   console.log("req.sessionID: ", req.sessionID); // express-session
   console.log("req.cookies: ", req.cookies); // cookie-parser
   console.log("req.user:", req.user);
-  console.log("---------------------------");
+  console.log("---------------------------"); */
 });
 
 db.sync({ force: true })
