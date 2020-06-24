@@ -19,17 +19,19 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/api", routes);
 
 /* ------------CONFIG PASSPORT -----------*/
-passport.use(
-  new LocalStrategy(function (username, password, done) {
-    console.log(username, password);
-    User.findOne({ username: username }, function (err, user) {
+passport.use(new LocalStrategy({
+    usernameField: 'email', // input name for username
+    passwordField: 'password' // input name for password
+  }, function (usernameField, passwordField, done) {
+    console.log("email y password", usernameField, passwordField);
+    User.findOne({ email: usernameField }, function (err, user) {
       if (err) {
         return done(err);
       }
       if (!user) {
         return done(null, false, { message: "Incorrect username" });
       }
-      if (!user.validPassword(password)) {
+      if (!user.validPassword(passwordField)) {
         return done(null, false, { message: "Incorrect password" });
       }
       return done(null, user); // the user is authenticated ok!! pass user to the next middleware in req object (req.user)
