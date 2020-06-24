@@ -9,37 +9,40 @@ const app = express();
 const path = require("path");
 const volleyball = require("volleyball");
 const db = require("./db");
-
+const User = require("./models/User");
+app.use(session({ secret: "tomate1" })); // req.session // The secret is used to sign the session id cookie, to prevent the cookie to be tampered with.
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(volleyball);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/api", routes);
-
 /* ------------CONFIG PASSPORT -----------*/
 passport.use(
-  new LocalStrategy(function (username, password, done) {
-    console.log(username, password);
-    User.findOne({ username: username }, function (err, user) {
-      if (err) {
-        return done(err);
-      }
-      if (!user) {
-        return done(null, false, { message: "Incorrect username" });
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: "Incorrect password" });
-      }
-      return done(null, user); // the user is authenticated ok!! pass user to the next middleware in req object (req.user)
-    });
-  })
+  new LocalStrategy(
+    {
+      usernameField: "email", // input name for username
+      passwordField: "password", // input name for password
+    },
+    function (usernameField, passwordField, done) {
+      console.log("email y password", usernameField, passwordField);
+      User.findOne({ email: usernameField }, function (err, user) {
+        if (err) {
+          return done(err);
+        }
+        if (!user) {
+          return done(null, false, { message: "Incorrect username" });
+        }
+        if (!user.validPassword(passwordField)) {
+          return done(null, false, { message: "Incorrect password" });
+        }
+        return done(null, user); // the user is authenticated ok!! pass user to the next middleware in req object (req.user)
+      });
+    }
+  )
 );
-
-app.use(session({ secret: "tomate1" })); // req.session // The secret is used to sign the session id cookie, to prevent the cookie to be tampered with.
-app.use(passport.initialize());
-app.use(passport.session());
 
 // serialize: how we save the user and stored in session object by express-session
 passport.serializeUser(function (user, done) {
@@ -65,6 +68,7 @@ function isLogedIn(req, res, next) {
 
 //---------- INICIO DE RUTAS
 
+app.use("/api", routes);
 app.get("/", (req, res) => {
   console.log("---------------------------");
   console.log("req.session: ", req.session); // express-session
