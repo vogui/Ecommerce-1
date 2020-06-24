@@ -45,9 +45,8 @@ const category3 = Category.create({
 })
 
 const user1 =User.create({
-	username:"borrachin",
-	password:"123",
 	email: "borrachin@gmail.com",
+	password:"123",
 	name: "Sr. Borracho",
 	adress: "Av. Siempreviva 123"
 })

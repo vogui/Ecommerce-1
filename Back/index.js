@@ -112,7 +112,7 @@ app.get("/", (req, res) => {
   console.log("---------------------------");
 });
 
-db.sync({ force: true })
+db.sync({ force: false })
   .then(() => {
     console.log("DB synched");
     app.listen(3000, () => console.log("listening on 3000"));
