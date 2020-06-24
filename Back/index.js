@@ -1,10 +1,11 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const session = require("express-session");
 const express = require("express");
+const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const routes = require("./routes");
+const flash = require('connect-flash');
 const app = express();
 const path = require("path");
 const volleyball = require("volleyball");
@@ -13,42 +14,12 @@ const User = require("./models/User");
 app.use(session({ secret: "tomate1" })); // req.session // The secret is used to sign the session id cookie, to prevent the cookie to be tampered with.
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 app.use(volleyball);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-
-/* ------------CONFIG PASSPORT -----------*/
-/* var passport = require("passport"),
-  LocalStrategy = require("passport-local").Strategy;
-
-passport.use(
-  new LocalStrategy(
-    { usernameField: "email", passwordField: "password" },
-    function (username, password, done) {
-      User.findOne(
-        {
-          where: {
-            username: username,
-          },
-        },
-        function (err, user) {
-          if (err) {
-            return done(err);
-          }
-          if (!user) {
-            return done(null, false, { message: "Incorrect username." });
-          }
-          if (!user.validPassword(password)) {
-            return done(null, false, { message: "Incorrect password." });
-          }
-          return done(null, user);
-        }
-      );
-    }
-  )
-); */
 
 passport.use(
   new LocalStrategy(
@@ -85,8 +56,8 @@ passport.serializeUser(function (user, done) {
 
 // deserialize: how we look for the user
 passport.deserializeUser(function (id, done) {
-  User.findByPk(id, function (err, user) {
-    done(err, user);
+  User.findByPk(id).then((user) => {
+    done(null, user);
   });
 });
 
@@ -100,9 +71,9 @@ function isLogedIn(req, res, next) {
   }
 }
 
-//---------- INICIO DE RUTAS
-
+//---------- ENVIO HACIA LAS RUTAS
 app.use("/api", routes);
+
 app.get("/", (req, res) => {
   console.log("---------------------------");
   console.log("req.session: ", req.session); // express-session
@@ -110,6 +81,15 @@ app.get("/", (req, res) => {
   console.log("req.cookies: ", req.cookies); // cookie-parser
   console.log("req.user:", req.user);
   console.log("---------------------------");
+});
+
+
+// Error catching endware.
+app.use(function (err, req, res, next) {
+    console.log("ENTRE A LA RUTA DEL ERROR LPM")
+    console.error(err, typeof next);
+    console.error(err.stack)
+    res.status(err.status || 500).send(err.message || 'Internal server error.');
 });
 
 db.sync({ force: false })
