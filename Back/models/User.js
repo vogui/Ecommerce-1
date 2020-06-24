@@ -7,7 +7,7 @@ class User extends S.Model {}
 
 User.init(
   {
-    username: {
+    email: {
       type: S.STRING,
       allowNull: false,
       unique: true,
@@ -28,11 +28,6 @@ User.init(
     },
     salt: {
       type: S.STRING,
-    },
-    email: {
-      type: S.STRING,
-      allowNull: false,
-      unique: true,
     },
     name: {
       type: S.STRING,

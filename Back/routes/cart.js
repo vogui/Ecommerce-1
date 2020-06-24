@@ -2,16 +2,14 @@ const express = require("express");
 const router = express.Router();
 const { Cart }  = require("../models/index");
 
-router.post('/:user_id', (req, res) => {
+router.post('/', (req, res) => {
     Cart.findOrCreate({where:{
-        User_id: req.params.user_id,
+        UserId: req.body.userId,
         completed: false
     }})
     .then( ( [cart, created] ) => {
         res.send(cart) //queda pendiente funcionalidad
     })
 })
-
-
 
 module.exports = Cart;

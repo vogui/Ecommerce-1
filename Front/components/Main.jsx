@@ -6,6 +6,7 @@ import Login from "../components/Login";
 import Register from "../components/Register";
 import ProductsContainer from '../containers/ProductsContainer'
 import ProductsContainer from '../containers/ProductContainer'
+import CartCotainer from "../containers/CartCotainer";
 
 class Main extends React.Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class Main extends React.Component {
         <Route path="/register" render={() => <Register />} />
         <Router path='/product' component={ProductsContainer} />
         <Router path='/product/:id' component={ProductContainer} />
+        <Router path='/cart' component={CartCotainer} />
       </Switch>
     );
   }

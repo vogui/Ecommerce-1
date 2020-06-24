@@ -14,13 +14,13 @@ Cart_Product.init(
         key: "id",
       },
     },
-    product_id: {
+   /*  product_id: {
       type: S.INTEGER,
       references: {
         model: Product,
         key: "id",
       },
-    },
+    }, */
     quantity: {
       type: S.INTEGER,
       defaultValue: 1,
