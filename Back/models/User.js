@@ -1,7 +1,7 @@
 const db = require("../db");
 const S = require("sequelize");
 const Review = require("./Review");
-const crypto = require("crypto")
+const crypto = require("crypto");
 
 class User extends S.Model {}
 
@@ -22,9 +22,9 @@ User.init(
         notEmpty: true,
       },
     },
-    isAdmin:{
-       type:S.BOOLEAN,
-       defaultValue:false
+    isAdmin: {
+      type: S.BOOLEAN,
+      defaultValue: false,
     },
     salt: {
       type: S.STRING,
