@@ -757,7 +757,9 @@ var MainContainer = /*#__PURE__*/function (_React$Component) {
         to: "/login"
       }, "Go to login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/register"
-      }, "Go to register"));
+      }, "Go to register"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/products"
+      }, " Go to products"));
     }
   }]);
 
@@ -60374,14 +60376,14 @@ var findProduct = function findProduct(product) {
 var giveMeProducts = function giveMeProducts(products) {
   return function (dispatch) {
     axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/products", products).then(function (listProducts) {
-      return dispatch(findProducts(listProducts));
+      return dispatch(findProducts(listProducts.data));
     });
   };
 };
 var giveTheProduct = function giveTheProduct(productId) {
   return function (dispatch) {
-    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/product/".concat(productId)).then(function (product) {
-      return dispatch(findProducts(product));
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/products/".concat(productId)).then(function (product) {
+      return dispatch(findProducts(product.data));
     });
   };
 };
@@ -60443,7 +60445,7 @@ var registerUser = function registerUser(email, password, username, name, adress
 /*!***************************!*\
   !*** ./store/constans.js ***!
   \***************************/
-/*! exports provided: TRAE_PRODUCTS, TRAE_PRODUCT, LOGIN_USER, REGISTER_USER */
+/*! exports provided: TRAE_PRODUCTS, TRAE_PRODUCT, LOGIN_USER, REGISTER_USER, ADD_TO_CART, REMOVE_ITEM */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -60452,11 +60454,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TRAE_PRODUCT", function() { return TRAE_PRODUCT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGIN_USER", function() { return LOGIN_USER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REGISTER_USER", function() { return REGISTER_USER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_TO_CART", function() { return ADD_TO_CART; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_ITEM", function() { return REMOVE_ITEM; });
 // Products
 var TRAE_PRODUCTS = "TRAE_PRODUCTS";
 var TRAE_PRODUCT = "TRAE_PRODUCT";
-var LOGIN_USER = "LOGIN_USER";
-var REGISTER_USER = "REGISTER_USER";
+var LOGIN_USER = "LOGIN_USER"; //User
+
+var REGISTER_USER = "REGISTER_USER"; //Cart
+
+var ADD_TO_CART = "ADD_TO_CART";
+var REMOVE_ITEM = "REMOVE_ITEM";
 
 /***/ }),
 
