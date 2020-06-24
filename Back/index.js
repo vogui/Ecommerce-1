@@ -42,6 +42,7 @@ passport.use(
       });
     }
   )
+
 );
 
 // serialize: how we save the user and stored in session object by express-session
