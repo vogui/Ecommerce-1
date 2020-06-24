@@ -146,12 +146,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   };
 };
 
-var mapStateToDispatch = function mapStateToDispatch(dispatch, ownProps) {
-  return {
-    loginUser: function loginUser(email, password) {
-      return dispatch(Object(_store_actions_Login__WEBPACK_IMPORTED_MODULE_9__["loginUser"])(email, password));
-    }
-  };
+var mapStateToDispatch = {
+  loginUser: _store_actions_Login__WEBPACK_IMPORTED_MODULE_9__["loginUser"]
 };
 
 var Login = /*#__PURE__*/function (_React$Component) {
@@ -60294,12 +60290,14 @@ var LoginUser = function LoginUser(dataUser, booleanLogin) {
   };
 };
 
-var loginUser = function loginUser(username, password) {
+var loginUser = function loginUser(email, password) {
   return function (dispatch) {
-    axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/users/login", {
-      username: username,
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/users/login", {
+      email: email,
       password: password
     }).then(function (resp) {
+      console.log("LA RESPUESTA ES:", resp);
+
       if (resp.request.status == 200) {
         dispatch(LoginUser(resp.data));
       }

@@ -10,12 +10,12 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { loginUser } from "../store/actions/Login";
 
-const mapStateToProps = (state, ownProps) => ({
-  data: state.data,
-});
-const mapStateToDispatch = (dispatch, ownProps) => ({
-  loginUser: (email, password) => dispatch(loginUser(email, password)),
-});
+const mapStateToProps = (state, ownProps) => {
+  return {
+    data: state.data,
+  };
+};
+const mapStateToDispatch = { loginUser };
 
 class Login extends React.Component {
   constructor(props) {
