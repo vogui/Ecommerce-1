@@ -136,6 +136,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store_actions_Login__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../store/actions/Login */ "./store/actions/Login.js");
+/* harmony import */ var _material_ui_icons_ErrorOutline__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @material-ui/icons/ErrorOutline */ "./node_modules/@material-ui/icons/ErrorOutline.js");
+/* harmony import */ var _material_ui_icons_ErrorOutline__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_ErrorOutline__WEBPACK_IMPORTED_MODULE_10__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -169,13 +171,17 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+  {
+    console.log("OWNProps:", ownProps);
+  }
   return {
-    data: state.data
+    login: state.login
   };
 };
 
-var mapStateToDispatch = {
+var mapDispatchToProps = {
   loginUser: _store_actions_Login__WEBPACK_IMPORTED_MODULE_9__["loginUser"]
 };
 
@@ -192,9 +198,7 @@ var Login = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       email: "",
-      password: "",
-      redirect: false,
-      wrongData: false
+      password: ""
     };
     _this.submitInfo = _this.submitInfo.bind(_assertThisInitialized(_this));
     _this.changeEmail = _this.changeEmail.bind(_assertThisInitialized(_this));
@@ -205,31 +209,34 @@ var Login = /*#__PURE__*/function (_React$Component) {
   _createClass(Login, [{
     key: "submitInfo",
     value: function submitInfo(e) {
+      var _this2 = this;
+
       e.preventDefault();
-      this.props.loginUser(this.state.email, this.state.password);
+      this.props.loginUser(this.state.email, this.state.password).then(function () {
+        _this2.setState({
+          email: "",
+          password: ""
+        });
+      });
     }
   }, {
     key: "changeEmail",
     value: function changeEmail(e) {
-      console.log(e.target.value);
       this.setState({
-        email: e.target.value,
-        wrongData: false
+        email: e.target.value
       });
     }
   }, {
     key: "changePassword",
     value: function changePassword(e) {
-      console.log(e.target.value);
       this.setState({
-        password: e.target.value,
-        wrongData: false
+        password: e.target.value
       });
     }
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Container__WEBPACK_IMPORTED_MODULE_1__["default"], {
         maxWidth: "sm"
@@ -251,7 +258,7 @@ var Login = /*#__PURE__*/function (_React$Component) {
         method: "POST",
         id: "form-register",
         onSubmit: function onSubmit(e) {
-          _this2.submitInfo(e);
+          _this3.submitInfo(e);
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
         container: true,
@@ -268,6 +275,7 @@ var Login = /*#__PURE__*/function (_React$Component) {
         label: "email",
         name: "email",
         variant: "outlined",
+        value: this.state.email,
         onChange: this.changeEmail
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
         item: true,
@@ -278,13 +286,22 @@ var Login = /*#__PURE__*/function (_React$Component) {
         label: "Password",
         type: "password",
         name: "password",
+        value: this.state.password,
         autoComplete: "current-password",
         variant: "outlined",
         onChange: this.changePassword
       }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
         item: true,
         xs: 12
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      }, this.props.login.data.failLogin ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        variant: "contained",
+        color: "secondary",
+        endIcon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_ErrorOutline__WEBPACK_IMPORTED_MODULE_10___default.a, null),
+        className: "buttonInput",
+        type: "submit",
+        form: "form-register",
+        label: "Submit"
+      }, "Not valid data") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
         variant: "contained",
         color: "primary",
         endIcon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Icon__WEBPACK_IMPORTED_MODULE_5__["default"], null, "send"),
@@ -292,14 +309,14 @@ var Login = /*#__PURE__*/function (_React$Component) {
         type: "submit",
         form: "form-register",
         label: "Submit"
-      }, "Sign In")))));
+      }, "Sing In")))));
     }
   }]);
 
   return Login;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_8__["connect"])(mapStateToProps, mapStateToDispatch)(Login));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_8__["connect"])(mapStateToProps, mapDispatchToProps)(Login));
 
 /***/ }),
 
@@ -1323,6 +1340,52 @@ function _unsupportedIterableToArray(o, minLen) {
   if (n === "Map" || n === "Set") return Array.from(o);
   if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return Object(_arrayLikeToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(o, minLen);
 }
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/extends.js":
+/*!********************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/extends.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _extends() {
+  module.exports = _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+module.exports = _extends;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/interopRequireDefault.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    "default": obj
+  };
+}
+
+module.exports = _interopRequireDefault;
 
 /***/ }),
 
@@ -14312,6 +14375,75 @@ function useIsFocusVisible() {
     onBlurVisible: handleBlurVisible,
     ref: ref
   };
+}
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/icons/ErrorOutline.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@material-ui/icons/ErrorOutline.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/createSvgIcon */ "./node_modules/@material-ui/icons/utils/createSvgIcon.js"));
+
+var _default = (0, _createSvgIcon.default)(_react.default.createElement("path", {
+  d: "M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+}), 'ErrorOutline');
+
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/icons/utils/createSvgIcon.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/@material-ui/icons/utils/createSvgIcon.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = createSvgIcon;
+
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js"));
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _SvgIcon = _interopRequireDefault(__webpack_require__(/*! @material-ui/core/SvgIcon */ "./node_modules/@material-ui/core/esm/SvgIcon/index.js"));
+
+function createSvgIcon(path, displayName) {
+  var Component = _react.default.memo(_react.default.forwardRef(function (props, ref) {
+    return _react.default.createElement(_SvgIcon.default, (0, _extends2.default)({
+      ref: ref
+    }, props), path);
+  }));
+
+  if (true) {
+    Component.displayName = "".concat(displayName, "Icon");
+  }
+
+  Component.muiName = _SvgIcon.default.muiName;
+  return Component;
 }
 
 /***/ }),
@@ -60557,6 +60689,10 @@ var loginUser = function loginUser(email, password) {
 
       if (resp.request.status == 200) {
         dispatch(LoginUser(resp.data));
+      }
+
+      if (resp.request.status == 401) {
+        dispatch(LoginUser({}, true));
       }
     })["catch"](function (err) {
       dispatch(LoginUser({}, true));

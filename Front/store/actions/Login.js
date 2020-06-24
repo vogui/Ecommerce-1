@@ -14,6 +14,9 @@ export const loginUser = (email, password) => (dispatch) => {
       if (resp.request.status == 200) {
         dispatch(LoginUser(resp.data));
       }
+      if (resp.request.status == 401) {
+        dispatch(LoginUser({}, true));
+      }
     })
     .catch((err) => {
       dispatch(LoginUser({}, true));
