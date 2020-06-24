@@ -7,31 +7,23 @@ const Review = require('./Review')
 const User = require('./User')
 const Product = require('./Product')
 
-//Cart.belongsTo(User) // Cart{ UserId = id(User)}  
 
-//Review.belongsTo(User) 
 
-//User.hasMany(Review)
+//Product.hasMany(Review);
+//Review.belongsTo(Product);
 
-//Category.hasMany(Products)
+//Review.belongsTo(User);
+//User.hasMany(Review);
 
-//Products.hasMany(Category)
-
-//Products.belongsTo(CartProducts)
-
-Product.hasMany(Review);
-Review.belongsTo(Product);
-
-Review.belongsTo(User);
-User.hasMany(Review);
+//movie.belongsTo(Genre) en la tabla movie genera columna genre_id
 
 Product.belongsToMany(Category, {through: 'Product_Categories'});
 
-Cart.belongsTo(Product);
-Product.hasMany(Cart);
+Cart.belongsToMany(Product, {through: 'Cart_Product'});
+
 
 Cart.belongsTo(User);
-User.hasMany(Cart);
+
 
 module.exports={Cart, CartProducts, Category, Products, Review, User}
 

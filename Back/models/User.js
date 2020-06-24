@@ -26,7 +26,6 @@ User.init(
        type:S.BOOLEAN,
        defaultValue:false
     },
-
     salt: {
       type: S.STRING,
     },
