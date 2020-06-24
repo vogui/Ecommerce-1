@@ -84,6 +84,7 @@ class Login extends React.Component {
                       label="email"
                       name="email"
                       variant="outlined"
+                      onChange={this.changeEmail}
                     />
                   </Grid>
 
@@ -96,6 +97,7 @@ class Login extends React.Component {
                       name="password"
                       autoComplete="current-password"
                       variant="outlined"
+                      onChange={this.changePassword}
                     />
                   </Grid>
                 </Grid>
