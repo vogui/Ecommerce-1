@@ -14,12 +14,15 @@ const findProduct = (product)=>({
 
 
 export const giveMeProducts = (products)=> dispatch =>{
-    axios.get("/api/products", products)
-    .then((listProducts)=> dispatch(findProducts(listProducts.data)))
+   
+    axios.post("/api/products", products)
+    .then((listProducts)=> {
+      console.log(listProducts.data)
+    dispatch(findProducts(listProducts.data))})
 }
 
 export const giveTheProduct = (productId)=> dispatch =>{
     axios.get(`/api/products/${productId}`)
-    .then((product)=> dispatch(findProducts(product.data)))
+    .then((product)=> dispatch(findProduct(product.data)))
 }
 

@@ -2,9 +2,14 @@ const express = require("express");
 const router = express.Router();
 const path = require("path");
 const {Products}  = require("../models/index");
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op
 
-router.get("/", (req, res, next) => {
-  Products.findAll().then((productos) => res.status(200).send(productos));
+router.post("/", (req, res, next) => {
+  console.log('ESTE ES EL BODY', req.body)
+  Products.findAll({
+        [Op.contained]:req.body.title
+  }).then((productos) => res.status(200).send(productos));
   //.catch(()=> res.sendStatus(400))
 });
 

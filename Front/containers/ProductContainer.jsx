@@ -8,6 +8,7 @@ class ProductContainer extends React.Component {
     super();
   }
   componentDidMount() {
+    console.log(this.props.id, 'ID')
     this.props.giveTheProduct(this.props.id);
   }
   render() {
@@ -16,6 +17,7 @@ class ProductContainer extends React.Component {
 }
 
 const mapStateToProps = function (state, ownProps) {
+  console.log(ownProps.match.params.id,)
   return {
     product: state.products.product,
     id: ownProps.match.params.id,
