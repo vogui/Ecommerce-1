@@ -6,6 +6,16 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
 import { makeStyles } from "@material-ui/core/styles";
+import axios from "axios";
+import { connect } from "react-redux";
+import { loginUser } from "../store/actions/Login";
+
+const mapStateToProps = (state, ownProps) => ({
+  data: state.data,
+});
+const mapStateToDispatch = (dispatch, ownProps) => ({
+  loginUser: (email, password) => dispatch(loginUser(email, password)),
+});
 
 class Login extends React.Component {
   constructor(props) {
@@ -23,17 +33,7 @@ class Login extends React.Component {
 
   submitInfo(e) {
     e.preventDefault();
-    console.log(e);
-    axios
-      .post("/users/Login", this.state)
-      .then((resp) => {
-        if (resp.request.status == 200) {
-          this.setState({ redirect: true });
-        }
-      })
-      .catch((err) => {
-        this.setState({ email: "", password: "", wrongData: true });
-      });
+    this.props.loginUser(this.state.email, this.state.password);
   }
 
   changeEmail(e) {
@@ -60,7 +60,16 @@ class Login extends React.Component {
               <h2>Login</h2>
             </Grid>
             <Grid item xs={12}>
-              <form autoComplete="off" className="loginContainer">
+              <form
+                autoComplete="off"
+                className="loginContainer"
+                action="/api/users/register"
+                method="POST"
+                id="form-register"
+                onSubmit={(e) => {
+                  this.submitInfo(e);
+                }}
+              >
                 <Grid
                   container
                   spacing={2}
@@ -72,7 +81,8 @@ class Login extends React.Component {
                     <TextField
                       required
                       id="outlined-required"
-                      label="Email"
+                      label="email"
+                      name="email"
                       variant="outlined"
                     />
                   </Grid>
@@ -83,6 +93,7 @@ class Login extends React.Component {
                       id="outlined-password-input"
                       label="Password"
                       type="password"
+                      name="password"
                       autoComplete="current-password"
                       variant="outlined"
                     />
@@ -97,6 +108,9 @@ class Login extends React.Component {
                 color="primary"
                 endIcon={<Icon>send</Icon>}
                 className="buttonInput"
+                type="submit"
+                form="form-register"
+                label="Submit"
               >
                 Sign In
               </Button>
@@ -108,4 +122,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default connect(mapStateToProps, mapStateToDispatch)(Login);

@@ -4,6 +4,7 @@ import MainContainer from "./Test";
 import store from "../store/index";
 import Login from "../components/Login";
 import Register from "../components/Register";
+
 class Main extends React.Component {
   constructor(props) {
     super(props);
