@@ -1,21 +1,19 @@
 import React from "react";
-
 import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
-import { makeStyles } from "@material-ui/core/styles";
-import axios from "axios";
 import { connect } from "react-redux";
 import { loginUser } from "../store/actions/Login";
-
+import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
+import { Redirect } from "react-router-dom";
 const mapStateToProps = (state, ownProps) => {
   return {
-    data: state.data,
+    login: state.login.data,
   };
 };
-const mapStateToDispatch = { loginUser };
+const mapDispatchToProps = { loginUser };
 
 class Login extends React.Component {
   constructor(props) {
@@ -23,8 +21,6 @@ class Login extends React.Component {
     this.state = {
       email: "",
       password: "",
-      redirect: false,
-      wrongData: false,
     };
     this.submitInfo = this.submitInfo.bind(this);
     this.changeEmail = this.changeEmail.bind(this);
@@ -37,16 +33,17 @@ class Login extends React.Component {
   }
 
   changeEmail(e) {
-    console.log(e.target.value);
-    this.setState({ email: e.target.value, wrongData: false });
+    this.setState({ email: e.target.value });
   }
 
   changePassword(e) {
-    console.log(e.target.value);
-    this.setState({ password: e.target.value, wrongData: false });
+    this.setState({ password: e.target.value });
   }
 
   render() {
+    if (this.props.login.redirect) {
+      return <Redirect push to="/" />;
+    }
     return (
       <div>
         <Container maxWidth="sm">
@@ -84,6 +81,8 @@ class Login extends React.Component {
                       label="email"
                       name="email"
                       variant="outlined"
+                      value={this.state.email}
+                      onChange={this.changeEmail}
                     />
                   </Grid>
 
@@ -94,8 +93,10 @@ class Login extends React.Component {
                       label="Password"
                       type="password"
                       name="password"
+                      value={this.state.password}
                       autoComplete="current-password"
                       variant="outlined"
+                      onChange={this.changePassword}
                     />
                   </Grid>
                 </Grid>
@@ -103,17 +104,31 @@ class Login extends React.Component {
             </Grid>
 
             <Grid item xs={12}>
-              <Button
-                variant="contained"
-                color="primary"
-                endIcon={<Icon>send</Icon>}
-                className="buttonInput"
-                type="submit"
-                form="form-register"
-                label="Submit"
-              >
-                Sign In
-              </Button>
+              {this.props.login.failLogin ? (
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  endIcon={<ErrorOutlineIcon></ErrorOutlineIcon>}
+                  className="buttonInput"
+                  type="submit"
+                  form="form-register"
+                  label="Submit"
+                >
+                  Not valid data
+                </Button>
+              ) : (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  endIcon={<Icon>send</Icon>}
+                  className="buttonInput"
+                  type="submit"
+                  form="form-register"
+                  label="Submit"
+                >
+                  Sing In
+                </Button>
+              )}
             </Grid>
           </Grid>
         </Container>
@@ -122,4 +137,4 @@ class Login extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapStateToDispatch)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

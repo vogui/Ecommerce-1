@@ -20,29 +20,62 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 /* ------------CONFIG PASSPORT -----------*/
+/* var passport = require("passport"),
+  LocalStrategy = require("passport-local").Strategy;
+
 passport.use(
   new LocalStrategy(
-    {
-      usernameField: "email", // input name for username
-      passwordField: "password", // input name for password
-    },
-    function (usernameField, passwordField, done) {
-      console.log("email y password", usernameField, passwordField);
-      User.findOne({ email: usernameField }, function (err, user) {
-        if (err) {
-          return done(err);
+    { usernameField: "email", passwordField: "password" },
+    function (username, password, done) {
+      User.findOne(
+        {
+          where: {
+            username: username,
+          },
+        },
+        function (err, user) {
+          if (err) {
+            return done(err);
+          }
+          if (!user) {
+            return done(null, false, { message: "Incorrect username." });
+          }
+          if (!user.validPassword(password)) {
+            return done(null, false, { message: "Incorrect password." });
+          }
+          return done(null, user);
         }
-        if (!user) {
-          return done(null, false, { message: "Incorrect username" });
-        }
-        if (!user.validPassword(passwordField)) {
-          return done(null, false, { message: "Incorrect password" });
-        }
-        return done(null, user); // the user is authenticated ok!! pass user to the next middleware in req object (req.user)
-      });
+      );
     }
   )
+); */
 
+passport.use(
+  new LocalStrategy(
+    { usernameField: "email", passwordField: "password" },
+    function (inputEmail, inputPassword, done) {
+      console.log("Estoy por buscar un usuario");
+
+      User.findOne({
+        where: {
+          email: inputEmail,
+        },
+      })
+        .then((user) => {
+          if (!user) {
+            return done(null, false, { message: "Incorrect username." });
+          }
+          if (!user.validPassword(inputPassword)) {
+            return done(null, false, { message: "Incorrect password." });
+          }
+
+          return done(null, user);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  )
 );
 
 // serialize: how we save the user and stored in session object by express-session
@@ -52,7 +85,7 @@ passport.serializeUser(function (user, done) {
 
 // deserialize: how we look for the user
 passport.deserializeUser(function (id, done) {
-  User.findById(id, function (err, user) {
+  User.findByPk(id, function (err, user) {
     done(err, user);
   });
 });
