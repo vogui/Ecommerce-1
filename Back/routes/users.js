@@ -9,14 +9,14 @@ router.get("/", (req, res, next) => {
 });
 
 router.post("/register", (req, res, next) => {
-  console.log('Esto es reqBody', req.body)
+  console.log("Esto es reqBody", req.body);
   User.create(req.body)
     .then((user) => {
-      console.log(user, 'user')
+      console.log(user, "user");
       res.status(201).send(user);
     })
     .catch((err) => {
-      console.log(err)
+      console.log(err);
       res.status(502).send(err);
     });
 });
@@ -36,10 +36,11 @@ router.post("/login", passport.authenticate("local"), function (
   res,
   next
 ) {
+  console.log("REQ BODY:", req.body);
   console.log(req.session);
   console.log(req.user);
   console.log(req.authenticate);
-  res.render("userHome", { user: req.user });
+  res.send("hola");
 });
 
 router.post("/toAdmin/:id", (req, res, next) => {

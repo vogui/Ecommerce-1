@@ -6,10 +6,11 @@ const LoginUser = (dataUser, booleanLogin) => ({
   data: { dataUser, failLogin: booleanLogin },
 });
 
-export const loginUser = (username, password) => (dispatch) => {
+export const loginUser = (email, password) => (dispatch) => {
   axios
-    .post("api/users/login", { username, password })
+    .post("/api/users/login", { email, password })
     .then((resp) => {
+      console.log("LA RESPUESTA ES:", resp);
       if (resp.request.status == 200) {
         dispatch(LoginUser(resp.data));
       }
