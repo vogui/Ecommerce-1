@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -47,6 +48,9 @@ const useStyles = makeStyles((theme) => ({
   inputRoot: {
     color: "inherit",
   },
+  inputUser: {
+    color: "white",
+  },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
@@ -63,11 +67,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function SearchAppBar() {
-  const classes = useStyles();
-  
-  
+const mapStateToProps = (state, ownProps) => {
+  return {
+    login: state.login.data,
+  };
+};
+const mapDispatchToProps = {};
 
+
+function SearchAppBar({ props }) {
+  const classes = useStyles();
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -83,16 +92,46 @@ export default function SearchAppBar() {
           <Typography className={classes.title} variant="h6" noWrap>
             Tomate Una
           </Typography>
-         <Link to = '/products' ><Button variant="contained"> Products</Button></Link>
 
-          <Link to="/login">
-            <Button variant="contained" color="inherit">Login</Button>
-          </Link>
-          <Link to="register">
-            <Button variant="contained" color="inherit">Register</Button>
-          </Link>
+          <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div>
+            <InputBase
+              placeholder="Search…"
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              inputProps={{ "aria-label": "search" }}
+            />
+          </div>
+          {console.log("PROPS:", props)}
+          {props.login.redirect ? (
+            <a href="/api/users/logout">
+              <Button color="inherit" className={classes.inputUser}>
+                Logout
+              </Button>
+            </a>
+          ) : (
+            <div>
+              <Link to="/login">
+                <Button color="inherit" className={classes.inputUser}>
+                  Login
+                </Button>
+              </Link>
+              <Link to="register">
+                <Button color="inherit" className={classes.inputUser}>
+                  Register
+                </Button>
+              </Link>
+            </div>
+          )}
+
         </Toolbar>
       </AppBar>
     </div>
   );
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchAppBar);
