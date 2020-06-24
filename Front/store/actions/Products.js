@@ -1,10 +1,11 @@
 import { TRAE_PRODUCTS , TRAE_PRODUCT} from '../constans'
 import axios from 'axios'
 
-const findProducts = (products)=>({
-    type:TRAE_PRODUCTS,
-    products
-})
+
+const findProducts = (products) => ({
+  type: TRAE_PRODUCTS,
+  products,
+});
 
 const findProduct = (product)=>({
     type:TRAE_PRODUCT,
@@ -21,3 +22,4 @@ export const giveTheProduct = (productId)=> dispatch =>{
     axios.get(`/api/product/${productId}`)
     .then((product)=> dispatch(findProducts(product)))
 }
+
