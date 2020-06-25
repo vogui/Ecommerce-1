@@ -15,7 +15,10 @@ class MainContainer extends React.Component {
   render() {
     return (
       <div>
+
         <NavBar props={this.props}></NavBar>
+        <br></br>
+        <Link to='/cart'>Cart</Link>
       </div>
     );
   }
