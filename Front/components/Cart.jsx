@@ -15,6 +15,9 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import FolderIcon from '@material-ui/icons/Folder';
 import DeleteIcon from '@material-ui/icons/Delete';
+import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart';
+import ExposurePlus1Icon from '@material-ui/icons/ExposurePlus1';
+import ExposureNeg1Icon from '@material-ui/icons/ExposureNeg1';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,128 +32,78 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function generate(element) {
-  return [0, 1, 2].map((value) =>
-    React.cloneElement(element, {
-      key: value,
-    }),
-  );
-}
 
-export default function InteractiveList() {
+
+export default function InteractiveList({items,add,rest,remove}) {
   const classes = useStyles();
-  const [dense, setDense] = React.useState(false);
   const [secondary, setSecondary] = React.useState(false);
 
+  function generate(element) {
+      return items.map((product) =>{
+        {console.log("esto es el el product : ",product)}
+
+        React.cloneElement(element, {
+          key: product,
+        })
+      }
+      );
+    }
+
   return (
-    <div className={classes.root}>
-      <FormGroup row>
-        <FormControlLabel
-          control={
-            <Checkbox checked={dense} onChange={(event) => setDense(event.target.checked)} />
-          }
-          label="Enable dense"
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={secondary}
-              onChange={(event) => setSecondary(event.target.checked)}
+    <div> 
+      {items !== undefined ? (
+        <div className={classes.root}>
+          <FormGroup row>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={secondary}
+                  onChange={(event) => setSecondary(event.target.checked)}
+                />
+              }
+              label="Enable secondary text"
             />
-          }
-          label="Enable secondary text"
-        />
-      </FormGroup>
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={6}>
-          <Typography variant="h6" className={classes.title}>
-            Text only
-          </Typography>
-          <div className={classes.demo}>
-            <List dense={dense}>
-              {generate(
-                <ListItem>
-                  <ListItemText
-                    primary="Single-line item"
-                    secondary={secondary ? 'Secondary text' : null}
-                  />
-                </ListItem>,
-              )}
-            </List>
-          </div>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Typography variant="h6" className={classes.title}>
-            Icon with text
-          </Typography>
-          <div className={classes.demo}>
-            <List dense={dense}>
-              {generate(
-                <ListItem>
-                  <ListItemIcon>
-                    <FolderIcon />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary="Single-line item"
-                    secondary={secondary ? 'Secondary text' : null}
-                  />
-                </ListItem>,
-              )}
-            </List>
-          </div>
-        </Grid>
-      </Grid>
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={6}>
-          <Typography variant="h6" className={classes.title}>
-            Avatar with text
-          </Typography>
-          <div className={classes.demo}>
-            <List dense={dense}>
-              {generate(
-                <ListItem>
-                  <ListItemAvatar>
-                    <Avatar>
-                      <FolderIcon />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary="Single-line item"
-                    secondary={secondary ? 'Secondary text' : null}
-                  />
-                </ListItem>,
-              )}
-            </List>
-          </div>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Typography variant="h6" className={classes.title}>
-            Avatar with text and icon
-          </Typography>
-          <div className={classes.demo}>
-            <List dense={dense}>
-              {generate(
-                <ListItem>
-                  <ListItemAvatar>
-                    <Avatar>
-                      <FolderIcon />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary="Single-line item"
-                    secondary={secondary ? 'Secondary text' : null}
-                  />
-                  <ListItemSecondaryAction>
-                    <IconButton edge="end" aria-label="delete">
-                      <DeleteIcon />
-                    </IconButton>
-                  </ListItemSecondaryAction>
-                </ListItem>,
-              )}
-            </List>
-          </div>
-        </Grid>
-      </Grid>
+          </FormGroup>
+              <Grid product xs={12} md={6}>
+              <Typography variant="h6" className={classes.title}>
+                Your Products:
+              </Typography>
+              <div className={classes.demo}>
+
+                <List >
+                  { items.map((item)=>
+                      (
+                    <ListItem>
+                      <ListItemAvatar>
+                        <Avatar>
+                          <FolderIcon />
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        secondary={secondary ? item.picture : null}
+                      />
+                      <ListItemSecondaryAction>
+                        <IconButton edge="end" aria-label="delete" onClick={()=>remove(product.id)}>
+                          <RemoveShoppingCartIcon />
+                        </IconButton>
+                        <IconButton edge="end" aria-label="+1" onClick={()=>add(product.id)}>
+                          <ExposurePlus1Icon />
+                        </IconButton>
+                        <IconButton edge="end" aria-label="-1" onClick={()=>rest(product.id)}>
+                          <ExposureNeg1Icon />
+                        </IconButton>
+                      </ListItemSecondaryAction>
+                    </ListItem>
+                  ))}
+                </List>
+                {/*( <p>Nothing yet...</p>  )*/}
+              </div>
+            </Grid>
+        </div>
+        )
+        :
+        ( <p>Nothing yet...</p>)
+      }
     </div>
   );
 }
