@@ -22,6 +22,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Fab from "@material-ui/core/Fab";
 import Paper from "@material-ui/core/Paper";
 import NavBar from "../components/NavBar";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -59,7 +60,10 @@ export default function InteractiveList({
       <NavBar props={props} />
       {items !== undefined ? (
         <div className={classes.root}>
-          <h2>Welcome {props.login.dataUser.name}, this is your Cart</h2>
+          {props.login.redirect ? (
+            <h2>Welcome {props.login.dataUser.name}, this is your Cart</h2>
+          ) : null}
+
           <FormGroup row>
             <FormControlLabel
               control={
