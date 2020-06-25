@@ -1,7 +1,7 @@
-
 #bundle
 Back/public/bundle.js 
 Back/public/bundle.js.map
+
 # Logs
 logs
 .log
@@ -63,8 +63,3 @@ typings/
 
 # dotenv environment variables file
 .env
-
-#bundle
-Back/public/bundle.js 
-Back/public/bundle.js.map
-
