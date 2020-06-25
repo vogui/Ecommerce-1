@@ -17,6 +17,8 @@ class MainContainer extends React.Component {
       <div>
 
         <NavBar props={this.props}></NavBar>
+        <br></br>
+        <Link to='/cart'>Cart</Link>
       </div>
     );
   }

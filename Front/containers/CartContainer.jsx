@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-
+import Cart from '../components/Cart';
 
 class CartContainer extends React.Component {
   constructor() {
@@ -10,7 +10,7 @@ class CartContainer extends React.Component {
 
   }
   render() {
-      <div>Cart</div>
+      <Cart />
   }
 }
 
