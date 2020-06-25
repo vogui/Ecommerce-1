@@ -35,7 +35,6 @@ export const giveMeProducts = (products)=> dispatch =>{
     dispatch(findProducts(listProducts.data))})
 }
 
-
 export const giveTheProduct = (productId) => (dispatch) => {
   axios
     .get(`/api/products/${productId}`)

@@ -93,7 +93,7 @@ app.use(function (err, req, res, next) {
 });
 
 
-db.sync({ force: false })
+db.sync({ force: false})
 
   .then(() => {
     console.log("DB synched");
