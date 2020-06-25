@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
+import LocalMallIcon from "@material-ui/icons/LocalMall";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -90,8 +91,11 @@ function SearchAppBar({ props }) {
             color="inherit"
             aria-label="open drawer"
           >
-            <MenuIcon />
+            <Link to="/cart">
+              <LocalMallIcon className={classes.inputUser} />
+            </Link>
           </IconButton>
+
           <Typography className={classes.title} variant="h6" noWrap>
             <Link to="/">
               <Button color="inherit" className={classes.inputUser}>

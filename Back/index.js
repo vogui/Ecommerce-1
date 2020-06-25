@@ -5,7 +5,7 @@ const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const routes = require("./routes");
-const flash = require('connect-flash');
+const flash = require("connect-flash");
 const app = express();
 const path = require("path");
 const volleyball = require("volleyball");
@@ -84,17 +84,17 @@ app.get("/", (req, res) => {
   console.log("---------------------------"); */
 });
 
-
 // Error catching endware.
 app.use(function (err, req, res, next) {
-    console.log("ENTRE A LA RUTA DEL ERROR LPM")
-    console.error(err, typeof next);
-    console.error(err.stack)
-    res.status(err.status || 500).send(err.message || 'Internal server error.');
+  console.log("ENTRE A LA RUTA DEL ERROR LPM");
+  console.error(err, typeof next);
+  console.error(err.stack);
+  res.status(err.status || 500).send(err.message || "Internal server error.");
 });
 
 
-db.sync({ force: false})
+db.sync({ force: false })
+
   .then(() => {
     console.log("DB synched");
     app.listen(3000, () => console.log("listening on 3000"));
