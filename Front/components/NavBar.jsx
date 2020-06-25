@@ -74,7 +74,6 @@ const mapStateToProps = (state, ownProps) => {
 };
 const mapDispatchToProps = {};
 
-
 function SearchAppBar({ props }) {
   const classes = useStyles();
   return (
