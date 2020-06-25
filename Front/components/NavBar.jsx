@@ -93,7 +93,11 @@ function SearchAppBar({ props }) {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Tomate Una
+            <Link to="/">
+              <Button color="inherit" className={classes.inputUser}>
+                Tomate una
+              </Button>
+            </Link>
           </Typography>
 
           <div className={classes.search}>
