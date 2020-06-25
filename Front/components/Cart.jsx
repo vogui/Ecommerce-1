@@ -18,10 +18,10 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import RemoveShoppingCartIcon from "@material-ui/icons/RemoveShoppingCart";
 import ExposurePlus1Icon from "@material-ui/icons/ExposurePlus1";
 import ExposureNeg1Icon from "@material-ui/icons/ExposureNeg1";
-import Tooltip from '@material-ui/core/Tooltip';
-import Fab from '@material-ui/core/Fab';
-import Paper from '@material-ui/core/Paper';
-
+import Tooltip from "@material-ui/core/Tooltip";
+import Fab from "@material-ui/core/Fab";
+import Paper from "@material-ui/core/Paper";
+import NavBar from "../components/NavBar";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
-    textAlign: 'center',
+    textAlign: "center",
     color: theme.palette.text.secondary,
   },
   demo: {
@@ -43,14 +43,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function InteractiveList({ items, add, rest, remove, total }) {
+export default function InteractiveList({
+  items,
+  add,
+  rest,
+  remove,
+  total,
+  props,
+}) {
   const classes = useStyles();
   const [secondary, setSecondary] = React.useState(false);
 
   return (
     <div>
+      <NavBar props={props} />
       {items !== undefined ? (
         <div className={classes.root}>
+          <h2>Welcome {props.login.dataUser.name}, this is your Cart</h2>
           <FormGroup row>
             <FormControlLabel
               control={
@@ -62,7 +71,7 @@ export default function InteractiveList({ items, add, rest, remove, total }) {
               label="Enable secondary text"
             />
           </FormGroup>
-          <Grid >
+          <Grid>
             <Typography variant="h6" className={classes.title}>
               Your Products:
             </Typography>
@@ -79,20 +88,25 @@ export default function InteractiveList({ items, add, rest, remove, total }) {
                     />
                     <ListItemSecondaryAction>
                       <Tooltip title="One More" aria-label="One More">
-                       <Fab color="primary" className={classes.fab} onClick={() => add(item.id)}>
-                        <ExposurePlus1Icon />
-                       </Fab>
+                        <Fab
+                          color="primary"
+                          className={classes.fab}
+                          onClick={() => add(item.id)}
+                        >
+                          <ExposurePlus1Icon />
+                        </Fab>
                       </Tooltip>
                       <Tooltip title="One Less">
-                        <Fab color="secondary" className={classes.fab} onClick={() => rest(item.id)}>
+                        <Fab
+                          color="secondary"
+                          className={classes.fab}
+                          onClick={() => rest(item.id)}
+                        >
                           <ExposureNeg1Icon />
                         </Fab>
                       </Tooltip>
-                      <IconButton
-                        edge="end"
-                        aria-label="qty"
-                      >
-                       Let´s Drink: {item.quantity}
+                      <IconButton edge="end" aria-label="qty">
+                        Let´s Drink: {item.quantity}
                       </IconButton>
                       <Tooltip title="Delete">
                         <IconButton
@@ -110,8 +124,11 @@ export default function InteractiveList({ items, add, rest, remove, total }) {
               {/*( <p>Nothing yet...</p>  )*/}
             </div>
           </Grid>
-          <Grid >
-             <Paper item xs={12} className={classes.paper}> Total: ${total}</Paper>
+          <Grid>
+            <Paper item xs={12} className={classes.paper}>
+              {" "}
+              Total: ${total}
+            </Paper>
           </Grid>
         </div>
       ) : (

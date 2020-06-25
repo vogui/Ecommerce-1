@@ -26,8 +26,7 @@ class MainContainer extends React.Component {
     return (
       <div>
         <NavBar props={this.props}></NavBar>
-        <br></br>
-        <Link to="/cart">Cart</Link>
+
         <ProductosMain
           tileData={this.props.products}
           addToCart={this.props.addToCart}
