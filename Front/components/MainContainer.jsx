@@ -9,6 +9,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     login: state.login.data,
     products: state.products.products,
+    items: state.products.addedItems,
   };
 };
 const mapDispatchToProps = (dispatch, ownProps) => ({
