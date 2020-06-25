@@ -3,7 +3,7 @@ import axios from "axios";
 
 const LoginUser = (dataUser, booleanLogin, booleanRedirect) => ({
   type: LOGIN_USER,
-  data: { dataUser, failRegister: booleanLogin, redirect: booleanRedirect },
+  data: { dataUser, failLogin: booleanLogin, redirect: booleanRedirect },
 });
 
 export const loginUser = (email, password) => (dispatch) => {
@@ -15,7 +15,7 @@ export const loginUser = (email, password) => (dispatch) => {
         dispatch(LoginUser(resp.data, false, true));
       }
       if (resp.request.status == 401) {
-        dispatch(LoginUser({}, true));
+        dispatch(LoginUser({}, true, false));
       }
     })
     .catch((err) => {

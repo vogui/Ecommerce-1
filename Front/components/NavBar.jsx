@@ -69,7 +69,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 const mapStateToProps = (state, ownProps) => {
   return {
     login: state.login.data,
@@ -110,10 +109,10 @@ function SearchAppBar({ props }) {
           </div>*/}
           {console.log("PROPS:", props)}
           <Link to="/products">
-                <Button color="inherit" className={classes.inputUser}>
-                 Products
-                </Button>
-              </Link>
+            <Button color="inherit" className={classes.inputUser}>
+              Products
+            </Button>
+          </Link>
           {props.login.redirect ? (
             <a href="/api/users/logout">
               <Button color="inherit" className={classes.inputUser}>
@@ -134,7 +133,6 @@ function SearchAppBar({ props }) {
               </Link>
             </div>
           )}
-
         </Toolbar>
       </AppBar>
     </div>

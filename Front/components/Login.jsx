@@ -8,6 +8,8 @@ import { connect } from "react-redux";
 import { loginUser } from "../store/actions/Login";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import { Redirect } from "react-router-dom";
+import Error from "../components/Error";
+
 const mapStateToProps = (state, ownProps) => {
   return {
     login: state.login.data,
@@ -105,17 +107,19 @@ class Login extends React.Component {
 
             <Grid item xs={12}>
               {this.props.login.failLogin ? (
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  endIcon={<ErrorOutlineIcon></ErrorOutlineIcon>}
-                  className="buttonInput"
-                  type="submit"
-                  form="form-register"
-                  label="Submit"
-                >
-                  Not valid data
-                </Button>
+                <div>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    endIcon={<ErrorOutlineIcon></ErrorOutlineIcon>}
+                    className="buttonInput"
+                    type="submit"
+                    form="form-register"
+                    label="Submit"
+                  >
+                    Not valid data
+                  </Button>
+                </div>
               ) : (
                 <Button
                   variant="contained"
