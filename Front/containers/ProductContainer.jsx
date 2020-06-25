@@ -8,29 +8,36 @@ class ProductContainer extends React.Component {
     super();
   }
   componentDidMount() {
-    console.log(this.props.id, 'ID')
+    console.log(this.props.id, "ID");
     this.props.giveTheProduct(this.props.id);
   }
+
+  /*   handleClick = (id) => {
+    this.props.addToCart(id);
+  }; */
   render() {
     return <Product product={this.props.product} />;
   }
 }
 
 const mapStateToProps = function (state, ownProps) {
-  console.log(ownProps.match.params.id,)
+  console.log(ownProps.match.params.id);
   return {
     product: state.products.product,
     id: ownProps.match.params.id,
   };
 };
 
-const mapStateToDispatch = function (dispatch, ownProps) {
+const mapDispatchToProps = function (dispatch, ownProps) {
   ownProps;
   return {
     giveTheProduct: (id) => {
       dispatch(giveTheProduct(id));
     },
+    /*  addToCart: (id) => {
+      dispatch(addToCart(id));
+    }, */
   };
 };
 
-export default connect(mapStateToProps, mapStateToDispatch)(ProductContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductContainer);
