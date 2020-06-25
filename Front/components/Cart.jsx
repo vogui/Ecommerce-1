@@ -18,11 +18,22 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import RemoveShoppingCartIcon from "@material-ui/icons/RemoveShoppingCart";
 import ExposurePlus1Icon from "@material-ui/icons/ExposurePlus1";
 import ExposureNeg1Icon from "@material-ui/icons/ExposureNeg1";
+import Tooltip from '@material-ui/core/Tooltip';
+import Fab from '@material-ui/core/Fab';
+import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     maxWidth: 752,
+  },
+  fab: {
+    margin: theme.spacing(2),
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
   },
   demo: {
     backgroundColor: theme.palette.background.paper,
@@ -32,21 +43,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function InteractiveList({ items, add, rest, remove }) {
+export default function InteractiveList({ items, add, rest, remove, total }) {
   const classes = useStyles();
   const [secondary, setSecondary] = React.useState(false);
-
-  function generate(element) {
-    return items.map((product) => {
-      {
-        console.log("esto es el el product : ", product);
-      }
-
-      React.cloneElement(element, {
-        key: product,
-      });
-    });
-  }
 
   return (
     <div>
@@ -63,14 +62,14 @@ export default function InteractiveList({ items, add, rest, remove }) {
               label="Enable secondary text"
             />
           </FormGroup>
-          <Grid product xs={12} md={6}>
+          <Grid >
             <Typography variant="h6" className={classes.title}>
               Your Products:
             </Typography>
             <div className={classes.demo}>
-              <List>
+              <List product xs={12} md={6}>
                 {items.map((item) => (
-                  <ListItem>
+                  <ListItem key={item.id}>
                     <ListItemAvatar>
                       <Avatar src={item.picture}></Avatar>
                     </ListItemAvatar>
@@ -79,33 +78,40 @@ export default function InteractiveList({ items, add, rest, remove }) {
                       primary={item.title}
                     />
                     <ListItemSecondaryAction>
-                      <IconButton
-                        edge="end"
-                        aria-label="delete"
-                        onClick={() => remove(item.id)}
-                      >
-                        <RemoveShoppingCartIcon />
-                      </IconButton>
-                      <IconButton
-                        edge="end"
-                        aria-label="+1"
-                        onClick={() => add(item.id)}
-                      >
+                      <Tooltip title="One More" aria-label="One More">
+                       <Fab color="primary" className={classes.fab} onClick={() => add(item.id)}>
                         <ExposurePlus1Icon />
-                      </IconButton>
+                       </Fab>
+                      </Tooltip>
+                      <Tooltip title="One Less">
+                        <Fab color="secondary" className={classes.fab} onClick={() => rest(item.id)}>
+                          <ExposureNeg1Icon />
+                        </Fab>
+                      </Tooltip>
                       <IconButton
                         edge="end"
-                        aria-label="-1"
-                        onClick={() => rest(item.id)}
+                        aria-label="qty"
                       >
-                        <ExposureNeg1Icon />
+                       Let´s Drink: {item.quantity}
                       </IconButton>
+                      <Tooltip title="Delete">
+                        <IconButton
+                          edge="end"
+                          aria-label="delete"
+                          onClick={() => remove(item.id)}
+                        >
+                          <RemoveShoppingCartIcon />
+                        </IconButton>
+                      </Tooltip>
                     </ListItemSecondaryAction>
                   </ListItem>
                 ))}
               </List>
               {/*( <p>Nothing yet...</p>  )*/}
             </div>
+          </Grid>
+          <Grid >
+             <Paper item xs={12} className={classes.paper}> Total: ${total}</Paper>
           </Grid>
         </div>
       ) : (
