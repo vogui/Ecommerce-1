@@ -9,12 +9,12 @@ export default ({products})=>{
        { products && products.map(product => (
     <div key={product.id} >
       <Link  to={`/product/${product.id}`}>
-        <img />
+        <img src = {product.picture}/>
         <div>
           <h5>
-            <span>{product.title}</span>
+            <span>Name: {product.title}</span>
           </h5>
-        <p><strong>{products.price}</strong></p>
+        <p><strong>Price: {product.price}</strong></p>
         </div>
        </Link>
      </div>

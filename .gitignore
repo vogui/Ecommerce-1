@@ -1,3 +1,7 @@
+
+#bundle
+Back/public/bundle.js 
+Back/public/bundle.js.map
 # Logs
 logs
 .log

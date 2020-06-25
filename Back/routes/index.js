@@ -9,7 +9,7 @@ const cart = require('./cart');
 
 // escriban sus rutas acá
 router.use("/users", users);
-router.use("/product", product)
+router.use("/products", product)
 router.use("/cart", cart);
 
 
