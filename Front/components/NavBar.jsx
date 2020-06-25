@@ -3,11 +3,13 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
+import SearchIcon from "@material-ui/icons/Search";
 import Typography from "@material-ui/core/Typography";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import InputBase from "@material-ui/core/InputBase";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -65,7 +67,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -126,7 +127,6 @@ function SearchAppBar({ props }) {
               </Link>
             </div>
           )}
-
         </Toolbar>
       </AppBar>
     </div>
