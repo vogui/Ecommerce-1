@@ -9,6 +9,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     login: state.login.data,
     products: state.products.products,
+    items: state.products.addedItems,
   };
 };
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -25,8 +26,7 @@ class MainContainer extends React.Component {
     return (
       <div>
         <NavBar props={this.props}></NavBar>
-        <br></br>
-        <Link to="/cart">Cart</Link>
+
         <ProductosMain
           tileData={this.props.products}
           addToCart={this.props.addToCart}

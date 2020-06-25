@@ -10,7 +10,7 @@ import { fade, makeStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-
+import LocalMallIcon from "@material-ui/icons/LocalMall";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -88,8 +88,11 @@ function SearchAppBar({ props }) {
             color="inherit"
             aria-label="open drawer"
           >
-            <MenuIcon />
+            <Link to="/cart">
+              <LocalMallIcon className={classes.inputUser} />
+            </Link>
           </IconButton>
+
           <Typography className={classes.title} variant="h6" noWrap>
             <Link to="/">
               <Button color="inherit" className={classes.inputUser}>
