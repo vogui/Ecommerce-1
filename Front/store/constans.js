@@ -10,3 +10,6 @@ export const REGISTER_USER = "REGISTER_USER";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_ITEM = "REMOVE_ITEM";
 
+//Category
+export const TRAE_CATEGORY = 'TRAE_CATEGORY';
+export const BRING_PRODUCT_BY_CATE = 'BRING_PRODUCT_BY_CATE'

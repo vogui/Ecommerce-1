@@ -2,7 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import Input from "../components/Input";
 import Products from "../components/Products";
-import { giveMeProducts } from "../store/actions/Products";
+import { giveMeProducts , findProductsByCategory} from "../store/actions/Products";
+import {findCategorys } from '../store/actions/Category'
 
 class ProductsContainer extends React.Component {
   constructor() {
@@ -11,13 +12,22 @@ class ProductsContainer extends React.Component {
       
     };
     this.handleChange = this.handleChange.bind(this);
-  
+    //this.handleBringCate = this.handleBringCate.bind(this)
+  }
+  componentDidMount(){
+ this.props.findCategorys()
   }
 
   handleChange(event) {
     const title = event.target.value
     this.props.giveMeProducts( {title} );
   }
+
+  handleBringCate(id){
+    this.props.findProductsByCategory(id)
+  }
+
+  
 
  
 
@@ -27,7 +37,8 @@ class ProductsContainer extends React.Component {
        <Input
           
           handleChange={this.handleChange}
-        
+          handleCategorys = {this.props.categorys}
+         // handleBringCate = {this.handleBringCate}
         />
          
         <Products products={this.props.products} /> 
@@ -37,12 +48,18 @@ class ProductsContainer extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state, ownProps) => {
+  console.log(state.categorys.categorys)
+ return({ 
   products: state.products.products,
-});
+  categorys: state.categorys.categorys
+ })
+};
 
 const mapStateToDispatch = (dispatch, ownProps) => ({
   giveMeProducts: (products) => dispatch(giveMeProducts(products)),
+  findCategorys: ()=> dispatch(findCategorys()),
+  findProductsByCategory:(id)=> dispatch(findProductsByCategory(id))
 });
 
 export default connect(mapStateToProps, mapStateToDispatch)(ProductsContainer);

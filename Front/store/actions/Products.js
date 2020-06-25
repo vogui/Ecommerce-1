@@ -12,12 +12,20 @@ const findProduct = (product)=>({
     product
 })
 
+const findProductsByCate = (products)=>({
+  type: BRING_PRODUCT_BY_CATE,
+  products,
+})
+
+export const findProductsByCategory =(categoryId)=> dispatch =>{
+  axios.get(`/api/products/categorys/${categoryId}`)
+  .then((listProductsByCate) => dispatch(findProductsByCate(listProductsByCate)))
+}
 
 export const giveMeProducts = (products)=> dispatch =>{
    
     axios.post("/api/products", products)
     .then((listProducts)=> {
-      console.log(listProducts.data)
     dispatch(findProducts(listProducts.data))})
 }
 

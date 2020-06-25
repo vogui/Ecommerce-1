@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const path = require("path");
-const { Products } = require("../models/index");
+const { Products, Category } = require("../models/index");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
@@ -15,6 +15,20 @@ router.post("/", (req, res, next) => {
   });
   //.catch(()=> res.sendStatus(400))
 });
+
+router.get('/category/:id',(req,res,next)=>{
+ const id = req.params.id
+ Category.findAll({
+   includes:{ 
+     model: Products,
+     through: 'Product_Category',
+     where:{
+       id:id
+     },
+    }
+ })
+ .then((producto)=> console.log(producto )
+)})
 
 router.get("/:id", (req, res, next) => {
   let id = req.params.id;

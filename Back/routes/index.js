@@ -12,7 +12,7 @@ const category = require('./category')
 router.use("/users", users);
 router.use("/products", product)
 router.use("/cart", cart);
-router.use("/category",category)
+router.use("/categorys",category)
 
 
 module.exports = router;

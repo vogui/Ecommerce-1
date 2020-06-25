@@ -100,19 +100,12 @@ function SearchAppBar({ props }) {
             </Link>
           </Typography>
 
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ "aria-label": "search" }}
-            />
-          </div>
+          <Link to="/products">
+                <Button color="inherit" className={classes.inputUser}>
+                  Products
+                </Button>
+              </Link>
+
           {console.log("PROPS:", props)}
           {props.login.redirect ? (
             <a href="/api/users/logout">

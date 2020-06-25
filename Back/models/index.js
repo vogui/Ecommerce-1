@@ -17,7 +17,8 @@ const Product = require('./Product')
 
 //movie.belongsTo(Genre) en la tabla movie genera columna genre_id
 
-Product.belongsToMany(Category, {through: 'Product_Categories'});
+Product.belongsToMany(Category, {through: 'Product_Category'});
+Category.belongsToMany(Product, {through: 'Product_Category'})
 
 Cart.belongsToMany(Product, {through: 'Cart_Product'});
 
