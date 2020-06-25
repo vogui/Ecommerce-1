@@ -5,9 +5,12 @@ import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import IconButton from "@material-ui/core/IconButton";
+import AddShoppingCartSharpIcon from "@material-ui/icons/AddShoppingCartSharp";
 import InfoIcon from "@material-ui/icons/Info";
 import Product from "../components/Product";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -21,13 +24,16 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
   },
   icon: {
+    marginRight: 15,
     color: "rgba(255, 255, 255, 0.54)",
   },
 }));
 
-export default function TitlebarGridList({ tileData }) {
+function ProductosMain({ tileData, addToCart }) {
   const classes = useStyles();
-
+  /*   handleClick = (id) => {
+    this.props.addToCart(id);
+  }; */
   return (
     <div>
       {tileData != undefined ? (
@@ -43,14 +49,19 @@ export default function TitlebarGridList({ tileData }) {
                   title={tile.title}
                   subtitle={<span>Price: {tile.price}</span>}
                   actionIcon={
-                    <IconButton
-                      aria-label={`info about ${tile.title}`}
-                      className={classes.icon}
-                    >
+                    <div>
+                      <AddShoppingCartSharpIcon
+                        className={classes.icon}
+                        aria-label={`info about ${tile.title}`}
+                        onClick={() => {
+                          addToCart(tile.id);
+                        }}
+                      ></AddShoppingCartSharpIcon>
+
                       <Link to={`/product/${tile.id}`}>
-                        <InfoIcon />
+                        <InfoIcon className={classes.icon} />
                       </Link>
-                    </IconButton>
+                    </div>
                   }
                 />
               </GridListTile>
@@ -63,3 +74,5 @@ export default function TitlebarGridList({ tileData }) {
     </div>
   );
 }
+
+export default ProductosMain;

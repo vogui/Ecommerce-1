@@ -1,4 +1,4 @@
-import { TRAE_PRODUCTS, TRAE_PRODUCT, ADD_TO_CART } from '../constans'
+import { TRAE_PRODUCTS, TRAE_PRODUCT, ADD_TO_CART, REMOVE_ITEM, ADD_QUANTITY, SUB_QUANTITY } from '../constans'
   
 const initialState = {
     product: {},
@@ -57,33 +57,33 @@ export default function reducer(state = initialState, action) {
 
         case ADD_QUANTITY:
 
-            let addedItem = state.items.find(item=> item.id === action.id)
-            addedItem.quantity += 1 
-            let newTotal = state.total + addedItem.price
+            let itemToAdd = state.products.find(item=> item.id === action.id)
+            itemToAdd.quantity += 1 
+            let newTotal2 = state.total + itemToAdd.price
             return{
               ...state,
-              total: newTotal
+              total: newTotal2
             };
 
         case SUB_QUANTITY:
 
-            let addedItem = state.items.find(item=> item.id === action.id) 
+            let itemToAdd2 = state.products.find(item=> item.id === action.id) 
             //if the qt == 0 then it should be removed
-            if(addedItem.quantity === 1){
+            if(itemToAdd2.quantity === 1){
                 let new_items = state.addedItems.filter(item=>item.id !== action.id)
-                let newTotal = state.total - addedItem.price
+                let newTotal3 = state.total - itemToAdd2.price
                 return{
                     ...state,
                     addedItems: new_items,
-                    total: newTotal
+                    total: newTotal3
                 }
               }
             else {
-                addedItem.quantity -= 1
-                let newTotal = state.total - addedItem.price
+                itemToAdd2.quantity -= 1
+                let newTotal3 = state.total - itemToAdd2.price
                 return{
                       ...state,
-                      total: newTotal
+                      total: newTotal3
                 }
             };
 
