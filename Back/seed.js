@@ -4,7 +4,7 @@ const { User } = require("./models/index");
 
 const product1 = Products.create({
   title: "Ale",
-  picture: "https://www.dropbox.com/s/7hccmxdhaybw1bi/ale.jpg?dl=0",
+  picture: "https://www.linguavox.es/es/wp-content/uploads/birra.png",
   price: 150,
 });
 

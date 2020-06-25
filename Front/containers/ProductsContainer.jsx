@@ -1,36 +1,38 @@
 import React from "react";
 import { connect } from "react-redux";
 import Input from "../components/Input";
-import Products from "../components/Product";
+import Products from "../components/Products";
 import { giveMeProducts } from "../store/actions/Products";
 
 class ProductsContainer extends React.Component {
   constructor() {
     super();
     this.state = {
-      search: "",
+      
     };
     this.handleChange = this.handleChange.bind(this);
+  
   }
 
   handleChange(event) {
-    this.setState({ search: event.target.value });
+    const title = event.target.value
+    this.props.giveMeProducts( {title} );
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-    this.props.giveMeProducts(this.state.search);
-  }
+ 
 
   render() {
     return (
-      <>
-        <Input
+     <div>
+       <Input
+          
           handleChange={this.handleChange}
-          valueSearch={this.state.search}
+        
         />
-        <Products products={this.props.products} />
-      </>
+         
+        <Products products={this.props.products} /> 
+       
+        </div>
     );
   }
 }

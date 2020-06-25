@@ -1,19 +1,25 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import NavBar from "../components/NavBar";
+import { connect } from "react-redux";
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    login: state.login.data,
+  };
+};
+const mapDispatchToProps = {};
+
 class MainContainer extends React.Component {
   render() {
     return (
       <div>
 
-        <Link to="/login">Go to login</Link>
-        <br></br>
-        <Link to="/register">Go to register</Link>
-        <br></br>
-        <Link to="/cart">Go to cart</Link>
-
+        <NavBar props={this.props}></NavBar>
       </div>
     );
   }
 }
-export default MainContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);
+

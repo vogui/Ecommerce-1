@@ -1,9 +1,16 @@
+
+#bundle
+Back/public/bundle.js 
+Back/public/bundle.js.map
 # Logs
 logs
 .log
 npm-debug.log
 yarn-debug.log*
 yarn-error.log*
+
+Back/public/bundle.js 
+Back/public/bundle.js.map
 
 # Runtime data
 pids
@@ -56,3 +63,8 @@ typings/
 
 # dotenv environment variables file
 .env
+
+#bundle
+Back/public/bundle.js 
+Back/public/bundle.js.map
+

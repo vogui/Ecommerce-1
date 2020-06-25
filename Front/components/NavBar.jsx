@@ -4,12 +4,10 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import InputBase from "@material-ui/core/InputBase";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
-import SearchIcon from "@material-ui/icons/Search";
-import { MenuItem } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -50,6 +48,9 @@ const useStyles = makeStyles((theme) => ({
   inputRoot: {
     color: "inherit",
   },
+  inputUser: {
+    color: "white",
+  },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
@@ -65,9 +66,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SearchAppBar() {
-  const classes = useStyles();
 
+const mapStateToProps = (state, ownProps) => {
+  return {
+    login: state.login.data,
+  };
+};
+const mapDispatchToProps = {};
+
+function SearchAppBar({ props }) {
+  const classes = useStyles();
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -81,8 +89,9 @@ export default function SearchAppBar() {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Mercado Cerrado
+            Tomate Una
           </Typography>
+
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -96,14 +105,32 @@ export default function SearchAppBar() {
               inputProps={{ "aria-label": "search" }}
             />
           </div>
-          <Link to="/login">
-            <Button color="inherit">Login</Button>
-          </Link>
-          <Link to="register">
-            <Button color="inherit">Register</Button>
-          </Link>
+          {console.log("PROPS:", props)}
+          {props.login.redirect ? (
+            <a href="/api/users/logout">
+              <Button color="inherit" className={classes.inputUser}>
+                Logout
+              </Button>
+            </a>
+          ) : (
+            <div>
+              <Link to="/login">
+                <Button color="inherit" className={classes.inputUser}>
+                  Login
+                </Button>
+              </Link>
+              <Link to="register">
+                <Button color="inherit" className={classes.inputUser}>
+                  Register
+                </Button>
+              </Link>
+            </div>
+          )}
+
         </Toolbar>
       </AppBar>
     </div>
   );
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchAppBar);
