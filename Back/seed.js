@@ -35,88 +35,88 @@ const product5 = Products.create({
   price: 135,
 });
 const product6 = Products.create({
-  title: "Stout",
-  picture: "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
-  price: 135,
+  title: "Belga",
+  picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTLVIQY35P8lG-iAOPrUJcl-uxB6Y8THrZU4g&usqp=CAU",
+  price: 200,
 });
 const product7 = Products.create({
-  title: "Stout",
-  picture: "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
+  title: "Pilsner",
+  picture: "https://upload.wikimedia.org/wikipedia/commons/d/da/Pilsner_urquell_mug.jpg",
   price: 135,
 });
 
 const product8 = Products.create({
-  title: "Stout",
-  picture: "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
-  price: 135,
+  title: "Lager oscura",
+  picture: "https://www.cocinista.es/download/bancorecursos/recetas/receta-cerveza-grano-lager-oscura.jpg",
+  price: 125,
 });
 const product9 = Products.create({
-  title: "Stout",
-  picture: "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
-  price: 135,
+  title: "India Pale Ale ",
+  picture: "https://www.cerveceroexperto.com/wp-content/uploads/2019/07/IPA-Pinta.jpg",
+  price: 170,
 });
 
 const product10 = Products.create({
-  title: "Stout",
-  picture: "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
+  title: "Trigo",
+  picture: "https://lupulu.com/wp-content/uploads/2014/05/lupulu-trigo.jpg",
   price: 135,
 });
 
 const product11 = Products.create({
-  title: "Stout",
-  picture: "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
+  title: "Barley Wine",
+  picture: "https://cervecerosdemexico.com/wp-content/uploads/2017/12/Barleywine.jpg",
   price: 135,
 });
 
 const product12 = Products.create({
-  title: "Stout",
-  picture: "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
-  price: 135,
+  title: "Bitter",
+  picture: "https://i.pinimg.com/736x/a6/af/dd/a6afddb6a0cf03326f5e2626f4cb6916.jpg",
+  price: 160,
 });
 const product13 = Products.create({
-  title: "Stout",
-  picture: "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
-  price:135.
+  title: "Brown Ale",
+  picture: "https://cdn.shortpixel.ai/client/q_glossy,ret_img,w_800/https://www.cerveza-artesanal.co/wp-content/uploads/2017/09/receta-brown-ale-800x600.jpg",
+  price:180.
 });
 
 const product14 = Products.create({
-  title: "Stout",
-  picture: "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
-  price: 135,
+  title: "Old Ale",
+  picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRR5NsDeC9pI0xhSj3itWlmXFByyiokcTwtaA&usqp=CAU",
+  price: 180,
 });
 const product15= Products.create({
-  title: "Stout",
-  picture: "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
+  title: "Altbier",
+  picture: "https://d26lpennugtm8s.cloudfront.net/stores/852/895/products/altbier-21-4be93e1494c96d7c8d15686489487938-1024-1024.jpg",
   price: 135,
 });
 const product16 = Products.create({
-  title: "Stout",
-  picture: "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
+  title: "Kölsch",
+  picture: "https://s3-us-west-2.amazonaws.com/homebrewassoc/wp-content/uploads/2016/04/kolshSLIDE.jpg",
   price: 135,
 });
 
 const product17 = Products.create({
-  title: "Stout",
-  picture: "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
-  price: 135,
+  title: "Berliner weisse",
+  picture: "https://cocktail-glaeser.de/wp-content/uploads/RITZENHOFF-2er-Set-Berliner-Weisse-Pokal-Glaeser-von-RASTAL-0-3-Liter-mit-Logo.jpg",
+  price: 250,
 });
 
 const product18 = Products.create({
-  title: "Stout",
-  picture: "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
-  price: 135,
+  title: "Lambic",
+  picture: "https://recetasdecerveza.net/wp-content/uploads/2018/07/Recetas-de-Fruit-Lambic.jpg",
+  price: 300,
 });
 
 const product19 = Products.create({
-  title: "Stout",
-  picture: "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
-  price: 135,
+  title: "Rauchbier",
+  picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRIMX8oFu47qzDqw_Xm97rxZ-AUwqTVFBGoKw&usqp=CAU",
+  price: 300,
 });
 
 const product20 = Products.create({
-  title: "Stout",
-  picture: "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
-  price: 135,
+  title: "Steam beer",
+  picture: "https://i.pinimg.com/originals/e1/4b/b1/e14bb19fdbcc700d751ff3fd92bf1fe6.jpg",
+  price: 300,
 });
 
 const category1 = Category.create({
