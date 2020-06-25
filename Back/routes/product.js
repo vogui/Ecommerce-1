@@ -62,4 +62,10 @@ router.delete("/:id", (req, res, next) => {
     });
 });
 
+router.get("/", (req, res, next) => [
+  Products.findAll().then((products) => {
+    res.send(products);
+  }),
+]);
+
 module.exports = router;
