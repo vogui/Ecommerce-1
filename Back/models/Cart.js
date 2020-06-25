@@ -6,13 +6,6 @@ class Cart extends S.Model {}
 
 Cart.init(
   {
-    /*  user_id: {
-      type: S.STRING,
-      references: {
-        model: User,
-        key: "id",
-      },
-    }, */
     total: {
       type: S.INTEGER,
     },
@@ -26,7 +19,5 @@ Cart.init(
   },
   { sequelize: db, modelName: "Cart" }
 );
-
-//Cart.hasOne(User);
 
 module.exports = Cart;
