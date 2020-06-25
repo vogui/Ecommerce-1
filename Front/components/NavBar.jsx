@@ -3,14 +3,15 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
-import SearchIcon from "@material-ui/icons/Search";
-import InputBase from "@material-ui/core/InputBase";
 import Typography from "@material-ui/core/Typography";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import SearchIcon from "@material-ui/icons/Search";
+import InputBase from "@material-ui/core/InputBase";
 import LocalMallIcon from "@material-ui/icons/LocalMall";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -69,12 +70,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 const mapStateToProps = (state, ownProps) => {
   return {
     login: state.login.data,
   };
 };
 const mapDispatchToProps = {};
+
 
 function SearchAppBar({ props }) {
   const classes = useStyles();
@@ -101,25 +104,13 @@ function SearchAppBar({ props }) {
             </Link>
           </Typography>
 
-          {/*<div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ "aria-label": "search" }}
-            />
-          </div>*/}
-          {console.log("PROPS:", props)}
           <Link to="/products">
-            <Button color="inherit" className={classes.inputUser}>
-              Products
-            </Button>
-          </Link>
+                <Button color="inherit" className={classes.inputUser}>
+                  Products
+                </Button>
+              </Link>
+
+          {console.log("PROPS:", props)}
           {props.login.redirect ? (
             <a href="/api/users/logout">
               <Button color="inherit" className={classes.inputUser}>
@@ -140,6 +131,7 @@ function SearchAppBar({ props }) {
               </Link>
             </div>
           )}
+
         </Toolbar>
       </AppBar>
     </div>
