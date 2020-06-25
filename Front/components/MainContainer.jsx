@@ -4,14 +4,16 @@ import NavBar from "../components/NavBar";
 import { connect } from "react-redux";
 import ProductosMain from "../components/ProductosMain";
 import { giveMeAllProducts } from "../store/actions/Products";
+import { addToCart } from "../store/actions/Products";
 const mapStateToProps = (state, ownProps) => {
   return {
     login: state.login.data,
     products: state.products.products,
   };
 };
-const mapStateToDispatch = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch, ownProps) => ({
   giveMeAllProducts: () => dispatch(giveMeAllProducts()),
+  addToCart: (itemID) => dispatch(addToCart(itemID)),
 });
 
 class MainContainer extends React.Component {
@@ -25,9 +27,12 @@ class MainContainer extends React.Component {
         <NavBar props={this.props}></NavBar>
         <br></br>
         <Link to="/cart">Cart</Link>
-        <ProductosMain tileData={this.props.products}></ProductosMain>
+        <ProductosMain
+          tileData={this.props.products}
+          addToCart={this.props.addToCart}
+        ></ProductosMain>
       </div>
     );
   }
 }
-export default connect(mapStateToProps, mapStateToDispatch)(MainContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);

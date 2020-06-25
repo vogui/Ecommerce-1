@@ -10,7 +10,6 @@ import InfoIcon from "@material-ui/icons/Info";
 import Product from "../components/Product";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-//import { addToCart } from "./store/actions/Products";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,15 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const mapStateToProps = function (state, ownProps) {
-  return {
-    product: state.products.product,
-  };
-};
-
-const mapDispatchToProps = function (dispatch, ownProps) {};
-
-function ProductosMain({ tileData }) {
+function ProductosMain({ tileData, addToCart }) {
   const classes = useStyles();
   /*   handleClick = (id) => {
     this.props.addToCart(id);
@@ -62,7 +53,9 @@ function ProductosMain({ tileData }) {
                       <AddShoppingCartSharpIcon
                         className={classes.icon}
                         aria-label={`info about ${tile.title}`}
-                        onClick={() => add(item.id)}
+                        onClick={() => {
+                          addToCart(tile.id);
+                        }}
                       ></AddShoppingCartSharpIcon>
 
                       <Link to={`/product/${tile.id}`}>
@@ -82,4 +75,4 @@ function ProductosMain({ tileData }) {
   );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductosMain);
+export default ProductosMain;
