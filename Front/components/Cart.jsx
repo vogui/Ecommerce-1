@@ -75,12 +75,13 @@ export default function InteractiveList({
               label="Enable secondary text"
             />
           </FormGroup>
-          <Grid>
+
+          <Grid container spacing={0} direction="column" justify="center" >
             <Typography variant="h6" className={classes.title}>
               Your Products:
             </Typography>
             <div className={classes.demo}>
-              <List product xs={12} md={6}>
+              <List product xs={10} md={7}>
                 {items.map((item) => (
                   <ListItem key={item.id}>
                     <ListItemAvatar>
@@ -92,20 +93,12 @@ export default function InteractiveList({
                     />
                     <ListItemSecondaryAction>
                       <Tooltip title="One More" aria-label="One More">
-                        <Fab
-                          color="primary"
-                          className={classes.fab}
-                          onClick={() => add(item.id)}
-                        >
-                          <ExposurePlus1Icon />
-                        </Fab>
+                       <Fab color="primary" small className={classes.fab} onClick={() => add(item.id)}>
+                        <ExposurePlus1Icon />
+                       </Fab>
                       </Tooltip>
                       <Tooltip title="One Less">
-                        <Fab
-                          color="secondary"
-                          className={classes.fab}
-                          onClick={() => rest(item.id)}
-                        >
+                        <Fab color="secondary" small className={classes.fab} onClick={() => rest(item.id)}>
                           <ExposureNeg1Icon />
                         </Fab>
                       </Tooltip>
