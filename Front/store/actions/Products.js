@@ -1,3 +1,4 @@
+
 import { TRAE_PRODUCTS , TRAE_PRODUCT, ADD_TO_CART, REMOVE_ITEM, SUB_QUANTITY, ADD_QUANTITY } from '../constans'
 import axios from 'axios'
 
@@ -7,24 +8,29 @@ const findProducts = (products) => ({
   products,
 });
 
-const findProduct = (product)=>({
-    type:TRAE_PRODUCT,
-    product
-})
+const findProduct = (product) => ({
+  type: TRAE_PRODUCT,
+  product,
+});
 
+export const giveMeProducts = (products) => (dispatch) => {
+  axios.post("/api/products", products).then((listProducts) => {
+    console.log(listProducts.data);
+    dispatch(findProducts(listProducts.data));
+  });
+};
 
-export const giveMeProducts = (products)=> dispatch =>{
-   
-    axios.post("/api/products", products)
-    .then((listProducts)=> {
-      console.log(listProducts.data)
-    dispatch(findProducts(listProducts.data))})
-}
+export const giveTheProduct = (productId) => (dispatch) => {
+  axios
+    .get(`/api/products/${productId}`)
+    .then((product) => dispatch(findProduct(product.data)));
+};
 
-export const giveTheProduct = (productId)=> dispatch =>{
-    axios.get(`/api/products/${productId}`)
-    .then((product)=> dispatch(findProduct(product.data)))
-}
+export const giveMeAllProducts = () => (dispatch) => {
+  axios
+    .get("/api/products/")
+    .then((products) => dispatch(findProducts(products.data)));
+};
 
 
 export const addToCart= (id)=>{
@@ -54,3 +60,4 @@ export const addQuantity=(id)=>{
         id
     }
 }
+
