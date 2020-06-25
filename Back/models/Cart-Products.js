@@ -18,4 +18,5 @@ Cart_Product.init(
   { sequelize: db, modelName: "Cart_Product" }
 );
 
+
 module.exports = Cart_Product;

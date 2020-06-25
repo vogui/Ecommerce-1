@@ -10,8 +10,18 @@ import InfoIcon from "@material-ui/icons/Info";
 import Product from "../components/Product";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-
+import { withStyles } from "@material-ui/core/styles";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import Badge from "@material-ui/core/Badge";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 const useStyles = makeStyles((theme) => ({
+  badge: {
+    right: -3,
+    top: 13,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: "0 4px",
+  },
   root: {
     display: "flex",
     flexWrap: "wrap",
@@ -29,11 +39,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 function ProductosMain({ tileData, addToCart }) {
   const classes = useStyles();
   /*   handleClick = (id) => {
     this.props.addToCart(id);
   }; */
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
   return (
     <div>
       {tileData != undefined ? (
@@ -45,6 +72,7 @@ function ProductosMain({ tileData, addToCart }) {
             {tileData.map((tile) => (
               <GridListTile key={tile.picture}>
                 <img src={tile.picture} />
+                Cantidad:
                 <GridListTileBar
                   title={tile.title}
                   subtitle={<span>Price: {tile.price}</span>}
@@ -54,16 +82,24 @@ function ProductosMain({ tileData, addToCart }) {
                         className={classes.icon}
                         aria-label={`info about ${tile.title}`}
                         onClick={() => {
-                          addToCart(tile.id);
+                          handleClick(), addToCart(tile.id);
                         }}
                       ></AddShoppingCartSharpIcon>
-
                       <Link to={`/product/${tile.id}`}>
                         <InfoIcon className={classes.icon} />
                       </Link>
                     </div>
                   }
                 />
+                <Snackbar
+                  open={open}
+                  autoHideDuration={6000}
+                  onClose={handleClose}
+                >
+                  <Alert onClose={handleClose} severity="success">
+                    Product added to the cart!
+                  </Alert>
+                </Snackbar>
               </GridListTile>
             ))}
           </GridList>

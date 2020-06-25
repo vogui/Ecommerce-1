@@ -1,10 +1,11 @@
 const { Products } = require("./models/index");
 const { Category } = require("./models/index");
 const { User } = require("./models/index");
+ 
 
 const product1 = Products.create({
   title: "Ale",
-  picture: "https://www.linguavox.es/es/wp-content/uploads/birra.png",
+  picture: "https://2.bp.blogspot.com/-Cplhr__WNpI/T4L7JzGya3I/AAAAAAAAATw/x7vcWStsr-o/s1600/RE%2BAle.jpg",
   price: 150,
 });
 
@@ -24,15 +25,97 @@ const product3 = Products.create({
 
 const product4 = Products.create({
   title: "Trigueña",
-  picture:
-    "https://i2.wp.com/cervezalamaria.com/site/wp-content/uploads/2019/03/triguena-1.png?fit=360%2C1144&ssl=1",
+  picture: "https://i2.wp.com/cervezalamaria.com/site/wp-content/uploads/2019/03/triguena-1.png?fit=360%2C1144&ssl=1",
   price: 145,
 });
 
+const product5 = Products.create({
+  title: "Stout",
+  picture: "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
+  price: 135,
+});
 const product6 = Products.create({
   title: "Stout",
-  picture:
-    "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
+  picture: "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
+  price: 135,
+});
+const product7 = Products.create({
+  title: "Stout",
+  picture: "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
+  price: 135,
+});
+
+const product8 = Products.create({
+  title: "Stout",
+  picture: "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
+  price: 135,
+});
+const product9 = Products.create({
+  title: "Stout",
+  picture: "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
+  price: 135,
+});
+
+const product10 = Products.create({
+  title: "Stout",
+  picture: "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
+  price: 135,
+});
+
+const product11 = Products.create({
+  title: "Stout",
+  picture: "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
+  price: 135,
+});
+
+const product12 = Products.create({
+  title: "Stout",
+  picture: "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
+  price: 135,
+});
+const product13 = Products.create({
+  title: "Stout",
+  picture: "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
+  price:135.
+});
+
+const product14 = Products.create({
+  title: "Stout",
+  picture: "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
+  price: 135,
+});
+const product15= Products.create({
+  title: "Stout",
+  picture: "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
+  price: 135,
+});
+const product16 = Products.create({
+  title: "Stout",
+  picture: "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
+  price: 135,
+});
+
+const product17 = Products.create({
+  title: "Stout",
+  picture: "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
+  price: 135,
+});
+
+const product18 = Products.create({
+  title: "Stout",
+  picture: "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
+  price: 135,
+});
+
+const product19 = Products.create({
+  title: "Stout",
+  picture: "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
+  price: 135,
+});
+
+const product20 = Products.create({
+  title: "Stout",
+  picture: "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
   price: 135,
 });
 
@@ -53,4 +136,4 @@ const user1 = User.create({
   password: "123",
   name: "Sr. Borracho",
   adress: "Av. Siempreviva 123",
-});
+})
