@@ -18,7 +18,7 @@ class Main extends React.Component {
         <Route exact path="/" render={() => <MainContainer />} />
         <Route path="/login" render={() => <Login />} />
         <Route path="/register" render={() => <Register />} />
-        <Route path="/product" component={ProductsContainer} />
+        <Route path="/products" component={ProductsContainer} />
         <Route path="/product/:id" component={ProductContainer} />
       </Switch>
     );

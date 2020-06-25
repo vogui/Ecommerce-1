@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import NavBar from "../components/NavBar";
@@ -20,3 +21,4 @@ class MainContainer extends React.Component {
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);
+

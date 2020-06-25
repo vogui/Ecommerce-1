@@ -4,11 +4,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import InputBase from "@material-ui/core/InputBase";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
-import SearchIcon from "@material-ui/icons/Search";
-import { MenuItem } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 const useStyles = makeStyles((theme) => ({
@@ -69,6 +66,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 const mapStateToProps = (state, ownProps) => {
   return {
     login: state.login.data,
@@ -91,8 +89,9 @@ function SearchAppBar({ props }) {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Mercado Cerrado
+            Tomate Una
           </Typography>
+
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -127,6 +126,7 @@ function SearchAppBar({ props }) {
               </Link>
             </div>
           )}
+
         </Toolbar>
       </AppBar>
     </div>
