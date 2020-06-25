@@ -1,17 +1,52 @@
 const express = require("express");
 const router = express.Router();
-const { Cart }  = require("../models/index");
+const { Cart, CartProducts, User }  = require("../models/index");
 
-router.post('/:user_id', (req, res) => {
-    Cart.findOrCreate({where:{
-        User_id: req.params.user_id,
+router.post('/', (req, res) => {
+    let itemValue = req.body.quantity * req.body.price
+    Cart.findOne({ where: {
+        UserId: req.body.UserId,
         completed: false
     }})
-    .then( ( [cart, created] ) => {
-        res.send(cart) //queda pendiente funcionalidad
+    .then( cart => {
+        if(!cart) {
+            Cart.create({
+                total: itemValue,
+                adress: req.body.adress,
+            })
+            .then( createdCart => {
+                //falta el setUser
+                createdCart.setUser(req.body.UserId)
+                CartProducts.create({
+                    quantity: req.body.quantity,
+                    CartId: createdCart.id,
+                    ProductId: req.body.productId
+                })
+                .then(()=> res.sendStatus(200))
+            })
+        } else {
+            cart.total += itemValue;
+            cart.adress = req.body.adress
+            cart.save()
+            CartProducts.findOne({ where: {
+                CartId: cart.id,
+            }})
+            .then( cartProducts => {
+                cartProducts.update({
+                    quantity: req.body.quantity,
+                    CartId: cart.id,
+                    ProductId: req.body.productId
+                })
+                .then( () => res.sendStatus(200) )
+            })
+        }
     })
+    
 })
+//quantity
+//price
+//UserId
+//adress
+//productId
 
-
-
-module.exports = Cart;
+module.exports = router;

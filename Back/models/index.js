@@ -21,9 +21,7 @@ Product.belongsToMany(Category, {through: 'Product_Categories'});
 
 Cart.belongsToMany(Product, {through: 'Cart_Product'});
 
-
 Cart.belongsTo(User);
-
 
 module.exports={Cart, CartProducts, Category, Products, Review, User}
 

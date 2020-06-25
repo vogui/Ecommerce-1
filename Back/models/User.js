@@ -50,6 +50,5 @@ User.prototype.hashPassword = function (password) {
 User.prototype.validPassword = function (password) {
   return this.password === this.hashPassword(password);
 };
-//User.hasMany(Review);
 
 module.exports = User;
