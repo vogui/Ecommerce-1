@@ -15,7 +15,6 @@ router.post('/', (req, res) => {
                 adress: req.body.adress,
             })
             .then( createdCart => {
-                //falta el setUser
                 createdCart.setUser(req.body.UserId)
                 CartProducts.create({
                     quantity: req.body.quantity,
@@ -30,18 +29,26 @@ router.post('/', (req, res) => {
             cart.save()
             CartProducts.findOne({ where: {
                 CartId: cart.id,
+                ProductId: req.body.productId
             }})
             .then( cartProducts => {
-                cartProducts.update({
-                    quantity: req.body.quantity,
-                    CartId: cart.id,
-                    ProductId: req.body.productId
-                })
-                .then( () => res.sendStatus(200) )
+                if(cartProducts) {
+                    cartProducts.update({
+                        quantity: req.body.quantity,
+                        CartId: cart.id,
+                        ProductId: req.body.productId
+                    }).then( () => res.sendStatus(200) )
+                } else {
+                    CartProducts.create({
+                        quantity: req.body.quantity,
+                        CartId: cart.id,
+                        ProductId: req.body.productId
+                    })
+                    .then(()=> res.sendStatus(200))
+                }
             })
         }
     })
-    
 })
 //quantity
 //price
