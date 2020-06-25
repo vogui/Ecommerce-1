@@ -1,21 +1,22 @@
-import React from 'react'
+import React from "react";
 
-export default ({product})=>{
-    return(
-      
+export default ({ product }) => {
+  return (
+    <div>
+      {product ? (
         <div>
-        { product ?
-             <img src= {product.picture}>
+          <img src={product.picture}></img>
           <h5>
             <span>Product:{product.title}</span>
           </h5>
           <h5>
             <span>Price:{product.price}</span>
-          </h5> 
-          </img> : <h5> Loading</h5>
-}
-          </div>
-      
-    )
-    //vendrian las reviews
-    }
+          </h5>
+        </div>
+      ) : (
+        <h5> Loading</h5>
+      )}
+    </div>
+  );
+  //vendrian las reviews
+};

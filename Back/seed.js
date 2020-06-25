@@ -10,25 +10,29 @@ const product1 = Products.create({
 
 const product2 = Products.create({
   title: "Lager",
-  picture: "https://www.dropbox.com/s/a7pz619hal9ik87/lager.jpg?dl=0",
+  picture:
+    "https://img2.pngio.com/pilsners-and-pale-lagers-pilsners-and-pale-lagers-are-light-to-pale-lager-png-400_400.png",
   price: 120,
 });
 
 const product3 = Products.create({
   title: "Porter",
-  picture: "https://www.dropbox.com/s/geh2g6a88thx52f/porter.jpg?dl=0",
+  picture:
+    "https://www.cervezaback.com/wp-content/uploads/2018/08/BACK-BROWN-PORTER.png",
   price: 170,
 });
 
 const product4 = Products.create({
   title: "Trigueña",
-  picture: "https://www.dropbox.com/s/63mi0jsjlxgza2y/trigo.jpg?dl=0",
+  picture:
+    "https://i2.wp.com/cervezalamaria.com/site/wp-content/uploads/2019/03/triguena-1.png?fit=360%2C1144&ssl=1",
   price: 145,
 });
 
 const product6 = Products.create({
   title: "Stout",
-  picture: "https://www.dropbox.com/s/eysc28lspbuz2vh/stout.jpg?dl=0",
+  picture:
+    "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
   price: 135,
 });
 
