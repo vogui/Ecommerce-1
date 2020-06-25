@@ -75,12 +75,13 @@ function isLogedIn(req, res, next) {
 app.use("/api", routes);
 
 app.get("/", (req, res) => {
-  console.log("---------------------------");
+  res.sendFile(path.join(__dirname, "../public", "index.html"));
+  /* console.log("---------------------------");
   console.log("req.session: ", req.session); // express-session
   console.log("req.sessionID: ", req.sessionID); // express-session
   console.log("req.cookies: ", req.cookies); // cookie-parser
   console.log("req.user:", req.user);
-  console.log("---------------------------");
+  console.log("---------------------------"); */
 });
 
 
@@ -91,6 +92,7 @@ app.use(function (err, req, res, next) {
     console.error(err.stack)
     res.status(err.status || 500).send(err.message || 'Internal server error.');
 });
+
 
 db.sync({ force: false })
   .then(() => {

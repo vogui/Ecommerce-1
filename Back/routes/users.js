@@ -34,15 +34,22 @@ router.get("/login", function (req, res, next) {
   }
 });
 
-router.post("/login", passport.authenticate("local", { failureFlash: "invalid password" }), 
-function ( req, res, next ) {
-  console.log("holaaaaaa")
-  console.log("REQ BODY:", req.body);
-  console.log(req.session);
-  console.log(req.user);
-  console.log(req.authenticate);
-  res.send("hola");
+
+router.post("/login", passport.authenticate("local"), function (
+  req,
+  res,
+  next
+) {
+  var obj = new Object();
+  obj.adress = req.user.dataValues.adress;
+  obj.email = req.user.dataValues.email;
+  obj.id = req.user.dataValues.id;
+  obj.name = req.user.dataValues.name;
+  obj.isAdmin = req.user.dataValues.isAdmin;
+  res.send(obj);
 });
+
+
 
 // router.post('/login', function(req, res, next) {
 //   passport.authenticate('local', function(err, user, info) {
