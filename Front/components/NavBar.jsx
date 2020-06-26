@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
+  buttonActual: {
+    backgroundColor: "red",
+  },
   menuButton: {
     marginRight: theme.spacing(2),
   },
@@ -70,7 +73,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 const mapStateToProps = (state, ownProps) => {
   return {
     login: state.login.data,
@@ -78,8 +80,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 const mapDispatchToProps = {};
 
-
-function SearchAppBar({ props }) {
+function SearchAppBar({ props, actualPlace }) {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -105,10 +106,10 @@ function SearchAppBar({ props }) {
           </Typography>
 
           <Link to="/products">
-                <Button color="inherit" className={classes.inputUser}>
-                  Products
-                </Button>
-              </Link>
+            <Button color="inherit" className={classes.inputUser}>
+              Products
+            </Button>
+          </Link>
 
           {console.log("PROPS:", props)}
           {props.login.redirect ? (
@@ -119,19 +120,31 @@ function SearchAppBar({ props }) {
             </a>
           ) : (
             <div>
-              <Link to="/login">
-                <Button color="inherit" className={classes.inputUser}>
-                  Login
-                </Button>
-              </Link>
-              <Link to="register">
-                <Button color="inherit" className={classes.inputUser}>
-                  Register
-                </Button>
-              </Link>
+              {actualPlace == "login" ? (
+                <Link to="/login">
+                  <Button disabled>Login</Button>
+                </Link>
+              ) : (
+                <Link to="/login">
+                  <Button color="inherit" className={classes.inputUser}>
+                    Login
+                  </Button>
+                </Link>
+              )}
+
+              {actualPlace == "register" ? (
+                <Link to="/register">
+                  <Button disabled>Register</Button>
+                </Link>
+              ) : (
+                <Link to="register">
+                  <Button color="inherit" className={classes.inputUser}>
+                    Register
+                  </Button>
+                </Link>
+              )}
             </div>
           )}
-
         </Toolbar>
       </AppBar>
     </div>

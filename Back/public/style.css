@@ -23,3 +23,20 @@ html {
   display: flex;
   margin-bottom: 15px;
 }
+
+.contenedorRegister {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.productoIndividual {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product {
+  border: 1px solid burlywood;
+}
