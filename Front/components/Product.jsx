@@ -8,15 +8,34 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 const useStyles = makeStyles({
   root: {
     maxWidth: "100%",
   },
 });
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 export default ({ product, props }) => {
   const classes = useStyles();
-  function checkBuy() {}
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   return (
     <div>
       <NavBar props={props} />
@@ -46,11 +65,26 @@ export default ({ product, props }) => {
                 </CardContent>
               </CardActionArea>
               <CardActions>
-                <Button size="small" color="primary" onClick={() => checkBuy()}>
+                <Button
+                  size="small"
+                  color="primary"
+                  onClick={() => handleClick()}
+                >
                   Buy
                 </Button>
               </CardActions>
             </Card>
+            <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
+              {props.login.redirect ? (
+                <Alert severity="warning" onClose={handleClose}>
+                  This feature is going to be able soon!
+                </Alert>
+              ) : (
+                <Alert severity="error" onClose={handleClose}>
+                  You are not loggin
+                </Alert>
+              )}
+            </Snackbar>
           </div>
         ) : (
           <h5> Loading</h5>

@@ -40,3 +40,11 @@ html {
 .product {
   border: 1px solid burlywood;
 }
+.cart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50%;
+  margin-left: 25%;
+}
