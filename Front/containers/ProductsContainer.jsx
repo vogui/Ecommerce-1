@@ -27,9 +27,6 @@ class ProductsContainer extends React.Component {
     this.props.findProductsByCategory(id)
   }
 
-  
-
- 
 
   render() {
     return (

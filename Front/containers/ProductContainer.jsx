@@ -16,7 +16,7 @@ class ProductContainer extends React.Component {
     this.props.addToCart(id);
   }; */
   render() {
-    return <Product product={this.props.product} />;
+    return <Product product={this.props.product} props={this.props} />;
   }
 }
 
@@ -25,6 +25,7 @@ const mapStateToProps = function (state, ownProps) {
   return {
     product: state.products.product,
     id: ownProps.match.params.id,
+    login: state.login.data,
   };
 };
 

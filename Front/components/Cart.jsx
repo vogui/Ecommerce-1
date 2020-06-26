@@ -26,7 +26,11 @@ import NavBar from "../components/NavBar";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    maxWidth: 752,
+    maxWidth: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
   },
   fab: {
     margin: theme.spacing(2),
@@ -58,11 +62,13 @@ export default function InteractiveList({
   return (
     <div>
       <NavBar props={props} />
-      {items !== undefined ? (
-        <div className={classes.root}>
-          {props.login.redirect ? (
+      {items !== undefined ? (  
+        <div className={"cart"}>
+          {props.login.redirect ? ( 
             <h2>Welcome {props.login.dataUser.name}, this is your Cart</h2>
-          ) : null}
+          ) 
+          : 
+          null}
 
           <FormGroup row>
             <FormControlLabel
@@ -76,12 +82,12 @@ export default function InteractiveList({
             />
           </FormGroup>
 
-          <Grid container spacing={0} direction="column" justify="center" >
+          <Grid container spacing={0} direction="column" justify="center">
             <Typography variant="h6" className={classes.title}>
               Your Products:
             </Typography>
             <div className={classes.demo}>
-              <List product xs={10} md={7}>
+              <List xs={10} md={7}>
                 {items.map((item) => (
                   <ListItem key={item.id}>
                     <ListItemAvatar>
@@ -93,12 +99,22 @@ export default function InteractiveList({
                     />
                     <ListItemSecondaryAction>
                       <Tooltip title="One More" aria-label="One More">
-                       <Fab color="primary" small className={classes.fab} onClick={() => add(item.id)}>
-                        <ExposurePlus1Icon />
-                       </Fab>
+                        <Fab
+                          color="primary"
+                          
+                          className={classes.fab}
+                          onClick={() => add(item.id)}
+                        >
+                          <ExposurePlus1Icon />
+                        </Fab>
                       </Tooltip>
                       <Tooltip title="One Less">
-                        <Fab color="secondary" small className={classes.fab} onClick={() => rest(item.id)}>
+                        <Fab
+                          color="secondary"
+                          
+                          className={classes.fab}
+                          onClick={() => rest(item.id)}
+                        >
                           <ExposureNeg1Icon />
                         </Fab>
                       </Tooltip>
@@ -122,7 +138,7 @@ export default function InteractiveList({
             </div>
           </Grid>
           <Grid>
-            <Paper item xs={12} className={classes.paper}>
+            <Paper xs={12} className={classes.paper}>
               {" "}
               Total: ${total}
             </Paper>
