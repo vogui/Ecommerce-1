@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
 import { connect } from "react-redux";
 import { loginUser } from "../store/actions/Login";
+import { failLoginFalse } from "../store/actions/Login";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import { Redirect } from "react-router-dom";
 import Error from "../components/Error";
@@ -18,7 +19,7 @@ const mapStateToProps = (state, ownProps) => {
     login: state.login.data,
   };
 };
-const mapDispatchToProps = { loginUser };
+const mapDispatchToProps = { loginUser, failLoginFalse };
 
 class Login extends React.Component {
   constructor(props) {
@@ -32,6 +33,10 @@ class Login extends React.Component {
     this.changePassword = this.changePassword.bind(this);
   }
 
+  setFalse() {
+    this.props.failLoginFalse();
+    this.setState({ email: "", password: "" });
+  }
   submitInfo(e) {
     e.preventDefault();
     this.props.loginUser(this.state.email, this.state.password);
@@ -131,8 +136,9 @@ class Login extends React.Component {
                             type="submit"
                             form="form-register"
                             label="Submit"
+                            onClick={() => this.setFalse()}
                           >
-                            Not valid data
+                            Not valid data,click me and try again!
                           </Button>
                         </div>
                       ) : (

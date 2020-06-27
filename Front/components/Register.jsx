@@ -15,13 +15,14 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import NavBar from "../components/NavBar";
+import { setFalse } from "../store/actions/Register";
 const mapStateToProps = (state, ownProps) => {
   return {
     login: state.login.data,
     register: state.register.data,
   };
 };
-const mapDispatchToProps = { registerUser };
+const mapDispatchToProps = { registerUser, setFalse };
 
 class Register extends React.Component {
   constructor(props) {
@@ -52,6 +53,16 @@ class Register extends React.Component {
     );
   }
 
+  setFalse() {
+    this.setState({
+      email: "",
+      password: "",
+      username: "",
+      name: "",
+      adress: "",
+    });
+    this.props.setFalse();
+  }
   changeEmail(e) {
     this.setState({ email: e.target.value });
   }
@@ -145,7 +156,6 @@ class Register extends React.Component {
                           <Grid item xs>
                             <TextField
                               required
-                              id="outlined-required"
                               label="username"
                               type="text"
                               name="username"
@@ -200,8 +210,9 @@ class Register extends React.Component {
                           type="submit"
                           form="form-register"
                           label="Submit"
+                          onClick={() => this.setFalse()}
                         >
-                          Not valid data
+                          Email is already use, click me and try again!
                         </Button>
                       ) : (
                         <Button
