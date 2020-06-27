@@ -23,3 +23,7 @@ export const registerUser = (email, password, username, name, adress) => (
       dispatch(RegisterUser({}, true));
     });
 };
+
+export const setFalse = () => (dispatch) => {
+  dispatch(RegisterUser(undefined, false, false));
+};

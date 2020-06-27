@@ -22,3 +22,7 @@ export const loginUser = (email, password) => (dispatch) => {
       dispatch(LoginUser({}, true));
     });
 };
+
+export const failLoginFalse = () => (dispatch) => {
+  dispatch(LoginUser(undefined, false, undefined));
+};
