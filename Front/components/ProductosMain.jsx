@@ -22,6 +22,10 @@ const useStyles = makeStyles((theme) => ({
     border: `2px solid ${theme.palette.background.paper}`,
     padding: "0 4px",
   },
+  photo: {
+    maxHeight: 500,
+    margin: "0 auto",
+  },
   root: {
     display: "flex",
     flexWrap: "wrap",
@@ -72,7 +76,7 @@ function ProductosMain({ tileData, addToCart }) {
             </GridListTile>
             {tileData.map((tile) => (
               <GridListTile key={tile.picture}>
-                <img src={tile.picture} />
+                <img src={tile.picture} className={classes.photo} />
                 Cantidad:
                 <GridListTileBar
                   title={tile.title}
@@ -100,7 +104,7 @@ function ProductosMain({ tileData, addToCart }) {
                 />
                 <Snackbar
                   open={open}
-                  autoHideDuration={6000}
+                  autoHideDuration={2000}
                   onClose={handleClose}
                 >
                   <Alert onClose={handleClose} severity="success">
