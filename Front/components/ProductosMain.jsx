@@ -61,6 +61,7 @@ function ProductosMain({ tileData, addToCart }) {
 
     setOpen(false);
   };
+  console.log('tile ----------->', tileData);
   return (
     <div>
       {tileData != undefined ? (
@@ -82,7 +83,13 @@ function ProductosMain({ tileData, addToCart }) {
                         className={classes.icon}
                         aria-label={`info about ${tile.title}`}
                         onClick={() => {
-                          handleClick(), addToCart(tile.id);
+                          handleClick(), addToCart(tile.id, /* {
+                            quantity: ,
+                            price: ,
+                            UserId: ,
+                            adress: ,
+                            productId: tile.id
+                          } */);
                         }}
                       ></AddShoppingCartSharpIcon>
                       <Link to={`/product/${tile.id}`}>
