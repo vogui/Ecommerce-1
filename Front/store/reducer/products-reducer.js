@@ -70,6 +70,7 @@ export default function reducer(state = initialState, action) {
             let itemToAdd2 = state.addedItems.find(item=> item.id === action.id) 
             //if the qt == 0 then it should be removed
             if(itemToAdd2.quantity === 1){
+                itemToAdd2.quantity = 0 
                 let new_items = state.addedItems.filter(item=>item.id !== action.id)
                 let newTotal3 = state.total - itemToAdd2.price
                 return{

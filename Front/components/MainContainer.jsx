@@ -5,27 +5,29 @@ import { connect } from "react-redux";
 import ProductosMain from "../components/ProductosMain";
 import { giveMeAllProducts } from "../store/actions/Products";
 import Carrousel from "./Carrousel";
-import { addToCart, addQuantity, subtractQuantity } from "../store/actions/Products";
+import { addToCartBack, addQuantityBack, subtractQuantityBack } from "../store/actions/Products";
 
 const mapStateToProps = (state, ownProps) => {
   return {
     login: state.login.data,
     products: state.products.products,
-    items: state.products.addedItems
+    items: state.products.addedItems,
+    total: state.products.total
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   giveMeAllProducts: () => dispatch(giveMeAllProducts()),
-  addToCart: (itemID) => dispatch(addToCart(itemID)),
-  addQuantity: (id) => dispatch(addQuantity(id)),
-  subtractQuantity: (id) => dispatch(subtractQuantity(id))
+  addToCart: (itemID, obj) => dispatch(addToCartBack(itemID, obj)),
+  addQuantity: (id, obj) => dispatch(addQuantityBack(id, obj)),
+  subtractQuantity: (id, obj) => dispatch(subtractQuantityBack(id, obj))
 });
 
 class MainContainer extends React.Component {
   constructor() {
     super();
     this.state = {};
+    this.handleAddToCart = this.handleAddToCart.bind(this);
     this.handleAddQuantity = this.handleAddQuantity.bind(this);
     this.handleSubtractQuantity = this.handleSubtractQuantity.bind(this);
   }
@@ -34,13 +36,50 @@ class MainContainer extends React.Component {
     this.props.giveMeAllProducts();
   }
 
+  handleAddToCart(id) {
+    let item = this.props.products.find(element => element.id == id)
+    let objBackend = {
+      quantity: 1,
+      price: item.price,
+      UserId: this.props.login.dataUser.id, 
+      adress: this.props.login.dataUser.adress,
+      ProductId: item.id,
+      total: this.props.total
+    }
+    console.log("objetito pal backend: ",objBackend )
+    this.props.addToCart(id, objBackend);
+  }
+
   //to add the quantity
   handleAddQuantity(id) {
-    this.props.addQuantity(id);
+    let item = this.props.items.find(element => element.id == id)
+    console.log("item!!!:", item)
+    let objBackend = {
+      quantity: item.quantity +1,
+      price: item.price,
+      UserId: this.props.login.dataUser.id,
+      adress: this.props.login.dataUser.adress,
+      ProductId: item.id,
+      total: this.props.total
+    }
+    console.log("objetito pal backend: ",objBackend )
+    this.props.addQuantity(id, objBackend);
   }
+  
   //to substruct from the quantity
   handleSubtractQuantity(id) {
-    this.props.subtractQuantity(id);
+    let item = this.props.items.find(element => element.id == id)
+    console.log("item!!!:", item)
+    let objBackend = {
+      quantity: item.quantity -1,
+      price: item.price,
+      UserId: this.props.login.dataUser.id,
+      adress: this.props.login.dataUser.adress,
+      ProductId: item.id,
+      total: this.props.total
+    }
+    console.log("objetito pal backend: ",objBackend )
+    this.props.subtractQuantity(id, objBackend);
   }
 
   render() {
@@ -49,8 +88,9 @@ class MainContainer extends React.Component {
         <NavBar props={this.props}></NavBar>
         <Carrousel />
         <ProductosMain
+          user={this.props.login}
           tileData={this.props.products}
-          addToCart={this.props.addToCart}
+          addToCart={this.handleAddToCart}
           items={this.props.items} 
           add={this.handleAddQuantity} 
           rest={this.handleSubtractQuantity}

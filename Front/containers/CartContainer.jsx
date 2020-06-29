@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import Cart from "../components/Cart";
 import {
   removeItem,
-  addQuantity,
-  subtractQuantity,
+  addQuantityBack,
+  subtractQuantityBack,
 } from "../store/actions/Products";
 
 const mapStateToProps = (state) => {
@@ -21,10 +21,10 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(removeItem(id));
     },
     addQuantity: (id) => {
-      dispatch(addQuantity(id));
+      dispatch(addQuantityBack(id));
     },
     subtractQuantity: (id) => {
-      dispatch(subtractQuantity(id));
+      dispatch(subtractQuantityBack(id));
     },
   };
 };

@@ -1,7 +1,11 @@
 import { LOGIN_USER } from "../constans";
 
 const initialState = {
-  data: { dataUser: {}, failLogin: false, redirect: false },
+  data: { 
+  	dataUser: {}, 
+  	failLogin: false, 
+  	redirect: false,
+  }
 };
 
 export default function reducer(state = initialState, action) {

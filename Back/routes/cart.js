@@ -3,7 +3,6 @@ const router = express.Router();
 const { Cart, CartProducts, User }  = require("../models/index");
 
 router.post('/', (req, res) => {
-    let itemValue = req.body.quantity * req.body.price
     Cart.findOne({ where: {
         UserId: req.body.UserId,
         completed: false
@@ -11,7 +10,7 @@ router.post('/', (req, res) => {
     .then( cart => {
         if(!cart) {
             Cart.create({
-                total: itemValue,
+                total: req.body.total,
                 adress: req.body.adress,
             })
             .then( createdCart => {
@@ -19,30 +18,32 @@ router.post('/', (req, res) => {
                 CartProducts.create({
                     quantity: req.body.quantity,
                     CartId: createdCart.id,
-                    ProductId: req.body.productId
+                    ProductId: req.body.ProductId
                 })
                 .then(()=> res.sendStatus(200))
             })
         } else {
-            cart.total += itemValue;
+            cart.total = req.body.total;
             cart.adress = req.body.adress
             cart.save()
             CartProducts.findOne({ where: {
                 CartId: cart.id,
-                ProductId: req.body.productId
+                ProductId: req.body.ProductId
             }})
             .then( cartProducts => {
                 if(cartProducts) {
+                    if(req.body.quantity === 0) {cartProducts.destroy()
+                        .then(()=> res.sendStatus(201))}
                     cartProducts.update({
                         quantity: req.body.quantity,
                         CartId: cart.id,
-                        ProductId: req.body.productId
+                        ProductId: req.body.ProductId
                     }).then( () => res.sendStatus(200) )
                 } else {
                     CartProducts.create({
                         quantity: req.body.quantity,
                         CartId: cart.id,
-                        ProductId: req.body.productId
+                        ProductId: req.body.ProductId
                     })
                     .then(()=> res.sendStatus(200))
                 }
@@ -50,10 +51,5 @@ router.post('/', (req, res) => {
         }
     })
 })
-//quantity
-//price
-//UserId
-//adress
-//productId
 
 module.exports = router;

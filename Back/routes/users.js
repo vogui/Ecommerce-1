@@ -46,7 +46,13 @@ router.post("/login", passport.authenticate("local"), function (
   obj.id = req.user.dataValues.id;
   obj.name = req.user.dataValues.name;
   obj.isAdmin = req.user.dataValues.isAdmin;
-  res.send(obj);
+  // Cart.findOne({ where: {
+  //       UserId: obj.id,
+  //       completed: false
+  //   }})
+  //   .then(cart=>{ obj.cart= cart })
+  //   .then(()=>res.send(obj))
+  res.send(obj)
 });
 
 
