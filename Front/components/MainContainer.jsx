@@ -4,32 +4,54 @@ import NavBar from "../components/NavBar";
 import { connect } from "react-redux";
 import ProductosMain from "../components/ProductosMain";
 import { giveMeAllProducts } from "../store/actions/Products";
-import { addToCart } from "../store/actions/Products";
+import { addToCart, addQuantity, subtractQuantity } from "../store/actions/Products";
+
 const mapStateToProps = (state, ownProps) => {
   return {
     login: state.login.data,
     products: state.products.products,
-    items: state.products.addedItems,
+    items: state.products.addedItems
   };
 };
+
 const mapDispatchToProps = (dispatch, ownProps) => ({
   giveMeAllProducts: () => dispatch(giveMeAllProducts()),
   addToCart: (itemID) => dispatch(addToCart(itemID)),
+  addQuantity: (id) => dispatch(addQuantity(id)),
+  subtractQuantity: (id) => dispatch(subtractQuantity(id))
 });
 
 class MainContainer extends React.Component {
+  constructor() {
+    super();
+    this.state = {};
+    this.handleAddQuantity = this.handleAddQuantity.bind(this);
+    this.handleSubtractQuantity = this.handleSubtractQuantity.bind(this);
+  }
+
   componentDidMount() {
     this.props.giveMeAllProducts();
+  }
+
+  //to add the quantity
+  handleAddQuantity(id) {
+    this.props.addQuantity(id);
+  }
+  //to substruct from the quantity
+  handleSubtractQuantity(id) {
+    this.props.subtractQuantity(id);
   }
 
   render() {
     return (
       <div>
         <NavBar props={this.props}></NavBar>
-
         <ProductosMain
           tileData={this.props.products}
           addToCart={this.props.addToCart}
+          items={this.props.items} 
+          add={this.handleAddQuantity} 
+          rest={this.handleSubtractQuantity}
         ></ProductosMain>
       </div>
     );

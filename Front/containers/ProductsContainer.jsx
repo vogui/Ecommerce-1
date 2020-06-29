@@ -27,9 +27,6 @@ class ProductsContainer extends React.Component {
     this.props.findProductsByCategory(id)
   }
 
-  
-
- 
 
   render() {
     return (
@@ -56,10 +53,10 @@ const mapStateToProps = (state, ownProps) => {
  })
 };
 
-const mapStateToDispatch = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch, ownProps) => ({
   giveMeProducts: (products) => dispatch(giveMeProducts(products)),
   findCategorys: ()=> dispatch(findCategorys()),
   findProductsByCategory:(id)=> dispatch(findProductsByCategory(id))
 });
 
-export default connect(mapStateToProps, mapStateToDispatch)(ProductsContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductsContainer);

@@ -62,11 +62,13 @@ export default function InteractiveList({
   return (
     <div>
       <NavBar props={props} />
-      {items !== undefined ? (
+      {items.length !== 0 ? (  
         <div className={"cart"}>
-          {props.login.redirect ? (
+          {props.login.redirect ? ( 
             <h2>Welcome {props.login.dataUser.name}, this is your Cart</h2>
-          ) : null}
+          ) 
+          : 
+          null}
 
           <FormGroup row>
             <FormControlLabel
@@ -85,7 +87,7 @@ export default function InteractiveList({
               Your Products:
             </Typography>
             <div className={classes.demo}>
-              <List product xs={10} md={7}>
+              <List xs={10} md={7}>
                 {items.map((item) => (
                   <ListItem key={item.id}>
                     <ListItemAvatar>
@@ -99,7 +101,7 @@ export default function InteractiveList({
                       <Tooltip title="One More" aria-label="One More">
                         <Fab
                           color="primary"
-                          small
+                          
                           className={classes.fab}
                           onClick={() => add(item.id)}
                         >
@@ -109,7 +111,7 @@ export default function InteractiveList({
                       <Tooltip title="One Less">
                         <Fab
                           color="secondary"
-                          small
+                          
                           className={classes.fab}
                           onClick={() => rest(item.id)}
                         >
@@ -136,7 +138,7 @@ export default function InteractiveList({
             </div>
           </Grid>
           <Grid>
-            <Paper item xs={12} className={classes.paper}>
+            <Paper xs={12} className={classes.paper}>
               {" "}
               Total: ${total}
             </Paper>
