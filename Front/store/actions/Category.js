@@ -17,7 +17,12 @@ export const findCategorys = () => (dispatch) => {
     .then((categorysFound) => dispatch(findCate(categorysFound.data)));
 };
 
-export const setCategory = (selectedCategory) => (dispatch) => {
-  console.log("En el action es:", selectedCategory);
-  return dispatch(giveMeProducts({ title: "", id: selectedCategory }));
-};
+export function setCategory(selectedCategory) {
+  return (dispatch) => {
+    dispatch(actualCategory(selectedCategory));
+    setTimeout(() => {
+      //Me aseguro que el dispatch anterior realmente surga efecto
+      dispatch(giveMeProducts({ title: "", id: selectedCategory }));
+    }, 500);
+  };
+}

@@ -11,18 +11,13 @@ const product1 = Products.create({
   cerveza.addCategory(1);
 });
 
-/*
 const product2 = Products.create({
   title: "Lager",
   picture:
     "https://img2.pngio.com/pilsners-and-pale-lagers-pilsners-and-pale-lagers-are-light-to-pale-lager-png-400_400.png",
   price: 120,
-});
-
-product2.then((cerveza) => {
-  cerveza.addCategory(1).then((cerveza) => {
-    console.log(cerveza);
-  });
+}).then((cerveza) => {
+  cerveza.addCategory(1);
 });
 
 const product3 = Products.create({
@@ -30,12 +25,8 @@ const product3 = Products.create({
   picture:
     "https://www.cervezaback.com/wp-content/uploads/2018/08/BACK-BROWN-PORTER.png",
   price: 170,
-});
-
-product3.then((cerveza) => {
-  cerveza.addCategory(2).then((cerveza) => {
-    console.log(cerveza);
-  });
+}).then((cerveza) => {
+  cerveza.addCategory(2);
 });
 
 const product4 = Products.create({
@@ -43,22 +34,17 @@ const product4 = Products.create({
   picture:
     "https://cdn.shopify.com/s/files/1/1103/5152/products/trigo-01_1024x1024.png?v=1580826501",
   price: 145,
+}).then((cerveza) => {
+  cerveza.addCategory(3);
 });
 
-product4.then((cerveza) => {
-  cerveza.addCategory(1).then((cerveza) => {
-    console.log(cerveza);
-  });
-});
 const product5 = Products.create({
   title: "Stout",
   picture:
     "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
   price: 135,
-});
-
-product5.then((cerveza) => {
-  cerveza.addCategory(3);
+}).then((cerveza) => {
+  cerveza.addCategory(2);
 });
 
 const product6 = Products.create({
@@ -66,12 +52,11 @@ const product6 = Products.create({
   picture:
     "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTLVIQY35P8lG-iAOPrUJcl-uxB6Y8THrZU4g&usqp=CAU",
   price: 200,
-});
-
-product6.then((cerveza) => {
+}).then((cerveza) => {
   cerveza.addCategory(3);
 });
 
+/*
 const product7 = Products.create({
   title: "Pilsner",
   picture:

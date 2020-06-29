@@ -159,9 +159,6 @@ export default ({
               </div>
               {handleCategorys &&
                 handleCategorys.map((category) => {
-                  {
-                    console.log("CATEGORY:", category);
-                  }
                   return (
                     <div key={category.id}>
                       <MenuItem
