@@ -62,7 +62,7 @@ export default function InteractiveList({
   return (
     <div>
       <NavBar props={props} />
-      {items !== undefined ? (  
+      {items.length !== 0 ? (  
         <div className={"cart"}>
           {props.login.redirect ? ( 
             <h2>Welcome {props.login.dataUser.name}, this is your Cart</h2>
