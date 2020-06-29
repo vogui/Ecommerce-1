@@ -4,6 +4,7 @@ import NavBar from "../components/NavBar";
 import { connect } from "react-redux";
 import ProductosMain from "../components/ProductosMain";
 import { giveMeAllProducts } from "../store/actions/Products";
+import Carrousel from "./Carrousel";
 import { addToCart, addQuantity, subtractQuantity } from "../store/actions/Products";
 
 const mapStateToProps = (state, ownProps) => {
@@ -46,6 +47,7 @@ class MainContainer extends React.Component {
     return (
       <div>
         <NavBar props={this.props}></NavBar>
+        <Carrousel />
         <ProductosMain
           tileData={this.props.products}
           addToCart={this.props.addToCart}
