@@ -17,26 +17,26 @@ export default function reducer(state = initialState, action) {
             return { ...state, product: action.product };
 
         case ADD_TO_CART:
-
             //FALTA LA LOGICA PARA EL CASO DE ESTAR MIRANDO 1 SOLO PRODUCTO ("Product")     
             let addedItem = state.products.find(item => item.id === action.id)
             //check if the action id exists in the addedItems
             let existed_item = state.addedItems.find(item => action.id === item.id)
             
             if (existed_item) {
-                addedItem.quantity += 1
+                existed_item.quantity += 1
                 return {
                     ...state,
-                    total: state.total + addedItem.price
+                    total: state.total + existed_item.price
                 }
             } else {
-                addedItem.quantity = 1;
+                let newItem = { ...addedItem, quantity: 1};
+                //addedItem.quantity = 1;
                 //calculating the total
-                let newTotal = state.total + addedItem.price
+                let newTotal = state.total + newItem.price
 
                 return {
                     ...state,
-                    addedItems: [...state.addedItems, addedItem],
+                    addedItems: [...state.addedItems, newItem],
                     total: newTotal
                 }
             };
@@ -57,7 +57,7 @@ export default function reducer(state = initialState, action) {
 
         case ADD_QUANTITY:
 
-            let itemToAdd = state.products.find(item=> item.id === action.id)
+            let itemToAdd = state.addedItems.find(item=> item.id === action.id)
             itemToAdd.quantity += 1 
             let newTotal2 = state.total + itemToAdd.price
             return{
@@ -67,7 +67,7 @@ export default function reducer(state = initialState, action) {
 
         case SUB_QUANTITY:
 
-            let itemToAdd2 = state.products.find(item=> item.id === action.id) 
+            let itemToAdd2 = state.addedItems.find(item=> item.id === action.id) 
             //if the qt == 0 then it should be removed
             if(itemToAdd2.quantity === 1){
                 let new_items = state.addedItems.filter(item=>item.id !== action.id)
