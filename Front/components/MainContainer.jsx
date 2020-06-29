@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import ProductosMain from "../components/ProductosMain";
 import { giveMeAllProducts } from "../store/actions/Products";
 import { addToCart } from "../store/actions/Products";
+import Carrousel from "./Carrousel";
 const mapStateToProps = (state, ownProps) => {
   return {
     login: state.login.data,
@@ -26,7 +27,7 @@ class MainContainer extends React.Component {
     return (
       <div>
         <NavBar props={this.props}></NavBar>
-
+        <Carrousel />
         <ProductosMain
           tileData={this.props.products}
           addToCart={this.props.addToCart}
