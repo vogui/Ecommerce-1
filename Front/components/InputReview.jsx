@@ -58,6 +58,8 @@ function Review({ idProduct, dataUser, setearReview }) {
     if (!valueStart) {
       setOpen(true);
     } else {
+      setValueStart(null);
+      setValue("");
       setearReview({
         idUser: dataUser.id,
         idProduct: idProduct,
