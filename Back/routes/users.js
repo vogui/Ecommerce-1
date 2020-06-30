@@ -2,10 +2,11 @@ var express = require("express");
 const flash = require('connect-flash');
 var router = express.Router();
 var path = require("path");
-const { User } = require("../models/index");
+const { User, Cart, CartProducts, Products } = require("../models/index");
 router.use(flash());
 
 // Esto se modifica cuando Henry me diga como se llama el modelo de User
+
 var passport = require("passport");
 router.get("/", (req, res, next) => {
   //Aca llegan de /api/users/
@@ -46,13 +47,42 @@ router.post("/login", passport.authenticate("local"), function (
   obj.id = req.user.dataValues.id;
   obj.name = req.user.dataValues.name;
   obj.isAdmin = req.user.dataValues.isAdmin;
-  // Cart.findOne({ where: {
-  //       UserId: obj.id,
-  //       completed: false
-  //   }})
-  //   .then(cart=>{ obj.cart= cart })
-  //   .then(()=>res.send(obj))
-  res.send(obj)
+  obj.cart = {
+    total: 0,
+    products: [],
+  }
+  Cart.findOne({ where: {
+         UserId: obj.id,
+         completed: false
+  }})
+  .then(cart => {
+    obj.cart.total = cart.dataValues.total
+    CartProducts.findAll({
+      where: {
+        CartId: cart.id
+      }
+    })
+    .then( cartItems => {
+        cartItems.map((ci) => {
+        let product = new Object();
+        product.id = ci.dataValues.ProductId;
+        product.quantity = ci.dataValues.quantity;
+        Products.findOne({ where: {
+          id: product.id
+        }})
+        .then( foundProduct => {
+          product.title = foundProduct.title;
+          product.picture = foundProduct.picture;
+          product.price = foundProduct.price;
+          obj.cart.products.push(product);
+        })
+      }) //cierra el map
+    })
+  })
+  .then( () => {
+    console.log('obj ------>', obj)
+    res.send(obj)
+  })
 });
 
 

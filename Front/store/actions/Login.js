@@ -13,9 +13,11 @@ const GetCart = (cart) => ({
 
 
 export const loginUser = (email, password) => (dispatch) => {
+  console.log('entrando aloginnn!!!!')
   axios
     .post("/api/users/login", { email, password })
     .then((resp) => {
+      console.log('RESP PUNTO DATA', resp.data)
       if (resp.request.status == 200) {
         dispatch(LoginUser(resp.data, false, true))
         // .then(()=> console.log());
