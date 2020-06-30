@@ -63,26 +63,32 @@ router.post("/login", passport.authenticate("local"), function (
       }
     })
     .then( cartItems => {
-        cartItems.map((ci) => {
-        let product = new Object();
-        product.id = ci.dataValues.ProductId;
-        product.quantity = ci.dataValues.quantity;
-        Products.findOne({ where: {
-          id: product.id
-        }})
-        .then( foundProduct => {
-          product.title = foundProduct.title;
-          product.picture = foundProduct.picture;
-          product.price = foundProduct.price;
-          obj.cart.products.push(product);
+        let promesas = [];
+        for(let i = 0; i < cartItems.length; i++ ) {
+          promesas.push(
+            Products.findOne({ where: {
+              id: cartItems[i].dataValues.ProductId
+            }})
+/*             .then( foundProduct => {
+              let product = new Object();
+              product.id = cartItems[i].dataValues.ProductId;
+              product.quantity = cartItems[i].dataValues.quantity;
+              product.title = foundProduct.title;
+              product.picture = foundProduct.picture;
+              product.price = foundProduct.price;
+              obj.cart.products.push(product);
+            }) */
+          )
+          
+        }
+        console.log('PROMESAS ---->', promesas)
+        Promise.all(promesas).then( (pr) => {
+          console.log('prrrrr', pr);
+          obj.cart.products = pr
+          res.send(obj)
         })
       }) //cierra el map
     })
-  })
-  .then( () => {
-    console.log('obj ------>', obj)
-    res.send(obj)
-  })
 });
 
 
