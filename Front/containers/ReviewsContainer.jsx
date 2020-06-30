@@ -5,6 +5,7 @@ import ListaDeReviews from "../components/ListaDeReviews";
 const mapStateToProps = (state, ownProps) => {
   return {
     product: state.products.product.id,
+    user: state.login.data.dataUser,
   };
 };
 
@@ -15,8 +16,11 @@ class ReviewsContainer extends React.Component {
     return (
       <div>
         <p>HOla estas en reviews</p>
-        {/*  <InputReview />
-        <ListaDeReviews /> */}
+        <InputReview
+          idProduct={this.props.product}
+          dataUser={this.props.user}
+        />
+        {/*<ListaDeReviews /> */}
       </div>
     );
   }

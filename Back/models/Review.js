@@ -21,6 +21,9 @@ Review.init(
             key: 'id'
         }
     }, */
+    username: {
+      type: S.TEXT,
+    },
     review: {
       type: S.TEXT,
       allowNull: false,
