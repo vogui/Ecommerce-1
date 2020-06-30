@@ -1,10 +1,24 @@
 const express = require("express");
-const Review = require("../models/Review");
-const { User } = require("../models");
-const Product = require("../models/Product");
+
+const { User } = require("../models/index");
+const {Product} = require("../models/index");
+
+const { Review } = require("../models/index");
+
 const router = express.Router();
 
 router.get("/:idProducto", (req, res, next) => {
+  const id = req.params.idProducto
+  Review.findAll({
+    where:{
+      ProductId: id
+    }
+  })
+  .then((ProductReviews)=>{
+    console.log('Estas son las review del Producto', ProductReviews)
+   res.status(200).send(ProductReviews)
+  })
+
   //Aca obtengo todas las reviews;
   //Se las envio al usuario;
 });

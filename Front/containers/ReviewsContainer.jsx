@@ -2,25 +2,39 @@ import React from "react";
 import { connect } from "react-redux";
 import InputReview from "../components/InputReview";
 import ListaDeReviews from "../components/ListaDeReviews";
+import { BringMeReviews } from '../store/actions/Review'
+
 const mapStateToProps = (state, ownProps) => {
   return {
-    product: state.products.product.id,
-    user: state.login.data.dataUser,
-  };
+      user: state.login.data.dataUser,
+    productId: state.products.product.id,
+    reviews: state.reviews.reviews,    
+  }
+
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => ({});
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  BringMeReviews: (id) => dispatch(BringMeReviews(id))
+});
+
 
 class ReviewsContainer extends React.Component {
+
+
+componentDidMount(){
+  this.props.BringMeReviews(this.props.productId)
+}
+  
+
+
   render() {
     return (
       <div>
-        <p>HOla estas en reviews</p>
         <InputReview
-          idProduct={this.props.product}
+          idProduct={this.props.productId}
           dataUser={this.props.user}
         />
-        {/*<ListaDeReviews /> */}
+        <ListaDeReviews reviews= {this.props.reviews} /> 
       </div>
     );
   }

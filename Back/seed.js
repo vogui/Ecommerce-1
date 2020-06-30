@@ -78,14 +78,14 @@ const product8 = Products.create({
 product8.then((cerveza) => {
   cerveza.addCategory(2);
 });
-const product9 = Products.create({
+const product9 = Products.createCart.belongsTo(User);({
   title: "India Pale Ale ",
   picture:
     "https://www.cerveceroexperto.com/wp-content/uploads/2019/07/IPA-Pinta.jpg",
   price: 170,
 });
 
-product9.then((cerveza) => {
+product9.then((cervezCart.belongsTo(User);a) => {
   cerveza.addCategory(3);
 });
 
