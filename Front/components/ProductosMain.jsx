@@ -1,4 +1,4 @@
-import React from "react";
+  import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
@@ -66,7 +66,7 @@ function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-function ProductosMain({ tileData, addToCart, items, add, rest }) {
+function ProductosMain({ tileData, user, addToCart, items, add, rest }) {
   const classes = useStyles();
   /*   handleClick = (id) => {
     this.props.addToCart(id);
@@ -77,15 +77,16 @@ function ProductosMain({ tileData, addToCart, items, add, rest }) {
     setOpen(true);
   };
 
-  const [, forceUpdate] = React.useState(0);
-
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
-
     setOpen(false);
+
   };
+
+  const [, forceUpdate] = React.useState(0);
+
   return (
     <div>
       {tileData != undefined ? (
@@ -113,7 +114,8 @@ function ProductosMain({ tileData, addToCart, items, add, rest }) {
                           className={classes.icon}
                           aria-label={`info about ${tile.title}`}
                           onClick={() => {
-                            handleClick(), addToCart(tile.id);
+                           if(user.dataUser.id) { handleClick(), addToCart(tile.id)}
+                           else { handleClick() }
                           }}>
                         </AddShoppingCartSharpIcon>
                         <Link to={`/product/${tile.id}`}>
@@ -137,7 +139,6 @@ function ProductosMain({ tileData, addToCart, items, add, rest }) {
                       </span>
                       )
                       }
-
                     </div>
                   }
                 />
@@ -146,10 +147,19 @@ function ProductosMain({ tileData, addToCart, items, add, rest }) {
                   autoHideDuration={2000}
                   onClose={handleClose}
                 >
+                 {user.dataUser.id ? (
                   <Alert onClose={handleClose} severity="success">
                     Product added to the cart!
-                  </Alert>
-                </Snackbar>
+                  </Alert> ) 
+                 :
+                 (
+                  <Alert 
+                  onClose={handleClose} 
+                  severity="error">
+                  You must be Logged
+                </Alert>
+                  )}
+                 </Snackbar>
               </GridListTile>
             )})}
           </GridList>
