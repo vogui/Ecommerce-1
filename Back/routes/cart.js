@@ -3,7 +3,6 @@ const router = express.Router();
 const { Cart, CartProducts, User }  = require("../models/index");
 
 router.post('/', (req, res) => {
-    let itemValue = req.body.quantity * req.body.price
     Cart.findOne({ where: {
         UserId: req.body.UserId,
         completed: false
@@ -49,11 +48,23 @@ router.post('/', (req, res) => {
             })
         }
     })
-})
-//quantity
-//price
-//UserId
-//adress
-//productId
+});
+
+router.get('/', (req, res) => {
+    Cart.findOne({ where: {
+        UserId: req.body.UserId,
+        completed: false
+    }})
+    .then( cart => {
+        res.status(200).send(cart)
+    })
+});
+
+/* ProductId
+Picture
+Price
+quantity
+title
+total */
 
 module.exports = router;

@@ -38,7 +38,7 @@ function Item({item})
 {
     return (
         <Paper>
-            <img src = {item.Image} height="80%" width="90%"/>
+            <img src = {item.Image} height="80%" width="100%"/>
         </Paper>
     )
 }

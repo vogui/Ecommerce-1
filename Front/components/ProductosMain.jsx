@@ -86,7 +86,6 @@ function ProductosMain({ tileData, addToCart, items, add, rest }) {
 
     setOpen(false);
   };
-  console.log('tile ----------->', tileData);
   return (
     <div>
       {tileData != undefined ? (
