@@ -18,6 +18,18 @@ export const findCategorys = () => (dispatch) => {
 };
 
 export const setCategory = (selectedCategory) => (dispatch) => {
-  console.log("En el action es:", selectedCategory);
-  return dispatch(giveMeProducts({ title: "", id: selectedCategory }));
+  dispatch(actualCategory(selectedCategory));
 };
+
+/* export function setCategory(selectedCategory) {
+  dispatch(actualCategory(selectedCategory));
+  dispatch(giveMeProducts({ title: "", id: selectedCategory }));
+
+   return (dispatch) => {
+    dispatch(actualCategory(selectedCategory));
+    setTimeout(() => {
+      //Me aseguro que el dispatch anterior realmente surga efecto
+      dispatch(giveMeProducts({ title: "", id: selectedCategory }));
+    }, 500);
+  }; 
+} */

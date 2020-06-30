@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import Product from "../components/Product";
 import { giveTheProduct } from "../store/actions/Products";
-
+import ReviewsContainer from "../containers/ReviewsContainer";
 class ProductContainer extends React.Component {
   constructor() {
     super();
@@ -16,7 +16,12 @@ class ProductContainer extends React.Component {
     this.props.addToCart(id);
   }; */
   render() {
-    return <Product product={this.props.product} props={this.props} />;
+    return (
+      <>
+        <Product product={this.props.product} props={this.props} />
+        <ReviewsContainer />
+      </>
+    );
   }
 }
 

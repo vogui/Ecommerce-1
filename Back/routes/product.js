@@ -30,6 +30,7 @@ router.post("/", (req, res, next) => {
       }
 
       Promise.all(listaCategorias).then((infoCategorias) => {
+        console.log("Lista productos: ", listaProductos);
         console.log("REQ BODY ID", req.body.id);
         console.log("infoCategorias", infoCategorias);
         for (var i = 0; i < listaProductos.length; i++) {
