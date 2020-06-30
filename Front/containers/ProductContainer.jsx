@@ -19,7 +19,7 @@ class ProductContainer extends React.Component {
     return (
       <>
         <Product product={this.props.product} props={this.props} />
-        <ReviewsContainer />
+        <ReviewsContainer productId={this.props.id} />
       </>
     );
   }
