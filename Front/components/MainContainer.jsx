@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import ProductosMain from "../components/ProductosMain";
 import { giveMeAllProducts } from "../store/actions/Products";
 import Carrousel from "./Carrousel";
-import { addToCartBack, addQuantityBack, subtractQuantityBack } from "../store/actions/Products";
+import { addToCart, addToCartBack, addQuantity, subtractQuantity } from "../store/actions/Products";
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -18,15 +18,23 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   giveMeAllProducts: () => dispatch(giveMeAllProducts()),
-  addToCart: (itemID, obj) => dispatch(addToCartBack(itemID, obj)),
-  addQuantity: (id, obj) => dispatch(addQuantityBack(id, obj)),
-  subtractQuantity: (id, obj) => dispatch(subtractQuantityBack(id, obj))
+  addToCart: (itemID) => dispatch(addToCart(itemID)),
+  addToCartBack: (obj) => dispatch(addToCartBack(obj)),
+  addQuantity: (id, obj) => dispatch(addQuantity(id, obj)),
+  subtractQuantity: (id, obj) => dispatch(subtractQuantity(id, obj))
 });
 
 class MainContainer extends React.Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = { 
+      quantity: 0,
+      price: 0,
+      UserId: 0, 
+      adress: "",
+      ProductId: 0,
+      total: 0
+    };
     this.handleAddToCart = this.handleAddToCart.bind(this);
     this.handleAddQuantity = this.handleAddQuantity.bind(this);
     this.handleSubtractQuantity = this.handleSubtractQuantity.bind(this);
@@ -36,50 +44,50 @@ class MainContainer extends React.Component {
     this.props.giveMeAllProducts();
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.state.total !== prevProps.total)
+      this.props.addToCartBack(this.state);
+  }
+
   handleAddToCart(id) {
     let item = this.props.products.find(element => element.id == id)
-    let objBackend = {
-      quantity: 1,
-      price: item.price,
+    this.setState({
       UserId: this.props.login.dataUser.id, 
       adress: this.props.login.dataUser.adress,
-      ProductId: item.id,
-      total: this.props.total
-    }
-    console.log("objetito pal backend: ",objBackend )
-    this.props.addToCart(id, objBackend);
+      quantity:1, 
+      ProductId: item.id, 
+      price: item.price,
+      total: this.state.total+item.price
+    })
+    this.props.addToCart(id);
   }
 
   //to add the quantity
   handleAddQuantity(id) {
     let item = this.props.items.find(element => element.id == id)
-    console.log("item!!!:", item)
-    let objBackend = {
-      quantity: item.quantity +1,
-      price: item.price,
-      UserId: this.props.login.dataUser.id,
+    this.setState({
+      UserId: this.props.login.dataUser.id, 
       adress: this.props.login.dataUser.adress,
-      ProductId: item.id,
-      total: this.props.total
-    }
-    console.log("objetito pal backend: ",objBackend )
-    this.props.addQuantity(id, objBackend);
+      quantity: item.quantity+1, 
+      ProductId: item.id, 
+      price: item.price,
+      total: this.state.total+item.price
+    })
+    this.props.addQuantity(id);
   }
   
   //to substruct from the quantity
   handleSubtractQuantity(id) {
-    let item = this.props.items.find(element => element.id == id)
-    console.log("item!!!:", item)
-    let objBackend = {
-      quantity: item.quantity -1,
-      price: item.price,
-      UserId: this.props.login.dataUser.id,
+   let item = this.props.items.find(element => element.id == id)
+    this.setState({
+      UserId: this.props.login.dataUser.id, 
       adress: this.props.login.dataUser.adress,
-      ProductId: item.id,
-      total: this.props.total
-    }
-    console.log("objetito pal backend: ",objBackend )
-    this.props.subtractQuantity(id, objBackend);
+      quantity: item.quantity-1, 
+      ProductId: item.id, 
+      price: item.price,
+      total: this.state.total-item.price
+    })
+    this.props.subtractQuantity(id);
   }
 
   render() {

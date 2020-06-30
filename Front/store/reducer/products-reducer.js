@@ -1,4 +1,4 @@
-import { TRAE_PRODUCTS, TRAE_PRODUCT, ADD_TO_CART, REMOVE_ITEM, ADD_QUANTITY, SUB_QUANTITY } from '../constans'
+import { TRAE_PRODUCTS, TRAE_PRODUCT, ADD_TO_CART, REMOVE_ITEM, ADD_QUANTITY, SUB_QUANTITY, GET_CART } from '../constans'
   
 const initialState = {
     product: {},
@@ -87,6 +87,14 @@ export default function reducer(state = initialState, action) {
                       total: newTotal3
                 }
             };
+
+        // case GET_CART:
+           
+        //     return{
+        //               ...state,
+        //                 addedItems : cart.items
+        //                 total: cart.total
+        //         }
 
          default: return state;
     }

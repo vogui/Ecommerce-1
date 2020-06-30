@@ -23,20 +23,24 @@ const findProductsByCate = (products)=>({
   products,
 });
 
-const addToCart = (id)=>({
+export const addToCart = (id)=>{
+  return {
   type: ADD_TO_CART,
   id,
-});
+ } 
+};
 
-const subtractQuantity = (id)=>({
-  type: SUB_QUANTITY,
+export const subtractQuantity = (id)=>{
+  return { type: SUB_QUANTITY,
   id,
-});
+  }
+};
 
-const addQuantity = (id)=>({
-  type: ADD_QUANTITY,
+export const addQuantity = (id)=>{
+  return { type: ADD_QUANTITY,
   id,
-});
+  }
+};
 
 
 export const findProductsByCategory =(categoryId)=> dispatch =>{
@@ -63,8 +67,7 @@ export const giveMeAllProducts = () => (dispatch) => {
     .then((products) => dispatch(findProducts(products.data)));
 };
 
-export const addToCartBack = (id , obj) => (dispatch) => {
-  dispatch(addToCart(id))
+export const addToCartBack = (obj) => () => {
   axios.post("/api/cart", obj)
 };
 
@@ -76,14 +79,14 @@ export const removeItem = (id) => {
   };
 };
 //subtract qt action
-export const subtractQuantityBack = (id, obj) => (dispatch) => {
-  dispatch(subtractQuantity(id))
-  axios.post("/api/cart", obj)
-};
+// export const subtractQuantityBack = (id, obj) => (dispatch) => {
+//   dispatch(subtractQuantity(id))
+//   axios.post("/api/cart", obj)
+// };
 
 //add qt action
-export const addQuantityBack = (id, obj) => (dispatch) => {
-  dispatch(addQuantity(id))
-  axios.post("/api/cart", obj)
-};
+// export const addQuantityBack = (id, obj) => (dispatch) => {
+//   dispatch(addQuantity(id))
+//   axios.post("/api/cart", obj)
+// };
 
