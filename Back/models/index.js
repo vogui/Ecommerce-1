@@ -7,11 +7,11 @@ const Review = require("./Review");
 const User = require("./User");
 const Product = require("./Product");
 
-//Product.hasMany(Review);
-//Review.belongsTo(Product);
+Product.hasMany(Review);
+Review.belongsTo(Product);
 
-//Review.belongsTo(User);
-//User.hasMany(Review);
+Review.belongsTo(User);
+User.hasMany(Review);
 
 //movie.belongsTo(Genre) en la tabla movie genera columna genre_id
 

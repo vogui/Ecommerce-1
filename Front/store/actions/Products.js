@@ -7,7 +7,7 @@ import {
   ADD_QUANTITY,
 } from "../constans";
 import axios from "axios";
-
+import { setCategory } from "../actions/Category";
 const findProducts = (products) => ({
   type: TRAE_PRODUCTS,
   products,
@@ -31,9 +31,12 @@ export const findProductsByCategory = (categoryId) => (dispatch) => {
     );
 };
 
-export const giveMeProducts = (title) => (dispatch) => {
-  axios.post("/api/products", title).then((listProducts) => {
+export const giveMeProducts = ({ title, id }) => (dispatch) => {
+  console.log("Title y selectedCategory:", title, id);
+  axios.post("/api/products", { title, id }).then((listProducts) => {
+    console.log("Los productos son:", listProducts);
     dispatch(findProducts(listProducts.data));
+    setCategory(id);
   });
 };
 

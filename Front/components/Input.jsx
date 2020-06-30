@@ -81,7 +81,7 @@ export default ({
   valueSearch,
   handleChange,
   handleCategorys,
-  handleBringCate,
+  setCategoryState,
 }) => {
   const classes = useStyles();
 
@@ -101,11 +101,11 @@ export default ({
     setAnchorEl(null);
   };
 
-  const handleClose = (categoryId) => {
-    console.log("Anda el handleClose");
-    //handleBringCate()
-    setCategory(categoryId);
-    handleChange({ target: { value: "" } });
+  const handleClose = (category) => {
+    console.log("Category en Input:", category);
+    Promise.all([setCategoryState(category)]).then(() => {
+      handleChange({ target: { value: "" } });
+    });
   };
 
   return (
@@ -151,7 +151,7 @@ export default ({
               <div key={"Main"}>
                 <MenuItem
                   onClick={() => {
-                    sinRepeticion(0);
+                    handleClose(0);
                   }}
                 >
                   Sin categoria

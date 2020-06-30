@@ -17,12 +17,19 @@ export const findCategorys = () => (dispatch) => {
     .then((categorysFound) => dispatch(findCate(categorysFound.data)));
 };
 
-export function setCategory(selectedCategory) {
-  return (dispatch) => {
+export const setCategory = (selectedCategory) => (dispatch) => {
+  dispatch(actualCategory(selectedCategory));
+};
+
+/* export function setCategory(selectedCategory) {
+  dispatch(actualCategory(selectedCategory));
+  dispatch(giveMeProducts({ title: "", id: selectedCategory }));
+
+   return (dispatch) => {
     dispatch(actualCategory(selectedCategory));
     setTimeout(() => {
       //Me aseguro que el dispatch anterior realmente surga efecto
       dispatch(giveMeProducts({ title: "", id: selectedCategory }));
     }, 500);
-  };
-}
+  }; 
+} */

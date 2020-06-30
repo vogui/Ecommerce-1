@@ -12,12 +12,21 @@ class ProductsContainer extends React.Component {
     super(props);
     this.state = {
       valueSearch: "",
+      categoryId: 0,
     };
     this.handleChange = this.handleChange.bind(this);
+    this.setCategoryState = this.setCategoryState.bind(this);
     //this.handleBringCate = this.handleBringCate.bind(this)
   }
   componentDidMount() {
     this.props.findCategorys();
+  }
+
+  setCategoryState(value) {
+    console.log("Category en setCategoryState:", value);
+    this.setState({
+      categoryId: value,
+    });
   }
 
   handleChange(event) {
@@ -26,11 +35,11 @@ class ProductsContainer extends React.Component {
     console.log("Title en products container:", title);
     console.log(
       "Selected category en products container:",
-      this.props.selectedCategory
+      this.state.categoryId
     );
     this.props.giveMeProducts({
       title: title,
-      id: this.props.selectedCategory,
+      id: this.state.categoryId,
     });
 
     this.setState({ valueSearch: title });
@@ -48,6 +57,7 @@ class ProductsContainer extends React.Component {
           handleCategorys={this.props.categorys}
           valueSearch={this.state.valueSearch}
           setCategory={this.props.setCategory}
+          setCategoryState={this.setCategoryState}
           // handleBringCate = {this.handleBringCate}
         />
 

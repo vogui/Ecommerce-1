@@ -1,7 +1,7 @@
 const { Products } = require("./models/index");
 const { Category } = require("./models/index");
 const { User } = require("./models/index");
-
+const { Review } = require("./models/index");
 const product1 = Products.create({
   title: "Ale",
   picture:
@@ -218,9 +218,57 @@ const category3 = Category.create({
   name: "Coloradas",
 });
 
+const review5 = Review.create({
+  review: "Excelente birra",
+  stars: 5,
+});
+
+const review4 = Review.create({
+  review: "Muy buena birra",
+  stars: 4,
+});
+
+const review3 = Review.create({
+  review: "Mas o menos birra",
+  stars: 3,
+});
+
+const review2 = Review.create({
+  review: "Estaba caliente la birra",
+  stars: 2,
+});
+
+const review1 = Review.create({
+  review: "Un asco de birra",
+  stars: 1,
+});
+
 const user1 = User.create({
   email: "borrachin@gmail.com",
   password: "123",
   name: "Sr. Borracho",
   adress: "Av. Siempreviva 123",
+}).then((user) => {
+  user.addReview(1).then((user2) => {
+    user2.getReviews().then((review) => {
+      review[0].setProduct(1).then((review2) => {
+        console.log("Review:", review2);
+      });
+    });
+  });
+});
+
+const user2 = User.create({
+  email: "birrero@gmail.com",
+  password: "123",
+  name: "Mrs. Borracho",
+  adress: "Av. Siempreviva 321",
+}).then((user) => {
+  user.addReview(5).then((user2) => {
+    user2.getReviews().then((review) => {
+      review[0].setProduct(3).then((review2) => {
+        console.log("Review:", review2);
+      });
+    });
+  });
 });
