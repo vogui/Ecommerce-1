@@ -14,7 +14,6 @@ import Alert from "@material-ui/lab/Alert";
 import CloseIcon from "@material-ui/icons/Close";
 import IconButton from "@material-ui/core/IconButton";
 import Snackbar from "@material-ui/core/Snackbar";
-import { setearReview } from "../store/actions/Review";
 const useStyles = makeStyles((theme) => ({
   alert: {
     width: "100%",
@@ -44,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Review({ idProduct, dataUser }) {
+function Review({ idProduct, dataUser, setearReview }) {
   const [value, setValue] = React.useState(null);
   const [valueStart, setValueStart] = React.useState(null);
   const [open, setOpen] = React.useState(false);
@@ -143,17 +142,4 @@ function Review({ idProduct, dataUser }) {
   );
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {};
-};
-
-const mapDispatchToProps = function (dispatch, ownProps) {
-  ownProps;
-  return {
-    setearReview: (data) => {
-      dispatch(setearReview(data));
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Review);
+export default Review;
