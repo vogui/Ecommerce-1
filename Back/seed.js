@@ -273,3 +273,11 @@ const user2 = User.create({
     });
   });
 });
+
+const user3 = User.create({
+  email: "admin@admin.com",
+  password: "123",
+  name: "Mrs. Borracho",
+  adress: "Av. Siempreviva 321",
+  isAdmin: true,
+});

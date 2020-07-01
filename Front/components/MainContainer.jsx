@@ -5,13 +5,18 @@ import { connect } from "react-redux";
 import ProductosMain from "../components/ProductosMain";
 import { giveMeAllProducts } from "../store/actions/Products";
 import Carrousel from "./Carrousel";
-import { addToCart, addQuantity, subtractQuantity } from "../store/actions/Products";
+import {
+  addToCart,
+  addQuantity,
+  subtractQuantity,
+} from "../store/actions/Products";
 
 const mapStateToProps = (state, ownProps) => {
   return {
     login: state.login.data,
     products: state.products.products,
-    items: state.products.addedItems
+    items: state.products.addedItems,
+    isAdmin: state.login.data.dataUser.isAdmin,
   };
 };
 
@@ -19,7 +24,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   giveMeAllProducts: () => dispatch(giveMeAllProducts()),
   addToCart: (itemID) => dispatch(addToCart(itemID)),
   addQuantity: (id) => dispatch(addQuantity(id)),
-  subtractQuantity: (id) => dispatch(subtractQuantity(id))
+  subtractQuantity: (id) => dispatch(subtractQuantity(id)),
 });
 
 class MainContainer extends React.Component {
@@ -52,8 +57,8 @@ class MainContainer extends React.Component {
         <ProductosMain
           tileData={this.props.products}
           addToCart={this.props.addToCart}
-          items={this.props.items} 
-          add={this.handleAddQuantity} 
+          items={this.props.items}
+          add={this.handleAddQuantity}
           rest={this.handleSubtractQuantity}
         ></ProductosMain>
       </div>
