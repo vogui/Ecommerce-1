@@ -62,12 +62,17 @@ router.get('/', (req, res) => {
     })
 });
 
-/* ProductId
-Picture
-Price
-quantity
-title
-total */
-
+router.put('/', (req, res) => {
+    Cart.findOne({ where: {
+        UserId: req.body.user,
+        completed: false
+    }})
+    .then( cart => {
+        cart.completed = true;
+        cart.save()
+        return cart
+    })
+    .then( boughtCart => res.sendStatus(200))
+})
 
 module.exports = router;

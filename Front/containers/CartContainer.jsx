@@ -5,6 +5,7 @@ import {
   removeItem,
   addQuantity,
   subtractQuantity,
+  checkOut
 } from "../store/actions/Products";
 
 const mapStateToProps = (state) => {
@@ -26,6 +27,9 @@ const mapDispatchToProps = (dispatch) => {
     subtractQuantity: (id) => {
       dispatch(subtractQuantity(id));
     },
+    checkout: (id) => {
+      dispatch(checkOut(id));
+    }
   };
 };
 
@@ -36,6 +40,7 @@ class CartContainer extends React.Component {
     this.handleRemove = this.handleRemove.bind(this);
     this.handleAddQuantity = this.handleAddQuantity.bind(this);
     this.handleSubtractQuantity = this.handleSubtractQuantity.bind(this);
+    this.handleCheckout = this.handleCheckout.bind(this);
   }
   //to remove the item completely
   handleRemove(id) {
@@ -50,7 +55,13 @@ class CartContainer extends React.Component {
     this.props.subtractQuantity(id);
   }
 
+  handleCheckout(userId){
+    this.props.checkout(userId)
+  }
+
+
   render() {
+    
     return (
       <Cart
         total={this.props.total}
@@ -58,7 +69,10 @@ class CartContainer extends React.Component {
         rest={this.handleSubtractQuantity}
         remove={this.handleRemove}
         items={this.props.items}
+        user={this.props.login.dataUser.id}
         props={this.props}
+        checkout={this.handleCheckout}
+        lastOrders={this.handleLastOrders}
       />
     );
   }

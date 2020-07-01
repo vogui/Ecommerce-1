@@ -1,9 +1,10 @@
-import { TRAE_PRODUCTS, TRAE_PRODUCT, ADD_TO_CART, REMOVE_ITEM, ADD_QUANTITY, SUB_QUANTITY, GET_CART } from '../constans'
+import { TRAE_PRODUCTS, TRAE_PRODUCT, ADD_TO_CART, REMOVE_ITEM, ADD_QUANTITY, SUB_QUANTITY, GET_CART, CHECKOUT, GET_ORDERS } from '../constans'
   
 const initialState = {
     product: {},
     products: [],
     addedItems: [],
+    lastOrders:{},
     total: 0
 }
 
@@ -89,13 +90,25 @@ export default function reducer(state = initialState, action) {
             };
 
         case GET_CART:
-           console.log("llegue al reducer del CART, DATA:", action )
             return{
                       ...state,
                         addedItems : action.data.products,
                         total: action.data.total
-                }
+                };
 
-         default: return state;
+        case CHECKOUT:
+            return{
+                      ...state,
+                        addedItems : [],
+                        total: 0
+                };
+
+        case GET_ORDERS:
+            return{
+                      ...state,
+                        lastOrders : action.data.orders,
+                };
+
+        default: return state;
     }
 }

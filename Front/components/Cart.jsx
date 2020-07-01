@@ -8,6 +8,7 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
+import Button from "@material-ui/core/Button";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -22,6 +23,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Fab from "@material-ui/core/Fab";
 import Paper from "@material-ui/core/Paper";
 import NavBar from "../components/NavBar";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,6 +41,10 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
   },
   demo: {
     backgroundColor: theme.palette.background.paper,
@@ -53,9 +59,13 @@ export default function InteractiveList({
   add,
   rest,
   remove,
+  checkout,
   total,
+  user,
+  lastOrders,
   props,
 }) {
+  
   const classes = useStyles();
   const [secondary, setSecondary] = React.useState(false);
 
@@ -65,7 +75,18 @@ export default function InteractiveList({
       {items.length !== 0 ? (  
         <div className={"cart"}>
           {props.login.redirect ? ( 
-            <h2>Welcome {props.login.dataUser.name}, this is your Cart</h2>
+            <div>
+              <div xs={10}>
+                <h2>Welcome {props.login.dataUser.name}, this is your Cart</h2>
+              </div>
+              <div xs={2}>
+               <Link to={`/user/${user}/orders`}>
+                  <Button variant="outlined" size="small" color="secondary" onClick={() => lastOrders({user})} >
+                    Last Orders
+                  </Button>
+               </Link>
+              </div>
+            </div>
           ) 
           : 
           null}
@@ -137,10 +158,14 @@ export default function InteractiveList({
               {/*( <p>Nothing yet...</p>  )*/}
             </div>
           </Grid>
-          <Grid>
-            <Paper xs={12} className={classes.paper}>
-              {" "}
-              Total: ${total}
+          <Grid className={classes.paper}>
+            <Paper xs={6} className={classes.paper}>
+                {" "}
+                Total: ${total}
+              <Button variant="contained" size="small" color="primary" onClick={() => checkout({user})} >
+                CheckOut!
+              </Button>
+              {console.log("USER!!!!!",user)}
             </Paper>
           </Grid>
         </div>
