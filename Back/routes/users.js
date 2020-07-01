@@ -79,11 +79,10 @@ router.post("/login", passport.authenticate("local"), function (
               obj.cart.products.push(product);
             }) */
           )
-          
         }
-        console.log('PROMESAS ---->', promesas)
+        // console.log('PROMESAS ---->', promesas)
         Promise.all(promesas).then( (pr) => {
-          console.log('prrrrr', pr);
+          // console.log('prrrrr', pr);
           obj.cart.products = pr
           res.send(obj)
         })

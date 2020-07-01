@@ -88,13 +88,13 @@ export default function reducer(state = initialState, action) {
                 }
             };
 
-        // case GET_CART:
-           
-        //     return{
-        //               ...state,
-        //                 addedItems : cart.items
-        //                 total: cart.total
-        //         }
+        case GET_CART:
+           console.log("llegue al reducer del CART, DATA:", action )
+            return{
+                      ...state,
+                        addedItems : action.data.products,
+                        total: action.data.total
+                }
 
          default: return state;
     }
