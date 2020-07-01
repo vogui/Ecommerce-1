@@ -3,24 +3,56 @@
 
 import React from "react";
 
-export default ({ reviews /*usuario*/ }) => {
+import { makeStyles } from '@material-ui/core/styles';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular,
+  },
+}));
+
+export default function SimpleExpansionPanel({reviews}) {
+  const classes = useStyles();
+
   return (
-    <div>
+      <ExpansionPanel>
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography className={classes.heading}>Reviews</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Typography>
       <div>
         {reviews &&
           reviews.map((review) => (
             <div key={review.id}>
               <div>
-                <h5>
-                  <span>{review.title}</span>
-                </h5>
-                <p>Valor: {review.stars}</p>
-                <p>Usuario: {review.username}</p>
-                <p>Comentario: {review.review}</p>
+                <p>
+                  {review.title}
+                <br></br>
+                Valor: {review.stars}
+                <br></br>
+                Usuario: {review.username}
+                <br></br>
+                Comentario: {review.review}</p>
               </div>
             </div>
           ))}
       </div>
-    </div>
-  );
+          </Typography>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>)
+
 };

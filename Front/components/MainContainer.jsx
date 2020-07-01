@@ -32,6 +32,7 @@ class MainContainer extends React.Component {
 
   componentDidMount() {
     this.props.giveMeAllProducts();
+    
   }
 
   //to add the quantity
