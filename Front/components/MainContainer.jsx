@@ -45,7 +45,7 @@ class MainContainer extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.state.total !== prevProps.total)
+    if (this.state.UserId !== 0)
       this.props.addToCartBack(this.state);
   }
 
@@ -57,7 +57,7 @@ class MainContainer extends React.Component {
       quantity:1, 
       ProductId: item.id, 
       price: item.price,
-      total: this.state.total+item.price
+      total: this.props.total+item.price
     })
     this.props.addToCart(id);
   }
@@ -71,7 +71,7 @@ class MainContainer extends React.Component {
       quantity: item.quantity+1, 
       ProductId: item.id, 
       price: item.price,
-      total: this.state.total+item.price
+      total: this.props.total+item.price
     })
     this.props.addQuantity(id);
   }
@@ -85,7 +85,7 @@ class MainContainer extends React.Component {
       quantity: item.quantity-1, 
       ProductId: item.id, 
       price: item.price,
-      total: this.state.total-item.price
+      total: this.props.total-item.price
     })
     this.props.subtractQuantity(id);
   }

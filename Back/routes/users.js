@@ -56,6 +56,7 @@ router.post("/login", passport.authenticate("local"), function (
          completed: false
   }})
   .then(cart => {
+    if(!cart) return res.send(obj);
     obj.cart.total = cart.dataValues.total
     CartProducts.findAll({
       where: {
@@ -63,7 +64,6 @@ router.post("/login", passport.authenticate("local"), function (
       }
     })
     .then( cartItems => {
-      //console.log('CART-ITEMS--------->', cartItems)
       let q = []
         let promesas = [];
         for(let i = 0; i < cartItems.length; i++ ) {
@@ -74,12 +74,10 @@ router.post("/login", passport.authenticate("local"), function (
             }})
           )
         }
-        console.log('QUANTITIES ---->', q)
         Promise.all(promesas).then( (pr) => {
           for(let j = 0 ; j < q.length; j++) {
             pr[j].dataValues.quantity = q[j]
           }
-          console.log('prrrrr', pr);
           obj.cart.products = pr;
           res.send(obj)
         })

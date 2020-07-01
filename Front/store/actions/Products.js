@@ -78,15 +78,3 @@ export const removeItem = (id) => {
     id,
   };
 };
-//subtract qt action
-// export const subtractQuantityBack = (id, obj) => (dispatch) => {
-//   dispatch(subtractQuantity(id))
-//   axios.post("/api/cart", obj)
-// };
-
-//add qt action
-// export const addQuantityBack = (id, obj) => (dispatch) => {
-//   dispatch(addQuantity(id))
-//   axios.post("/api/cart", obj)
-// };
-

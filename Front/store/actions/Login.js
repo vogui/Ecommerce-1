@@ -12,13 +12,10 @@ const GetCart = (cart) => ({
 });
 
 export const loginUser = (email, password) => (dispatch) => {
-  console.log('entrando aloginnn!!!!')
   return axios
     .post("/api/users/login", { email, password })
     .then((resp) => {
-      console.log('RESP PUNTO DATA', resp.data)
       if (resp.request.status == 200) {
-        console.log("entre ok 200")
         var objLogin = new Object();
         objLogin.adress= resp.data.adress
         objLogin.email= resp.data.email
@@ -28,17 +25,16 @@ export const loginUser = (email, password) => (dispatch) => {
         dispatch(LoginUser(objLogin, false, true))
       }
       if (resp.request.status == 401) {
-        console.log("entre en error 401")
         dispatch(LoginUser({}, true, false));
       }
+      if(resp.data.cart.total !== 0){
       var objCart = new Object();
-      console.log("resp.data CARRITOO", resp.data)
       objCart.products= resp.data.cart.products
       objCart.total= resp.data.cart.total
       dispatch(GetCart(objCart))
+      }
     })
     .catch((err) => {
-      console.log("estoy en el error de login")
       dispatch(LoginUser({}, true));
     });
 };
