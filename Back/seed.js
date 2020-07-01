@@ -8,7 +8,7 @@ const product1 = Products.create({
     "https://2.bp.blogspot.com/-Cplhr__WNpI/T4L7JzGya3I/AAAAAAAAATw/x7vcWStsr-o/s1600/RE%2BAle.jpg",
   price: 150,
 }).then((cerveza) => {
-  cerveza.addCategory(1);
+  cerveza.addCategory(2);
 });
 
 const product2 = Products.create({
@@ -17,7 +17,7 @@ const product2 = Products.create({
     "https://img2.pngio.com/pilsners-and-pale-lagers-pilsners-and-pale-lagers-are-light-to-pale-lager-png-400_400.png",
   price: 120,
 }).then((cerveza) => {
-  cerveza.addCategory(1);
+  cerveza.addCategory(2);
 });
 
 const product3 = Products.create({
@@ -26,7 +26,7 @@ const product3 = Products.create({
     "https://www.cervezaback.com/wp-content/uploads/2018/08/BACK-BROWN-PORTER.png",
   price: 170,
 }).then((cerveza) => {
-  cerveza.addCategory(2);
+  cerveza.addCategory(3);
 });
 
 const product4 = Products.create({
@@ -35,7 +35,7 @@ const product4 = Products.create({
     "https://cdn.shopify.com/s/files/1/1103/5152/products/trigo-01_1024x1024.png?v=1580826501",
   price: 145,
 }).then((cerveza) => {
-  cerveza.addCategory(3);
+  cerveza.addCategory(4);
 });
 
 const product5 = Products.create({
@@ -44,7 +44,7 @@ const product5 = Products.create({
     "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
   price: 135,
 }).then((cerveza) => {
-  cerveza.addCategory(2);
+  cerveza.addCategory(3);
 });
 
 const product6 = Products.create({
@@ -53,7 +53,7 @@ const product6 = Products.create({
     "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTLVIQY35P8lG-iAOPrUJcl-uxB6Y8THrZU4g&usqp=CAU",
   price: 200,
 }).then((cerveza) => {
-  cerveza.addCategory(3);
+  cerveza.addCategory(4);
 });
 
 /*
@@ -206,6 +206,10 @@ product20.then((cerveza) => {
 });
 
 */
+const categoriaPrincial = Category.create({
+  name: "Todas",
+});
+
 const category1 = Category.create({
   name: "Rubias",
 });
@@ -279,4 +283,19 @@ const user3 = User.create({
   name: "Mrs. Borracho",
   adress: "Av. Siempreviva 321",
   isAdmin: true,
+});
+
+const user4 = User.create({
+  email: "mati@mati.com",
+  password: "123",
+  name: "Mrs. Mati",
+  adress: "Av. Siempreviva 321",
+  isAdmin: true,
+});
+const user5 = User.create({
+  email: "guille@guille.com",
+  password: "123",
+  name: "Mrs. Guille",
+  adress: "Av. Siempreviva 321",
+  isAdmin: false,
 });

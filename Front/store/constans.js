@@ -17,11 +17,11 @@ export const ADD_QUANTITY = "ADD_QUANTITY";
 export const TRAE_CATEGORY = "TRAE_CATEGORY";
 export const BRING_PRODUCT_BY_CATE = "BRING_PRODUCT_BY_CATE";
 export const SET_CATEGORY = "SET_CATEGORY";
-
-
-
-
+export const SEND_CATEGORY = "SEND_CATEGORY";
 
 //Review
-export const BRING_REVIEW = 'BRING_REVIEW';
+export const BRING_REVIEW = "BRING_REVIEW";
 export const SET_REVIEW = "SET_REVIEW";
+
+//Users
+export const GET_USERS = "GET_USERS";

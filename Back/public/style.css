@@ -60,3 +60,10 @@ html {
   display: flex;
   margin: 0 auto;
 }
+
+.categoriesContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

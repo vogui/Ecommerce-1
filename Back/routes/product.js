@@ -9,7 +9,8 @@ const Op = Sequelize.Op;
 router.post("/", (req, res, next) => {
   console.log("ESTE ES EL BODY", req.body);
 
-  if (req.body.id == 0) {
+  if (req.body.id == 1) {
+    //Este ID es para TODAS
     Products.findAll().then((productos) => {
       var productosFiltrados = productos.filter((x) =>
         x.title.toLowerCase().includes(req.body.title.toLowerCase())

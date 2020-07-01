@@ -148,15 +148,6 @@ export default ({
               open={Boolean(anchorEl)}
               onClose={closeBox}
             >
-              <div key={"Main"}>
-                <MenuItem
-                  onClick={() => {
-                    handleClose(0);
-                  }}
-                >
-                  Sin categoria
-                </MenuItem>
-              </div>
               {handleCategorys &&
                 handleCategorys.map((category) => {
                   return (
