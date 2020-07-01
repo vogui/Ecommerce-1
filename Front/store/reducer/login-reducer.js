@@ -1,4 +1,4 @@
-import { LOGIN_USER } from "../constans";
+import { LOGIN_USER, GET_CART } from "../constans";
 
 const initialState = {
   data: { 
@@ -9,10 +9,16 @@ const initialState = {
 };
 
 export default function reducer(state = initialState, action) {
+  
   switch (action.type) {
+
     case LOGIN_USER:
-      return { ...state, data: action.data };
+
+      return { ...state, data: action.data  };
+
     default:
+    
       return state;
+
   }
 }

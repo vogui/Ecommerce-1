@@ -86,16 +86,6 @@ router.post("/login", passport.authenticate("local"), function (
       }) 
     })
 });
-/*             .then( foundProduct => {
-              let product = new Object();
-              product.id = cartItems[i].dataValues.ProductId;
-              product.quantity = cartItems[i].dataValues.quantity;
-              product.title = foundProduct.title;
-              product.picture = foundProduct.picture;
-              product.price = foundProduct.price;
-              obj.cart.products.push(product);
-            }) */
-
 
 // router.post('/login', function(req, res, next) {
 //   passport.authenticate('local', function(err, user, info) {
