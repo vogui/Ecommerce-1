@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from "../components/NavBar";
+
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -38,7 +38,6 @@ export default ({ product, props }) => {
 
   return (
     <div>
-      <NavBar props={props} />
       <div className="productoIndividual">
         {product ? (
           <div className="product">

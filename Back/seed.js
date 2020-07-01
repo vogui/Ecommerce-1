@@ -41,7 +41,7 @@ const product4 = Products.create({
 const product5 = Products.create({
   title: "Stout",
   picture:
-    "https://e7.pngegg.com/pngimages/744/277/png-clipart-beer-cocktail-pilsner-beer-glasses-stout-beer-glass-beer.png",
+    "https://cdn.shopify.com/s/files/1/1103/5152/products/white_stout_1000x2048_2_1024x1024.png?v=1573142609",
   price: 135,
 }).then((cerveza) => {
   cerveza.addCategory(3);
