@@ -1,7 +1,7 @@
 import { LOGIN_USER, GET_CART } from "../constans";
 import axios from "axios";
 
-const LoginUser = (dataUser, dataCart, booleanLogin, booleanRedirect) => ({
+const LoginUser = (dataUser, booleanLogin, booleanRedirect) => ({
   type: LOGIN_USER,
   data: { dataUser, failLogin: booleanLogin, redirect: booleanRedirect },
 });
