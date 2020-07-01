@@ -63,12 +63,29 @@ router.post("/login", passport.authenticate("local"), function (
       }
     })
     .then( cartItems => {
+      //console.log('CART-ITEMS--------->', cartItems)
+      let q = []
         let promesas = [];
         for(let i = 0; i < cartItems.length; i++ ) {
+          q.push(cartItems[i].dataValues.quantity)
           promesas.push(
             Products.findOne({ where: {
               id: cartItems[i].dataValues.ProductId
             }})
+          )
+        }
+        console.log('QUANTITIES ---->', q)
+        Promise.all(promesas).then( (pr) => {
+          for(let j = 0 ; j < q.length; j++) {
+            pr[j].dataValues.quantity = q[j]
+          }
+          console.log('prrrrr', pr);
+          obj.cart.products = pr;
+          res.send(obj)
+        })
+      }) 
+    })
+});
 /*             .then( foundProduct => {
               let product = new Object();
               product.id = cartItems[i].dataValues.ProductId;
@@ -78,19 +95,6 @@ router.post("/login", passport.authenticate("local"), function (
               product.price = foundProduct.price;
               obj.cart.products.push(product);
             }) */
-          )
-          
-        }
-        console.log('PROMESAS ---->', promesas)
-        Promise.all(promesas).then( (pr) => {
-          console.log('prrrrr', pr);
-          obj.cart.products = pr
-          res.send(obj)
-        })
-      }) //cierra el map
-    })
-});
-
 
 
 // router.post('/login', function(req, res, next) {
