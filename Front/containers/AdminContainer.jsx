@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import NavBarAdmin from "../components/NavBarAdmin";
+import AdminProductsContainer from './AdminProductsContainer'
 class Admin extends React.Component {
   constructor(props) {
     super(props);
@@ -17,7 +18,7 @@ class Admin extends React.Component {
     return (
       <div>
         <NavBarAdmin props={this.props} selected={this.selectedItem} />
-        {this.state.selected == "products" ? <h1>Productos</h1> : null}
+        {this.state.selected == "products" ? <AdminProductsContainer/> : null}
         {this.state.selected == "categories" ? <h1>Categorias</h1> : null}
         {this.state.selected == "users" ? <h1>users</h1> : null}
         {this.state.selected == "orders" ? <h1>orders</h1> : null}{" "}

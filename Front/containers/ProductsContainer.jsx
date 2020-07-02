@@ -4,9 +4,9 @@ import Input from "../components/Input";
 import Products from "../components/Products";
 import {
   giveMeProducts,
-  findProductsByCategory,
 } from "../store/actions/Products";
-import { findCategorys, setCategory } from "../store/actions/Category";
+import { setCategory, findCategorys } from "../store/actions/Category";
+
 class ProductsContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -23,7 +23,6 @@ class ProductsContainer extends React.Component {
   }
 
   setCategoryState(value) {
-    console.log("Category en setCategoryState:", value);
     this.setState({
       categoryId: value,
     });
@@ -45,9 +44,7 @@ class ProductsContainer extends React.Component {
     this.setState({ valueSearch: title });
   }
 
-  handleBringCate(id) {
-    this.props.findProductsByCategory(id);
-  }
+ 
 
   render() {
     return (
@@ -79,7 +76,6 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => ({
   giveMeProducts: (products) => dispatch(giveMeProducts(products)),
   findCategorys: () => dispatch(findCategorys()),
-  findProductsByCategory: (id) => dispatch(findProductsByCategory(id)),
   setCategory: (id) => dispatch(setCategory(id)),
 });
 

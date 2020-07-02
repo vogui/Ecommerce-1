@@ -1,10 +1,11 @@
-import { TRAE_PRODUCTS, TRAE_PRODUCT, ADD_TO_CART, REMOVE_ITEM, ADD_QUANTITY, SUB_QUANTITY } from '../constans'
+import { TRAE_PRODUCTS, TRAE_PRODUCT, ADD_TO_CART, REMOVE_ITEM, ADD_QUANTITY, SUB_QUANTITY, TRAE_PRODUCTS_BY_TITLE} from '../constans'
   
 const initialState = {
     product: {},
     products: [],
     addedItems: [],
-    total: 0
+    total: 0,
+    titleProducts: [],
 }
 
 export default function reducer(state = initialState, action) {
@@ -13,8 +14,11 @@ export default function reducer(state = initialState, action) {
         case TRAE_PRODUCTS:
             return { ...state, products: action.products };
 
+        case TRAE_PRODUCTS_BY_TITLE:
+            return { ...state, titleProducts: action.titleProducts };
+
         case TRAE_PRODUCT:
-            return { ...state, product: action.product };
+            return { ...state, product: action.product};
 
         case ADD_TO_CART:
             //FALTA LA LOGICA PARA EL CASO DE ESTAR MIRANDO 1 SOLO PRODUCTO ("Product")     

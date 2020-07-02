@@ -5,12 +5,18 @@ import {
   REMOVE_ITEM,
   SUB_QUANTITY,
   ADD_QUANTITY,
+  TRAE_PRODUCTS_BY_TITLE
 } from "../constans";
 import axios from "axios";
 import { setCategory } from "../actions/Category";
+
 const findProducts = (products) => ({
   type: TRAE_PRODUCTS,
   products,
+});
+const findTitle = (titleProducts) => ({
+  type: TRAE_PRODUCTS_BY_TITLE,
+  titleProducts,
 });
 
 const findProduct = (product) => ({
@@ -18,18 +24,9 @@ const findProduct = (product) => ({
   product,
 });
 
-const findProductsByCate = (products) => ({
-  type: BRING_PRODUCT_BY_CATE,
-  products,
-});
 
-export const findProductsByCategory = (categoryId) => (dispatch) => {
-  axios
-    .get(`/api/products/categorys/${categoryId}`)
-    .then((listProductsByCate) =>
-      dispatch(findProductsByCate(listProductsByCate))
-    );
-};
+//axios
+
 
 export const giveMeProducts = ({ title, id }) => (dispatch) => {
   console.log("Title y selectedCategory:", title, id);
@@ -52,6 +49,34 @@ export const giveMeAllProducts = () => (dispatch) => {
     .then((products) => dispatch(findProducts(products.data)));
 };
 
+export const creatingProduct = (info)=> dispatch => {
+ 
+  axios.post('/api/products/create', info)
+}
+
+/* export const findProductByTitle = (title) => dispatch =>{
+  console.log('title ---->', title)
+  axios.get(`/api/products/${title}`)
+  .then((products) => {
+    console.log('products ---->', products)
+    dispatch(findTitle(products.data))}) }*/
+  
+
+export const deletingProduct = (info) => (dispatch) =>{
+  console.log(info.title)
+   axios
+  .delete("/api/products/delete", ({
+    headers: {
+      Authorization: "algoaca",
+    },
+    data: {
+      source: info.title,
+    },
+  }))
+}
+ 
+
+//actions
 export const addToCart = (id) => {
   return {
     type: ADD_TO_CART,
