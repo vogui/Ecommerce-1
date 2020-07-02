@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import Cart from "../components/Cart";
 import LastOrders from "../components/LastOrders";
-import { Switch, Route } from "react-router-dom";
 import { removeItem, addQuantity, subtractQuantity, checkOut, getLastOrders } from "../store/actions/Products";
 
 
@@ -62,15 +61,17 @@ class CartContainer extends React.Component {
     this.props.checkout(userId)
   }
 
-  handleGetLastOrders (){
-  this.props.getOrders(this.props.id);
+  handleGetLastOrders (id){
+  let obj = new Object;
+  obj.UserId = id
+  console.log("obj construido pal back:", obj)
+  this.props.getOrders(obj);
   }
 
   render() {
 
     return (
-      <Switch>
-        <Route  path="/" render={() => <Cart
+      <Cart
         total={this.props.total}
         add={this.handleAddQuantity}
         rest={this.handleSubtractQuantity}
@@ -80,11 +81,7 @@ class CartContainer extends React.Component {
         props={this.props}
         checkout={this.handleCheckout}
         gettingOrders={this.handleGetLastOrders}
-        />}
         />
-
-        <Route exact path={`/${this.props.login.dataUser.id}/orders`} render={() => <LastOrders orders={this.props.orders} /> }/>
-      </Switch>    
     )
   }
 }

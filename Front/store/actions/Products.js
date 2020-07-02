@@ -58,7 +58,7 @@ const checkOutCart = (obj) => ({
 });
 
 const findOrders = (orders) => ({
-  type: CHECKOUT,
+  type: GET_ORDERS,
   orders,
 });
 
@@ -103,8 +103,10 @@ export const checkOut = (id) => (dispatch) => {
     dispatch(checkOutCart(objVaciarCart))});
 };
 
-export const getLastOrders = (userId)=> dispatch =>{
-    axios.get("/api/cart", userId)
+export const getLastOrders = (userId)=> (dispatch) =>{
+    console.log("UserId!!!!!!!!", userId)
+    axios.post("/api/cart/orders", userId)
     .then((ordersList)=> {
+    console.log("ordersList.data!!!!!!!!", ordersList.data)
     dispatch(findOrders(ordersList.data))})
 }

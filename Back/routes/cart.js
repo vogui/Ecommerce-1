@@ -65,7 +65,7 @@ router.post("/", (req, res) => {
   });
 });
 
-router.get("/", (req, res) => {
+router.post("/orders", (req, res) => {
   let pastOrders = new Array();
   Cart.findAll({
     where: {
@@ -154,6 +154,7 @@ router.put("/", (req, res) => {
             );
             arrayDeProductos[i].quantity = productos[i].dataValues.quantity;
           }
+
 
           Promise.all(arrayDeProductos).then((listaDeProductos) => {
             console.log("Lista de productos:", listaDeProductos);
