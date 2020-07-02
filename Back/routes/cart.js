@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const { Cart, CartProducts, User }  = require("../models/index");
+const { Cart, CartProducts, User, Products }  = require("../models/index");
+const { sequelize } = require("../models/User");
 
 router.post('/', (req, res) => {
     Cart.findOne({ where: {
@@ -52,15 +53,79 @@ router.post('/', (req, res) => {
     })
 });
 
-router.get('/', (req, res) => {
+router.put('/', (req, res) => {
     Cart.findOne({ where: {
         UserId: req.body.UserId,
         completed: false
     }})
     .then( cart => {
-        res.status(200).send(cart)
+        cart.completed = true;
+        cart.save()
+        return cart
     })
-});
+    .then( boughtCart => res.sendStatus(200))
+})
+
+router.get('/', (req, res) => {
+    let pastOrders = new Array;
+    Cart.findAll({ where: {
+        UserId: req.body.UserId,
+        completed: true
+    }})
+    .then( userCarts => {
+        let carts = new Array;
+        for( let i = 0; i < userCarts.length; i++) {
+            let p = {
+                id: userCarts[i].id,
+                total: userCarts[i].total,
+                date: userCarts[i].updatedAt,
+                Products: [],
+            }
+            pastOrders.push(p);
+            carts.push(
+                CartProducts.findAll({ where: {
+                    CartId: userCarts[i].id
+                }})
+            )
+        }
+        Promise.all(carts)
+        .then( rta => {
+            let productos = new Array;
+            let qPedidos = new Array;
+            let quantities =new Array;
+            rta.map( prod => {
+                prod.map( item => {
+                    quantities.push(item.quantity)
+                })
+            })
+            for(let j = 0; j < rta.length; j++) {
+                qPedidos.push(rta[j].length);
+                for(let h = 0; h < rta[j].length; h++) {
+                    productos.push(
+                        Products.findByPk(rta[j][h].ProductId)
+                    )
+                }
+            }
+            Promise.all(productos)
+            .then( productList => {
+                let count = 0;
+                for(let q = 0; q < qPedidos.length; q++) {
+                    for(let t = 0; t < qPedidos[q]; t++) {
+                        let psh = {
+                            id: productList[count].id,
+                            title: productList[count].title,
+                            price: productList[count].price,
+                            quantity: quantities[count]
+                        }
+                        pastOrders[q].Products.push(psh)
+                        count++;
+                    }
+                } 
+                res.send(pastOrders)
+            })
+        })
+    })
+})
 
 router.put('/', (req, res) => {
     Cart.findOne({ where: {
