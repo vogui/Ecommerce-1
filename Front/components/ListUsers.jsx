@@ -115,8 +115,12 @@ export default function Variants({ users, removeUser, upgradeUser }) {
                     </IconButton>
                   </ListItemIcon>
                 )}
+                {user.isAdmin ? (
+                  <ListItemText primary={user.name + "(admin)"} />
+                ) : (
+                  <ListItemText primary={user.name} />
+                )}
 
-                <ListItemText primary={user.name} />
                 <ListItemSecondaryAction>
                   <IconButton
                     edge="end"

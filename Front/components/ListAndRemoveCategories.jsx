@@ -98,7 +98,7 @@ export default function Variants({ categories, removeCategory }) {
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
               If you delete this category, all the products related with it will
-              be delete too.
+              be assign to a general category.
             </DialogContentText>
           </DialogContent>
           <DialogActions>

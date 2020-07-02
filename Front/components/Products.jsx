@@ -22,6 +22,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import Divider from "@material-ui/core/Divider";
+import Rating from "@material-ui/lab/Rating";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -68,6 +69,8 @@ export default ({ products }) => {
                   />
                   <CardContent>
                     <List className={classes.list}>
+                      {console.log("Producto:", product)}
+                      <Rating name="Rating" value={product.rating} disabled />
                       <Typography variant="h5" component="h2">
                         {product.title}
                       </Typography>
