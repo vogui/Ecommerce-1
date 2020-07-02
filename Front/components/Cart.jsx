@@ -83,8 +83,8 @@ export default function InteractiveList({
                 <h2>Welcome {props.login.dataUser.name}, this is your Cart</h2>
               </div>
               <div xs={2}>
-               <Link to={`/cart/${user}/orders`}>
-                  <Button variant="outlined" size="small" color="secondary" onClick={() => gettingOrders({user})} >
+               <Link to="/cart/orders">
+                  <Button variant="outlined" size="small" color="secondary" onClick={() => gettingOrders(user)} >
                     Last Orders
                   </Button>
                </Link>

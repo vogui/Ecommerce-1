@@ -66,7 +66,7 @@ router.put('/', (req, res) => {
     .then( boughtCart => res.sendStatus(200))
 })
 
-router.get('/', (req, res) => {
+router.post('/orders', (req, res) => {
     let pastOrders = new Array;
     Cart.findAll({ where: {
         UserId: req.body.UserId,
