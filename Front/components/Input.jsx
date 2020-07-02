@@ -148,15 +148,6 @@ export default ({
               open={Boolean(anchorEl)}
               onClose={closeBox}
             >
-              <div key={"Main"}>
-                <MenuItem
-                  onClick={() => {
-                    handleClose(0);
-                  }}
-                >
-                  Sin categoria
-                </MenuItem>
-              </div>
               {handleCategorys &&
                 handleCategorys.map((category) => {
                   return (
@@ -192,12 +183,6 @@ export default ({
               inputProps={{ "aria-label": "search" }}
             />
           </div>
-
-          <Link to="/">
-            <Button variant="contained" color="inherit">
-              Home
-            </Button>
-          </Link>
         </Toolbar>
       </AppBar>
     </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from "../components/NavBar";
+
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -10,6 +10,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
+import { Link } from "react-router-dom";
 const useStyles = makeStyles({
   root: {
     maxWidth: "100%",
@@ -38,7 +39,6 @@ export default ({ product, props }) => {
 
   return (
     <div>
-      <NavBar props={props} />
       <div className="productoIndividual">
         {product ? (
           <div className="product">
