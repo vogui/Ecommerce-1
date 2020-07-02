@@ -5,6 +5,14 @@ const router = express.Router();
 const { Cart, CartProducts, User, Products } = require("../models/index");
 const { sequelize } = require("../models/User");
 
+var transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "tomateunabirraoficial@gmail.com",
+    pass: "TomateUna2020",
+  },
+});
+
 router.post("/", (req, res) => {
   Cart.findOne({
     where: {
@@ -55,21 +63,6 @@ router.post("/", (req, res) => {
       });
     }
   });
-});
-
-router.put("/", (req, res) => {
-  Cart.findOne({
-    where: {
-      UserId: req.body.UserId,
-      completed: false,
-    },
-  })
-    .then((cart) => {
-      cart.completed = true;
-      cart.save();
-      return cart;
-    })
-    .then((boughtCart) => res.sendStatus(200));
 });
 
 router.get("/", (req, res) => {
@@ -132,44 +125,91 @@ router.get("/", (req, res) => {
   });
 });
 
-var transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: "tomateunabirraoficial@gmail.com",
-    pass: "TomateUna2020",
-  },
-});
-
 router.put("/", (req, res) => {
   User.findByPk(req.body.user).then((user) => {
-    var mailOptions = {
-      from: "tomateunabirraoficial@gmail.com",
-      to: `${user.dataValues.email}`,
-      subject: "Your order",
-      html: "<h1>Welcome</h1><p>That was easy!</p>",
-    };
-  });
+    var destinatario = user.dataValues.email;
+    var nameDestinatario = user.dataValues.name;
 
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log("Email sent: " + info.response);
-    }
-  });
-
-  Cart.findOne({
-    where: {
-      UserId: req.body.user,
-      completed: false,
-    },
-  })
-    .then((cart) => {
-      cart.completed = true;
-      cart.save();
-      return cart;
+    Cart.findOne({
+      where: {
+        UserId: req.body.user,
+        completed: false,
+      },
     })
-    .then((boughtCart) => res.sendStatus(200));
+      .then((cart) => {
+        var total = cart.dataValues.total;
+        console.log("Cart:", cart);
+        cart.completed = true;
+        cart.save();
+        CartProducts.findAll({
+          where: {
+            CartId: cart.dataValues.id,
+          },
+        }).then((productos) => {
+          console.log("Productos:", productos);
+          var arrayDeProductos = [];
+          for (var i = 0; i < productos.length; i++) {
+            arrayDeProductos.push(
+              Products.findByPk(productos[i].dataValues.ProductId)
+            );
+            arrayDeProductos[i].quantity = productos[i].dataValues.quantity;
+          }
+
+          Promise.all(arrayDeProductos).then((listaDeProductos) => {
+            console.log("Lista de productos:", listaDeProductos);
+
+            var infoDeProductos = [];
+            for (var j = 0; j < listaDeProductos.length; j++) {
+              console.log(
+                "Cantidad de productos:",
+                arrayDeProductos[j].quantity
+              );
+              infoDeProductos.push(listaDeProductos[j].dataValues);
+            }
+
+            var productosComprados = "";
+            for (var m = 0; m < infoDeProductos.length; m++) {
+              productosComprados += `<li> <strong> ${
+                infoDeProductos[m].title
+              }</strong>, precio unitario: $ ${
+                infoDeProductos[m].price
+              }, cantidad: ${arrayDeProductos[m].quantity}. Total: ${
+                infoDeProductos[m].price * arrayDeProductos[m].quantity
+              } </li>`;
+            }
+
+            var htmlContenido = `
+            <h2> Muchas gracias por tu compra ${nameDestinatario} </h2>
+
+            <ul>
+               ${productosComprados}
+            </ul>
+
+            El precio total es: ${total}
+            <br>
+            Esperamos que las disfrutes,saludos!
+            `;
+            var mailOptions = {
+              from: "tomateunabirraoficial@gmail.com",
+              to: `${destinatario}`,
+              subject: "Your order",
+              html: `${htmlContenido}`,
+            };
+
+            transporter.sendMail(mailOptions, function (error, info) {
+              if (error) {
+                console.log(error);
+              } else {
+                console.log("Email sent: " + info.response);
+              }
+            });
+          });
+        });
+
+        return cart;
+      })
+      .then((boughtCart) => res.sendStatus(200));
+  });
 });
 
 module.exports = router;
