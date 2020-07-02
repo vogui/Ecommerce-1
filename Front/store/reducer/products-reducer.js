@@ -1,9 +1,10 @@
-import { TRAE_PRODUCTS, TRAE_PRODUCT, ADD_TO_CART, REMOVE_ITEM, ADD_QUANTITY, SUB_QUANTITY } from '../constans'
+import { TRAE_PRODUCTS, TRAE_PRODUCT, ADD_TO_CART, REMOVE_ITEM, ADD_QUANTITY, SUB_QUANTITY, GET_CART, CHECKOUT, GET_ORDERS } from '../constans'
   
 const initialState = {
     product: {},
     products: [],
     addedItems: [],
+    lastOrders:{},
     total: 0
 }
 
@@ -70,6 +71,7 @@ export default function reducer(state = initialState, action) {
             let itemToAdd2 = state.addedItems.find(item=> item.id === action.id) 
             //if the qt == 0 then it should be removed
             if(itemToAdd2.quantity === 1){
+                itemToAdd2.quantity = 0 
                 let new_items = state.addedItems.filter(item=>item.id !== action.id)
                 let newTotal3 = state.total - itemToAdd2.price
                 return{
@@ -87,6 +89,26 @@ export default function reducer(state = initialState, action) {
                 }
             };
 
-         default: return state;
+        case GET_CART:
+            return{
+                      ...state,
+                        addedItems : action.data.products,
+                        total: action.data.total
+                };
+
+        case CHECKOUT:
+            return{
+                      ...state,
+                        addedItems : [],
+                        total: 0
+                };
+
+        case GET_ORDERS:
+            return{
+                      ...state,
+                        lastOrders : action.data.orders,
+                };
+
+        default: return state;
     }
 }
