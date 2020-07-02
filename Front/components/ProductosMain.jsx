@@ -139,10 +139,7 @@ function ProductosMain({ tileData, addToCart, items, add, rest }) {
                                 className={classes.cart}
                               />
                             </Tooltip>
-                            <div className={classes.count}>
-                              {" "}
-                              {item.quantity}{" "}
-                            </div>
+                            <div className={classes.count}>{item.quantity}</div>
                             <Link to={`/product/${tile.id}`}>
                               <InfoIcon className={classes.icon} />
                             </Link>
