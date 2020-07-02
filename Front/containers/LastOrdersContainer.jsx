@@ -20,7 +20,7 @@ const mapDispatchToProps = function (dispatch, ownProps) {
   };
 };
 
-class ProductContainer extends React.Component {
+class LastOrderContainer extends React.Component {
   constructor() {
     super();
   }
@@ -35,4 +35,4 @@ class ProductContainer extends React.Component {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(LastOrderContainer);

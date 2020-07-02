@@ -22,23 +22,13 @@ import React from "react";
 // }
 
 export default ({ orders }) => {
-  // const classes = useStyles();
-  // const [open, setOpen] = React.useState(false);
 
-  // const handleClick = () => {
-  //   setOpen(true);
-  // };
-
-  // const handleClose = (event, reason) => {
-  //   if (reason === "clickaway") {
-  //     return;
-  //   }
-
-  //   setOpen(false);
-  };
   return (
+  <div>
+    <h3>Your Last Orders: </h3>
+    <div> 
     {orders.map((order) => {
-            return (
+
               <GridListTile key={order.id}>
                 Order #: order.id
                 <GridListTileBar
@@ -46,64 +36,7 @@ export default ({ orders }) => {
                   subtitle={<span>Total: {order.total}</span>} 
                 />
               </GridListTile>
-
-
-
-   /* <div>
-      <NavBar props={props} />
-      <div className="productoIndividual">
-        {product ? (
-          <div className="product">
-            <Card className={classes.root}>
-              <CardActionArea>
-                <CardMedia
-                  component="img"
-                  alt="Contemplative Reptile"
-                  height="100%"
-                  src={product.picture}
-                  title="Contemplative Reptile"
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    {product.title}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="textSecondary"
-                    component="p"
-                  >
-                    Aca va una descripcion. Price:{product.price}
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-              <CardActions>
-                <Button
-                  size="small"
-                  color="primary"
-                  onClick={() => handleClick()}
-                >
-                  Buy
-                </Button>
-              </CardActions>
-            </Card>
-            <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
-              {props.login.redirect ? (
-                <Alert severity="warning" onClose={handleClose}>
-                  This feature is going to be able soon!
-                </Alert>
-              ) : (
-                <Alert severity="error" onClose={handleClose}>
-                  You are not loggin
-                </Alert>
-              )}
-            </Snackbar>
-          </div>
-        ) : (
-          <h5> Loading</h5>
-        )}
-      </div>
-    </div> */
-
-  );
-  //vendrian las reviews
-};
+      })}
+    </div>
+  </div>
+)}

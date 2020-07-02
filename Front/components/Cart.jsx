@@ -1,4 +1,5 @@
 import React from "react";
+import LastOrders from "../components/LastOrders";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -23,7 +24,8 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Fab from "@material-ui/core/Fab";
 import Paper from "@material-ui/core/Paper";
 import NavBar from "../components/NavBar";
-import { Link } from "react-router-dom";
+import { Link, Route } from 'react-router-dom';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -62,10 +64,11 @@ export default function InteractiveList({
   checkout,
   total,
   user,
-  lastOrders,
+  gettingOrders,
+  orders,
   props,
 }) {
-  
+
   const classes = useStyles();
   const [secondary, setSecondary] = React.useState(false);
 
@@ -80,8 +83,8 @@ export default function InteractiveList({
                 <h2>Welcome {props.login.dataUser.name}, this is your Cart</h2>
               </div>
               <div xs={2}>
-               <Link to={`/user/${user}/orders`}>
-                  <Button variant="outlined" size="small" color="secondary" onClick={() => lastOrders({user})} >
+               <Link to={`/cart/${user}/orders`}>
+                  <Button variant="outlined" size="small" color="secondary" onClick={() => gettingOrders({user})} >
                     Last Orders
                   </Button>
                </Link>
