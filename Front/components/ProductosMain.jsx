@@ -94,7 +94,7 @@ function ProductosMain({ tileData, addToCart, items, add, rest }) {
             {tileData.map((tile) => {
               let item = items.find((element) => tile.id == element.id);
               return (
-                <GridListTile key={tile.id}>
+                <GridListTile key={tile.id} style={{ height: "350" }}>
                   <img src={tile.picture} className={classes.photo} />
                   Cantidad:
                   <GridListTileBar

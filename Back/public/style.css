@@ -88,3 +88,7 @@ html {
   border-bottom: 1px solid #ccc;
   border-radius: 16px;
 }
+
+.MuiGrid-container {
+  justify-content: center;
+}

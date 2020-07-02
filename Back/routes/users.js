@@ -1,12 +1,16 @@
 var express = require("express");
 const flash = require("connect-flash");
 var router = express.Router();
-var path = require("path");
+var path = require("path"); // SDK de Mercado Pago
+
+// Agrega credenciales
+
 const { User } = require("../models/index");
 router.use(flash());
 
 // Esto se modifica cuando Henry me diga como se llama el modelo de User
 var passport = require("passport");
+
 router.get("/", (req, res, next) => {
   //Aca llegan de /api/users/
   User.findAll().then((users) => {

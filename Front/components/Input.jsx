@@ -183,12 +183,6 @@ export default ({
               inputProps={{ "aria-label": "search" }}
             />
           </div>
-
-          <Link to="/">
-            <Button variant="contained" color="inherit">
-              Home
-            </Button>
-          </Link>
         </Toolbar>
       </AppBar>
     </div>
