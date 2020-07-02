@@ -169,13 +169,7 @@ router.put("/", (req, res) => {
 
             var productosComprados = "";
             for (var m = 0; m < infoDeProductos.length; m++) {
-              productosComprados += `<li> <strong> ${
-                infoDeProductos[m].title
-              }</strong>, precio unitario: $ ${
-                infoDeProductos[m].price
-              }, cantidad: ${arrayDeProductos[m].quantity}. Total: ${
-                infoDeProductos[m].price * arrayDeProductos[m].quantity
-              } </li>`;
+              productosComprados += `<li> <strong> ${infoDeProductos[m].title}</strong>, precio unitario: $ ${infoDeProductos[m].price}, cantidad: ${arrayDeProductos[m].quantity}. </li>`;
             }
 
             var htmlContenido = `
@@ -185,7 +179,7 @@ router.put("/", (req, res) => {
                ${productosComprados}
             </ul>
 
-            El precio total es: ${total}
+            El precio total es: $ ${total}
             <br>
             Esperamos que las disfrutes,saludos!
             `;
