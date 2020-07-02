@@ -4,7 +4,7 @@ const initialState = {
     product: {},
     products: [],
     addedItems: [],
-    lastOrders:{},
+    lastOrders:[],
     total: 0
 }
 
@@ -104,9 +104,10 @@ export default function reducer(state = initialState, action) {
                 };
 
         case GET_ORDERS:
+            console.log("ACTION.orders!",action.orders)
             return{
                       ...state,
-                        lastOrders : action.data.orders,
+                        lastOrders : action.orders,
                 };
 
         default: return state;
