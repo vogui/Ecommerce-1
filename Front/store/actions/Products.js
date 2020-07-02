@@ -5,6 +5,8 @@ import {
   REMOVE_ITEM,
   SUB_QUANTITY,
   ADD_QUANTITY,
+  CHECKOUT,
+  GET_ORDERS
 } from "../constans";
 import axios from "axios";
 import { setCategory } from "../actions/Category";
@@ -22,6 +24,44 @@ const findProductsByCate = (products) => ({
   type: BRING_PRODUCT_BY_CATE,
   products,
 });
+
+
+export const addToCart = (id)=>{
+  return {
+  type: ADD_TO_CART,
+  id,
+ } 
+};
+
+export const subtractQuantity = (id)=>{
+  return { type: SUB_QUANTITY,
+  id,
+  }
+};
+
+export const addQuantity = (id)=>{
+  return { type: ADD_QUANTITY,
+  id,
+  }
+};
+
+export const removeItem = (id) => {
+  return {
+    type: REMOVE_ITEM,
+    id,
+  };
+};
+
+const checkOutCart = (obj) => ({
+  type: CHECKOUT,
+  obj,
+});
+
+const findOrders = (orders) => ({
+  type: CHECKOUT,
+  orders,
+});
+
 
 export const findProductsByCategory = (categoryId) => (dispatch) => {
   axios
@@ -52,30 +92,19 @@ export const giveMeAllProducts = () => (dispatch) => {
     .then((products) => dispatch(findProducts(products.data)));
 };
 
-export const addToCart = (id) => {
-  return {
-    type: ADD_TO_CART,
-    id,
-  };
+export const addToCartBack = (obj) => () => {
+  axios.post("/api/cart", obj)
 };
-//remove item action
-export const removeItem = (id) => {
-  return {
-    type: REMOVE_ITEM,
-    id,
-  };
+
+export const checkOut = (id) => (dispatch) => {
+  axios.put("/api/cart", id)
+  .then((res) => {
+    let objVaciarCart ={}
+    dispatch(checkOutCart(objVaciarCart))});
 };
-//subtract qt action
-export const subtractQuantity = (id) => {
-  return {
-    type: SUB_QUANTITY,
-    id,
-  };
-};
-//add qt action
-export const addQuantity = (id) => {
-  return {
-    type: ADD_QUANTITY,
-    id,
-  };
-};
+
+export const getLastOrders = (userId)=> dispatch =>{
+    axios.get("/api/cart", userId)
+    .then((ordersList)=> {
+    dispatch(findOrders(ordersList.data))})
+}

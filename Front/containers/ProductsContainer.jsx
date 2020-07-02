@@ -2,11 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import Input from "../components/Input";
 import Products from "../components/Products";
-import {
-  giveMeProducts,
-  findProductsByCategory,
-} from "../store/actions/Products";
+import { giveMeProducts,findProductsByCategory } from "../store/actions/Products";
 import { findCategorys, setCategory } from "../store/actions/Category";
+
 class ProductsContainer extends React.Component {
   constructor(props) {
     super(props);

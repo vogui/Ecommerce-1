@@ -10,9 +10,6 @@ Cart_Product.init(
     quantity: {
       type: S.INTEGER,
       defaultValue: 1,
-      validate: {
-        min: 1,
-      },
     },
   },
   { sequelize: db, modelName: "Cart_Product" }
