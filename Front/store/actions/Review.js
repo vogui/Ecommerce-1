@@ -1,5 +1,5 @@
 import { SET_REVIEW } from "../constans";
-import { BRING_REVIEW } from "../constans";
+import { BRING_REVIEW, SET_IDS } from "../constans";
 import axios from "axios";
 
 const setReview = (data) => ({
@@ -12,10 +12,19 @@ const findReview = (reviews) => ({
   reviews,
 });
 
+const productosIds = (listaIds) => ({
+  type: SET_IDS,
+  listaIds,
+});
+
 export const BringMeReviews = (ProductId) => (dispatch) => {
   axios.get(`/api/reviews/${ProductId}`).then((ReviewList) => {
     dispatch(findReview(ReviewList.data));
   });
+};
+
+export const setearIds = (listaIDs) => (dispatch) => {
+  dispatch(productosIds(listaIDs));
 };
 
 export const setearReview = ({
