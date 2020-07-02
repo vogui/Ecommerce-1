@@ -116,7 +116,7 @@ export default ({
 
     return(
         <>
-        <div>
+        <div className = 'ADDContainer'>
         <h1><strong>Create Product</strong></h1>
         <form  
         className={classes.root}
@@ -201,7 +201,7 @@ export default ({
         <br/>
         </div>
         <Divider />
-        <div>
+        <div className = 'ADDContainer'>
         <br/>
         <br/>
        <h1>Delete Product</h1>
@@ -226,8 +226,10 @@ export default ({
         endIcon={<Icon>send</Icon>}
       > Delete</Button> 
    </div>
+   <br/>
+   <br/>
 <Divider />
-   <div>
+   <div className = 'ADDContainer'>
 <h1><strong>Update</strong> </h1>
 <form 
  className={classes.root}

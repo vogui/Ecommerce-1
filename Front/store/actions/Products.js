@@ -5,7 +5,9 @@ import {
   REMOVE_ITEM,
   SUB_QUANTITY,
   ADD_QUANTITY,
-  TRAE_PRODUCTS_BY_TITLE
+  TRAE_PRODUCTS_BY_TITLE,
+  CHECKOUT,
+  GET_ORDERS
 } from "../constans";
 import axios from "axios";
 import { setCategory } from "../actions/Category";
@@ -25,7 +27,38 @@ const findProduct = (product) => ({
 });
 
 
-//axios
+
+export const subtractQuantity = (id)=>{
+  return { type: SUB_QUANTITY,
+  id,
+  }
+};
+
+export const addQuantity = (id)=>{
+  return { type: ADD_QUANTITY,
+  id,
+  }
+};
+
+
+const checkOutCart = (obj) => ({
+  type: CHECKOUT,
+  obj,
+});
+
+const findOrders = (orders) => ({
+  type: GET_ORDERS,
+  orders,
+});
+
+
+export const findProductsByCategory = (categoryId) => (dispatch) => {
+  axios
+    .get(`/api/products/categorys/${categoryId}`)
+    .then((listProductsByCate) =>
+      dispatch(findProductsByCate(listProductsByCate))
+    );
+};
 
 
 export const giveMeProducts = ({ title, id }) => (dispatch) => {
@@ -54,13 +87,6 @@ export const creatingProduct = (info)=> dispatch => {
   axios.post('/api/products/create', info)
 }
 
-/* export const findProductByTitle = (title) => dispatch =>{
-  console.log('title ---->', title)
-  axios.get(`/api/products/${title}`)
-  .then((products) => {
-    console.log('products ---->', products)
-    dispatch(findTitle(products.data))}) }*/
-  
 
 export const deletingProduct = (info) => (dispatch) =>{
   console.log(info.id)
@@ -94,17 +120,18 @@ export const removeItem = (id) => {
     id,
   };
 };
-//subtract qt action
-export const subtractQuantity = (id) => {
-  return {
-    type: SUB_QUANTITY,
-    id,
-  };
+
+export const checkOut = (id) => (dispatch) => {
+  axios.put("/api/cart", id)
+  .then((res) => {
+    let objVaciarCart ={}
+    dispatch(checkOutCart(objVaciarCart))});
 };
-//add qt action
-export const addQuantity = (id) => {
-  return {
-    type: ADD_QUANTITY,
-    id,
-  };
-};
+
+export const getLastOrders = (userId)=> (dispatch) =>{
+    console.log("UserId!!!!!!!!", userId)
+    axios.post("/api/cart/orders", userId)
+    .then((ordersList)=> {
+    console.log("ordersList.data!!!!!!!!", ordersList.data)
+    dispatch(findOrders(ordersList.data))})
+}

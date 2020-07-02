@@ -120,8 +120,28 @@ router.get("/:title", (req, res, next) => {
 })
 router.get("/", (req, res, next) => [
   Products.findAll().then((products) => {
-    
-    res.send(products);
+    var productosReviews = [];
+    for (var i = 0; i < products.length; i++) {
+      productosReviews.push(products[i].getReviews());
+    }
+
+    Promise.all(productosReviews).then((respuesta) => {
+      for (var z = 0; z < respuesta.length; z++) {
+        if (respuesta[z].length > 0) {
+          var rating = [];
+          for (var m = 0; m < respuesta[z].length; m++) {
+            rating.push(respuesta[z][m].dataValues.stars);
+          }
+          var promedio = rating.reduce((a, b) => a + b, 0) / rating.length;
+          console.log("PRomedio:", promedio);
+          products[z].dataValues.rating = promedio;
+        } else {
+          products[z].dataValues.rating = null;
+        }
+      }
+
+      res.send(products);
+    });
   }),
 ]);
 

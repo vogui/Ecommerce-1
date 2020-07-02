@@ -154,7 +154,7 @@ class AdminProductsContainer extends React.Component{
     render(){
         return(
             <>
-            <AdminProducts
+            <AdminProducts 
              setUrl = {this.setUrl}
              setPrice = {this.setPrice}
              setName = {this.setName}

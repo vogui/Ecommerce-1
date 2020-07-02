@@ -14,11 +14,13 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Card from "@material-ui/core/Card";
 import NavBar from "../components/NavBar";
+
 const mapStateToProps = (state, ownProps) => {
   return {
     login: state.login.data,
   };
 };
+
 const mapDispatchToProps = { loginUser, failLoginFalse };
 
 class Login extends React.Component {

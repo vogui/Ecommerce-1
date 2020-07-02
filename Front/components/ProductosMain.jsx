@@ -65,7 +65,7 @@ function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-function ProductosMain({ tileData, addToCart, items, add, rest }) {
+function ProductosMain({ tileData, user, addToCart, items, add, rest }) {
   const classes = useStyles();
   /*   handleClick = (id) => {
     this.props.addToCart(id);
@@ -76,16 +76,18 @@ function ProductosMain({ tileData, addToCart, items, add, rest }) {
     setOpen(true);
   };
 
-  const [, forceUpdate] = React.useState(0);
-
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
-
     setOpen(false);
+
   };
+
+  const [, forceUpdate] = React.useState(0);
+
   console.log("tile ----------->", tileData);
+
   return (
     <div>
       {tileData != undefined ? (
@@ -94,6 +96,72 @@ function ProductosMain({ tileData, addToCart, items, add, rest }) {
             {tileData.map((tile) => {
               let item = items.find((element) => tile.id == element.id);
               return (
+// <<<<<<< HEAD
+//               <GridListTile key={tile.id}>
+//                 <img src={tile.picture} className={classes.photo} />
+//                 Cantidad:
+//                 <GridListTileBar
+//                   title={tile.title}
+//                   subtitle={<span>Price: {tile.price}</span>}
+//                   actionIcon={
+//                     <div >
+//                       { 
+//                         item==undefined ?
+//                       (
+//                       <span> 
+//                          <AddShoppingCartSharpIcon
+//                           className={classes.icon}
+//                           aria-label={`info about ${tile.title}`}
+//                           onClick={() => {
+//                            if(user.dataUser.id) { handleClick(), addToCart(tile.id)}
+//                            else { handleClick() }
+//                           }}>
+//                         </AddShoppingCartSharpIcon>
+//                         <Link to={`/product/${tile.id}`}>
+//                          <InfoIcon className={classes.icon} />
+//                         </Link>
+//                       </span>
+//                       )
+//                       :
+//                       (
+//                       <span className={classes.divCart}> 
+//                           <Tooltip title="One More" aria-label="One More">              
+//                               <AddCircleRoundedIcon color="primary" fontSize="small" onClick={() => {add(item.id);forceUpdate(n => !n)}} className={classes.cart}/>
+//                           </Tooltip>
+//                           <Tooltip title="One Less" aria-label="One Less">              
+//                               <RemoveCircleRoundedIcon color="secondary" fontSize="small" onClick={() => {rest(item.id);forceUpdate(n => !n)}} className={classes.cart}/>
+//                           </Tooltip>
+//                           <div className={classes.count} > {item.quantity} </div>
+//                           <Link to={`/product/${tile.id}`}>
+//                             <InfoIcon className={classes.icon} />
+//                           </Link>
+//                       </span>
+//                       )
+//                       }
+//                     </div>
+//                   }
+//                 />
+//                 <Snackbar
+//                   open={open}
+//                   autoHideDuration={2000}
+//                   onClose={handleClose}
+//                 >
+//                  {user.dataUser.id ? (
+//                   <Alert onClose={handleClose} severity="success">
+//                     Product added to the cart!
+//                   </Alert> ) 
+//                  :
+//                  (
+//                   <Alert 
+//                   onClose={handleClose} 
+//                   severity="error">
+//                   You must be Logged
+//                 </Alert>
+//                   )}
+//                  </Snackbar>
+//               </GridListTile>
+//             )})}
+// =======
                 <GridListTile key={tile.id} style={{ height: "350" }}>
                   <img src={tile.picture} className={classes.photo} />
                   Cantidad:
@@ -139,10 +207,7 @@ function ProductosMain({ tileData, addToCart, items, add, rest }) {
                                 className={classes.cart}
                               />
                             </Tooltip>
-                            <div className={classes.count}>
-                              {" "}
-                              {item.quantity}{" "}
-                            </div>
+                            <div className={classes.count}>{item.quantity}</div>
                             <Link to={`/product/${tile.id}`}>
                               <InfoIcon className={classes.icon} />
                             </Link>

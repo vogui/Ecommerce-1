@@ -1,17 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
 import Cart from "../components/Cart";
-import {
-  removeItem,
-  addQuantity,
-  subtractQuantity,
-} from "../store/actions/Products";
+import LastOrders from "../components/LastOrders";
+import { removeItem, addQuantity, subtractQuantity, checkOut, getLastOrders } from "../store/actions/Products";
+
 
 const mapStateToProps = (state) => {
   return {
     login: state.login.data,
     items: state.products.addedItems,
     total: state.products.total,
+    lastOrders: state.products.lastOrders,
   };
 };
 
@@ -26,6 +25,12 @@ const mapDispatchToProps = (dispatch) => {
     subtractQuantity: (id) => {
       dispatch(subtractQuantity(id));
     },
+    checkout: (id) => {
+      dispatch(checkOut(id));
+    },
+    getOrders: (id) => {
+      dispatch(getLastOrders(id));
+    }
   };
 };
 
@@ -36,6 +41,8 @@ class CartContainer extends React.Component {
     this.handleRemove = this.handleRemove.bind(this);
     this.handleAddQuantity = this.handleAddQuantity.bind(this);
     this.handleSubtractQuantity = this.handleSubtractQuantity.bind(this);
+    this.handleCheckout = this.handleCheckout.bind(this);
+    this.handleGetLastOrders = this.handleGetLastOrders.bind(this);
   }
   //to remove the item completely
   handleRemove(id) {
@@ -50,7 +57,19 @@ class CartContainer extends React.Component {
     this.props.subtractQuantity(id);
   }
 
+  handleCheckout(userId){
+    this.props.checkout(userId)
+  }
+
+  handleGetLastOrders (id){
+  let obj = new Object;
+  obj.UserId = id
+  console.log("obj construido pal back:", obj)
+  this.props.getOrders(obj);
+  }
+
   render() {
+
     return (
       <Cart
         total={this.props.total}
@@ -58,9 +77,12 @@ class CartContainer extends React.Component {
         rest={this.handleSubtractQuantity}
         remove={this.handleRemove}
         items={this.props.items}
+        user={this.props.login.dataUser.id}
         props={this.props}
-      />
-    );
+        checkout={this.handleCheckout}
+        gettingOrders={this.handleGetLastOrders}
+        />
+    )
   }
 }
 
