@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import Product from "../components/Product";
 import { giveTheProduct, addToCart, addToCartBack, addQuantity, subtractQuantity } from "../store/actions/Products";
+import ReviewsContainer from "../containers/ReviewsContainer";
+import NavBar from "../components/NavBar";
 
 const mapStateToProps = function (state, ownProps) {
   console.log(ownProps.match.params.id);
@@ -93,9 +95,13 @@ class ProductContainer extends React.Component {
     this.props.subtractQuantity(id);
   }
 
-  render() {
+ render() {
     return (
-      <Product
+      <div>
+        <NavBar props={this.props} />
+        <div className="productContainer">
+          <div className="productSelf">
+            <Product
           props={this.props}
           user={this.props.login}
           product={this.props.product}
@@ -105,8 +111,15 @@ class ProductContainer extends React.Component {
           rest={this.handleSubtractQuantity}
           total={this.props.total}
         ></Product>
-    )
+          </div>
+          <div className="reviewSelf">
+            <ReviewsContainer productId={this.props.id} />
+          </div>
+        </div>
+      </div>
+    );
   }
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductContainer);

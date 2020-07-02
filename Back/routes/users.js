@@ -1,15 +1,30 @@
 var express = require("express");
-const flash = require('connect-flash');
+const flash = require("connect-flash");
 var router = express.Router();
 var path = require("path");
 const { User, Cart, CartProducts, Products } = require("../models/index");
+
 router.use(flash());
 
 // Esto se modifica cuando Henry me diga como se llama el modelo de User
 
 var passport = require("passport");
+
 router.get("/", (req, res, next) => {
   //Aca llegan de /api/users/
+  User.findAll().then((users) => {
+    var listaUsers = [];
+    for (var i = 0; i < users.length; i++) {
+      var obj = new Object();
+      obj.id = users[i].id;
+      obj.adress = users[i].adress;
+      obj.email = users[i].email;
+      obj.name = users[i].name;
+      obj.isAdmin = users[i].isAdmin;
+      listaUsers.push(obj);
+    }
+    res.send(listaUsers);
+  });
 });
 
 router.post("/register", (req, res, next) => {
@@ -34,7 +49,6 @@ router.get("/login", function (req, res, next) {
     //Definir que hacer si el usuario no esta logeado
   }
 });
-
 
 router.post("/login", passport.authenticate("local"), function (
   req,
@@ -97,7 +111,6 @@ router.post("/login", passport.authenticate("local"), function (
 //   })(req, res, next);
 // });
 
-
 router.post("/toAdmin/:id", (req, res, next) => {
   User.findOne({
     where: {
@@ -117,7 +130,28 @@ router.get("/logout", (req, res, next) => {
   res.redirect("/");
 });
 
+router.delete("/:idUser", (req, res, next) => {
+  User.findByPk(req.params.idUser).then((user) => {
+    user.destroy().then(() => {
+      res.send("ok");
+    });
+  });
+});
 
-
+router.post("/promoteAdmin", (req, res, next) => {
+  if ((req.body.secret = "UpgradeToAdmin")) {
+    var idUser = req.body.idUser;
+    User.update(
+      { isAdmin: true },
+      {
+        where: {
+          id: idUser,
+        },
+      }
+    ).then(() => {
+      res.send("ok");
+    });
+  }
+});
 
 module.exports = router;

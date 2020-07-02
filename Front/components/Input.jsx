@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
   search: {
     position: "relative",
+    marginRight: "15px",
     borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.15),
     "&:hover": {
@@ -76,10 +77,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default ({
+  setCategory,
   valueSearch,
   handleChange,
   handleCategorys,
-  handleBringCate,
+  setCategoryState,
 }) => {
   const classes = useStyles();
 
@@ -89,9 +91,21 @@ export default ({
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
-    //handleBringCate()
+  const sinRepeticion = (value) => {
+    setCategory(value);
     setAnchorEl(null);
+    handleChange({ target: { value: "" } });
+  };
+
+  const closeBox = () => {
+    setAnchorEl(null);
+  };
+
+  const handleClose = (category) => {
+    console.log("Category en Input:", category);
+    Promise.all([setCategoryState(category)]).then(() => {
+      handleChange({ target: { value: "" } });
+    });
   };
 
   return (
@@ -132,17 +146,23 @@ export default ({
               anchorEl={anchorEl}
               keepMounted
               open={Boolean(anchorEl)}
-              onClose={handleClose}
+              onClose={closeBox}
             >
-              {" "}
               {handleCategorys &&
                 handleCategorys.map((category) => {
-                  /*(category.id)*/
                   return (
                     <div key={category.id}>
-                      <MenuItem onClick={handleClose}>{category.name}</MenuItem>
+                      <MenuItem
+                        onClick={() => {
+                          handleClose(category.id);
+                        }}
+                      >
+                        {category.name}
+                      </MenuItem>
                     </div>
                   );
+
+                  /*(category.id)*/
                 })}
             </Menu>
           </div>
@@ -163,12 +183,6 @@ export default ({
               inputProps={{ "aria-label": "search" }}
             />
           </div>
-
-          <Link to="/">
-            <Button variant="contained" color="inherit">
-              Home
-            </Button>
-          </Link>
         </Toolbar>
       </AppBar>
     </div>

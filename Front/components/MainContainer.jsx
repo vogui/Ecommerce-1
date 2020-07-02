@@ -12,7 +12,8 @@ const mapStateToProps = (state, ownProps) => {
     login: state.login.data,
     products: state.products.products,
     items: state.products.addedItems,
-    total: state.products.total
+    total: state.products.total,
+    isAdmin: state.login.data.dataUser.isAdmin
   };
 };
 

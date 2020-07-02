@@ -3,32 +3,69 @@ const router = express.Router();
 const path = require("path");
 const { Products, Category } = require("../models/index");
 const Sequelize = require("sequelize");
+const { info } = require("console");
 const Op = Sequelize.Op;
 
 router.post("/", (req, res, next) => {
   console.log("ESTE ES EL BODY", req.body);
-  Products.findAll().then((productos) => {
-    var productosFiltrados = productos.filter((x) =>
-      x.title.toLowerCase().includes(req.body.title.toLowerCase())
-    );
-    res.status(200).send(productosFiltrados);
-  });
+
+  if (req.body.id == 1) {
+    //Este ID es para TODAS
+    Products.findAll().then((productos) => {
+      var productosFiltrados = productos.filter((x) =>
+        x.title.toLowerCase().includes(req.body.title.toLowerCase())
+      );
+      res.status(200).send(productosFiltrados);
+    });
+  } else {
+    Products.findAll().then((productos) => {
+      var listaProductos = productos;
+      var listaCategorias = [];
+      var productosFiltrados = [];
+      for (var i = 0; i < listaProductos.length; i++) {
+        listaCategorias.push(
+          listaProductos[i].getCategories().then((producto) => {
+            return producto[0].dataValues.id;
+          })
+        );
+      }
+
+      Promise.all(listaCategorias).then((infoCategorias) => {
+        console.log("Lista productos: ", listaProductos);
+        console.log("REQ BODY ID", req.body.id);
+        console.log("infoCategorias", infoCategorias);
+        for (var i = 0; i < listaProductos.length; i++) {
+          if (infoCategorias[i] == req.body.id) {
+            productosFiltrados.push(listaProductos[i]);
+          }
+        }
+        if (req.body.title == "") {
+          res.status(200).send(productosFiltrados);
+        } else {
+          productosFiltrados = productosFiltrados.filter((x) =>
+            x.title.toLowerCase().includes(req.body.title.toLowerCase())
+          );
+          res.status(200).send(productosFiltrados);
+        }
+      });
+    });
+  }
+
   //.catch(()=> res.sendStatus(400))
 });
 
-router.get('/category/:id',(req,res,next)=>{
- const id = req.params.id
- Category.findAll({
-   includes:{ 
-     model: Products,
-     through: 'Product_Category',
-     where:{
-       id:id
-     },
-    }
- })
- .then((producto)=> console.log(producto )
-)})
+router.get("/category/:id", (req, res, next) => {
+  const id = req.params.id;
+  Category.findAll({
+    includes: {
+      model: Products,
+      through: "Product_Category",
+      where: {
+        id: id,
+      },
+    },
+  }).then((productos) => res.send(productos));
+});
 
 router.get("/:id", (req, res, next) => {
   let id = req.params.id;

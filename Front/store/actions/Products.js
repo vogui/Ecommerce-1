@@ -9,7 +9,7 @@ import {
   GET_ORDERS
 } from "../constans";
 import axios from "axios";
-
+import { setCategory } from "../actions/Category";
 const findProducts = (products) => ({
   type: TRAE_PRODUCTS,
   products,
@@ -20,10 +20,11 @@ const findProduct = (product) => ({
   product,
 });
 
-const findProductsByCate = (products)=>({
+const findProductsByCate = (products) => ({
   type: BRING_PRODUCT_BY_CATE,
   products,
 });
+
 
 export const addToCart = (id)=>{
   return {
@@ -61,16 +62,23 @@ const findOrders = (orders) => ({
   orders,
 });
 
-export const findProductsByCategory =(categoryId)=> dispatch =>{
-  axios.get(`/api/products/categorys/${categoryId}`)
-  .then((listProductsByCate) => dispatch(findProductsByCate(listProductsByCate)))
-}
 
-export const giveMeProducts = (products)=> dispatch =>{
-    axios.post("/api/products", products)
-    .then((listProducts)=> {
-    dispatch(findProducts(listProducts.data))})
-}
+export const findProductsByCategory = (categoryId) => (dispatch) => {
+  axios
+    .get(`/api/products/categorys/${categoryId}`)
+    .then((listProductsByCate) =>
+      dispatch(findProductsByCate(listProductsByCate))
+    );
+};
+
+export const giveMeProducts = ({ title, id }) => (dispatch) => {
+  console.log("Title y selectedCategory:", title, id);
+  axios.post("/api/products", { title, id }).then((listProducts) => {
+    console.log("Los productos son:", listProducts);
+    dispatch(findProducts(listProducts.data));
+    setCategory(id);
+  });
+};
 
 export const giveTheProduct = (productId) => (dispatch) => {
   axios

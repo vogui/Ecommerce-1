@@ -1,6 +1,5 @@
 import React from "react";
 import { flexbox } from '@material-ui/system';
-import NavBar from "../components/NavBar";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -14,10 +13,11 @@ import Typography from "@material-ui/core/Typography";
 import Snackbar from "@material-ui/core/Snackbar";
 import Tooltip from "@material-ui/core/Tooltip";
 import MuiAlert from "@material-ui/lab/Alert";
+import { Link } from "react-router-dom";
 
-const useStyles = makeStyles ({
+const useStyles = makeStyles({
   root: {
-    maxWidth: "100%",
+      maxWidth: "100%",
   },
   divCart: {
     display: "flex",
@@ -57,7 +57,6 @@ export default ({ product, props, user, items, total, addToCart, add, rest}) => 
 
   return (
     <div>
-      <NavBar props={props} />
       <div className="productoIndividual">
         {product ? (
           <div className="product">
