@@ -63,17 +63,21 @@ export const creatingProduct = (info)=> dispatch => {
   
 
 export const deletingProduct = (info) => (dispatch) =>{
-  console.log(info.title)
+  console.log(info.id)
    axios
   .delete("/api/products/delete", ({
     headers: {
       Authorization: "algoaca",
     },
     data: {
-      source: info.title,
+      source: info.id,
     },
   }))
 }
+ export const updatingProduct = (info) => dispatch =>{
+   console.log(info, '<----- info que le esta llegando al axios')
+   axios.put(`/api/products/delete`, info)
+ }
  
 
 //actions

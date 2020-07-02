@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Product from "../components/Product";
 import { giveTheProduct } from "../store/actions/Products";
 import ReviewsContainer from "../containers/ReviewsContainer";
+import NavBar from "../components/NavBar";
 class ProductContainer extends React.Component {
   constructor() {
     super();
@@ -12,15 +13,19 @@ class ProductContainer extends React.Component {
     this.props.giveTheProduct(this.props.id);
   }
 
-  /*   handleClick = (id) => {
-    this.props.addToCart(id);
-  }; */
   render() {
     return (
-      <>
-        <Product product={this.props.product} props={this.props} />
-        <ReviewsContainer productId={this.props.id} />
-      </>
+      <div>
+        <NavBar props={this.props} />
+        <div className="productContainer">
+          <div className="productSelf">
+            <Product product={this.props.product} props={this.props} />
+          </div>
+          <div className="reviewSelf">
+            <ReviewsContainer productId={this.props.id} />
+          </div>
+        </div>
+      </div>
     );
   }
 }

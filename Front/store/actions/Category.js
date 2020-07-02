@@ -11,6 +11,12 @@ const actualCategory = (oneCategory) => ({
   oneCategory,
 });
 
+export const categorySend = (name) => (dispatch) => {
+  return axios
+    .post("/api/categorys", name)
+    .then((categorys) => dispatch(findCate(categorys.data)));
+};
+
 export const findCategorys = () => (dispatch) => {
   return axios
     .get("/api/categorys")
@@ -19,6 +25,21 @@ export const findCategorys = () => (dispatch) => {
 
 export const setCategory = (selectedCategory) => (dispatch) => {
   dispatch(actualCategory(selectedCategory));
+};
+
+export const removeCategory = (name) => (dispatch) => {
+  return axios
+    .delete("/api/categorys", {
+      headers: {
+        Authorization: "algoaca",
+      },
+      data: {
+        source: name,
+      },
+    })
+    .then(() => {
+      dispatch(findCategorys());
+    });
 };
 
 /* export function setCategory(selectedCategory) {

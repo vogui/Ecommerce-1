@@ -9,7 +9,8 @@ const Op = Sequelize.Op;
 router.post("/", (req, res, next) => {
   console.log("ESTE ES EL BODY", req.body);
 
-  if (req.body.id == 0) {
+  if (req.body.id == 1) {
+    //Este ID es para TODAS
     Products.findAll().then((productos) => {
       var productosFiltrados = productos.filter((x) =>
         x.title.toLowerCase().includes(req.body.title.toLowerCase())
@@ -50,18 +51,6 @@ router.post("/", (req, res, next) => {
   //.catch(()=> res.sendStatus(400))
 });
 
-router.get("/category/:id", (req, res, next) => {
-  const id = req.params.id;
-  Category.findAll({
-    includes: {
-      model: Products,
-      through: "Product_Category",
-      where: {
-        id: id,
-      },
-    },
-  }).then((productos) => res.send(productos));
-});
 
 router.get("/:id", (req, res, next) => {
   let id = req.params.id;
@@ -81,15 +70,16 @@ router.post("/create", (req, res, next) => {
   })
 
 router.put("/:id", (req, res, next) => {
-  const id = req.params.id;
+   console.log(req.body)
   Products.update(req.body, {
     returnig: true,
     where: {
-      id,
+      id: req.body.id,
     },
   })
     .then((productos) => {
-      res.status(204).send(productos[1][0]);
+      console.log(productos)
+      res.status(204)
     })
     .catch(() => {
       res.sendStatus(404);
@@ -100,7 +90,7 @@ router.delete("/delete", (req, res, next) => {
 console.log(req.body.source)
   Products.findOne({
     where:{
-     title:req.body.source
+     id:req.body.source
     }
   })
   .then((product)=>{
