@@ -1,78 +1,109 @@
 const express = require("express");
+const nodemailer = require("nodemailer");
 const router = express.Router();
-const { Cart, CartProducts, User }  = require("../models/index");
+const { Cart, CartProducts, User } = require("../models/index");
 
-router.post('/', (req, res) => {
-    Cart.findOne({ where: {
-        UserId: req.body.UserId,
-        completed: false
-    }})
-    .then( cart => {
-        if(!cart) {
-            Cart.create({
-                total: req.body.total,
-                adress: req.body.adress,
+router.post("/", (req, res) => {
+  Cart.findOne({
+    where: {
+      UserId: req.body.UserId,
+      completed: false,
+    },
+  }).then((cart) => {
+    if (!cart) {
+      Cart.create({
+        total: req.body.total,
+        adress: req.body.adress,
+      }).then((createdCart) => {
+        createdCart.setUser(req.body.UserId);
+        CartProducts.create({
+          quantity: req.body.quantity,
+          CartId: createdCart.id,
+          ProductId: req.body.ProductId,
+        }).then(() => res.sendStatus(200));
+      });
+    } else {
+      cart.total = req.body.total;
+      cart.adress = req.body.adress;
+      cart.save();
+      CartProducts.findOne({
+        where: {
+          CartId: cart.id,
+          ProductId: req.body.ProductId,
+        },
+      }).then((cartProducts) => {
+        if (cartProducts) {
+          if (req.body.quantity === 0) {
+            cartProducts.destroy().then(() => res.sendStatus(201));
+          }
+          cartProducts
+            .update({
+              quantity: req.body.quantity,
+              CartId: cart.id,
+              ProductId: req.body.ProductId,
             })
-            .then( createdCart => {
-                createdCart.setUser(req.body.UserId)
-                CartProducts.create({
-                    quantity: req.body.quantity,
-                    CartId: createdCart.id,
-                    ProductId: req.body.ProductId
-                })
-                .then(()=> res.sendStatus(200))
-            })
+            .then(() => res.sendStatus(200));
         } else {
-            cart.total = req.body.total;
-            cart.adress = req.body.adress
-            cart.save()
-            CartProducts.findOne({ where: {
-                CartId: cart.id,
-                ProductId: req.body.ProductId
-            }})
-            .then( cartProducts => {
-                if(cartProducts) {
-                    if(req.body.quantity === 0) {cartProducts.destroy()
-                        .then(()=> res.sendStatus(201))}
-                    cartProducts.update({
-                        quantity: req.body.quantity,
-                        CartId: cart.id,
-                        ProductId: req.body.ProductId
-                    }).then( () => res.sendStatus(200) )
-                } else {
-                    CartProducts.create({
-                        quantity: req.body.quantity,
-                        CartId: cart.id,
-                        ProductId: req.body.ProductId
-                    })
-                    .then(()=> res.sendStatus(200))
-                }
-            })
+          CartProducts.create({
+            quantity: req.body.quantity,
+            CartId: cart.id,
+            ProductId: req.body.ProductId,
+          }).then(() => res.sendStatus(200));
         }
-    })
+      });
+    }
+  });
 });
 
-router.get('/', (req, res) => {
-    Cart.findOne({ where: {
-        UserId: req.body.UserId,
-        completed: false
-    }})
-    .then( cart => {
-        res.status(200).send(cart)
-    })
+router.get("/", (req, res) => {
+  Cart.findOne({
+    where: {
+      UserId: req.body.UserId,
+      completed: false,
+    },
+  }).then((cart) => {
+    res.status(200).send(cart);
+  });
 });
 
-router.put('/', (req, res) => {
-    Cart.findOne({ where: {
-        UserId: req.body.user,
-        completed: false
-    }})
-    .then( cart => {
-        cart.completed = true;
-        cart.save()
-        return cart
+var transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "tomateunabirraoficial@gmail.com",
+    pass: "TomateUna2020",
+  },
+});
+
+router.put("/", (req, res) => {
+  User.findByPk(req.body.user).then((user) => {
+    var mailOptions = {
+      from: "tomateunabirraoficial@gmail.com",
+      to: `${user.dataValues.email}`,
+      subject: "Your order",
+      html: "<h1>Welcome</h1><p>That was easy!</p>",
+    };
+  });
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Email sent: " + info.response);
+    }
+  });
+
+  Cart.findOne({
+    where: {
+      UserId: req.body.user,
+      completed: false,
+    },
+  })
+    .then((cart) => {
+      cart.completed = true;
+      cart.save();
+      return cart;
     })
-    .then( boughtCart => res.sendStatus(200))
-})
+    .then((boughtCart) => res.sendStatus(200));
+});
 
 module.exports = router;
