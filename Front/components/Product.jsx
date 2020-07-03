@@ -18,6 +18,7 @@ import { Link } from "react-router-dom";
 const useStyles = makeStyles({
   root: {
       maxWidth: "100%",
+      height: '40%'
   },
   divCart: {
     display: "flex",
@@ -72,6 +73,9 @@ export default ({ product, props, user, items, total, addToCart, add, rest}) => 
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="h2">
                     {product.title}
+                  </Typography>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    {product.price}
                   </Typography>
                   <Typography
                     variant="body2"

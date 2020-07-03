@@ -57,155 +57,133 @@ const product6 = Products.create({
   cerveza.addCategory(4);
 });
 
-/*
 const product7 = Products.create({
   title: "Pilsner",
   picture:
-    "https://upload.wikimedia.org/wikipedia/commons/d/da/Pilsner_urquell_mug.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/d/da/Pilsner_urquell_mug.jpg",
   price: 135,
-});
-
-product7.then((cerveza) => {
-  cerveza.addCategory(1);
+}).then((cerveza) => {
+  cerveza.addCategory(2);
 });
 
 const product8 = Products.create({
   title: "Lager oscura",
   picture:
-    "https://www.cocinista.es/download/bancorecursos/recetas/receta-cerveza-grano-lager-oscura.jpg",
+  "https://www.cocinista.es/download/bancorecursos/recetas/receta-cerveza-grano-lager-oscura.jpg",
   price: 125,
+}).then((cerveza) => {
+  cerveza.addCategory(4);
+  
 });
 
-product8.then((cerveza) => {
-  cerveza.addCategory(2);
-});
-const product9 = Products.createCart.belongsTo(User);({
+const product9 = Products.create({
   title: "India Pale Ale ",
   picture:
-    "https://www.cerveceroexperto.com/wp-content/uploads/2019/07/IPA-Pinta.jpg",
+  "https://www.cerveceroexperto.com/wp-content/uploads/2019/07/IPA-Pinta.jpg",
   price: 170,
-});
-
-product9.then((cervezCart.belongsTo(User);a) => {
-  cerveza.addCategory(3);
+}).then((cerveza) => {
+  cerveza.addCategory(4);
 });
 
 const product10 = Products.create({
   title: "Trigo",
   picture: "https://lupulu.com/wp-content/uploads/2014/05/lupulu-trigo.jpg",
   price: 135,
+}).then((cerveza) => {
+  cerveza.addCategory(4);
 });
 
-product10.then((cerveza) => {
-  cerveza.addCategory(1);
-});
 const product11 = Products.create({
   title: "Barley Wine",
   picture:
-    "https://cervecerosdemexico.com/wp-content/uploads/2017/12/Barleywine.jpg",
+  "https://cervecerosdemexico.com/wp-content/uploads/2017/12/Barleywine.jpg",
   price: 135,
-});
-product11.then((cerveza) => {
-  cerveza.addCategory(3);
+}).then((cerveza) => {
+  cerveza.addCategory(4);
 });
 
 const product12 = Products.create({
   title: "Bitter",
   picture:
-    "https://i.pinimg.com/736x/a6/af/dd/a6afddb6a0cf03326f5e2626f4cb6916.jpg",
+  "https://i.pinimg.com/736x/a6/af/dd/a6afddb6a0cf03326f5e2626f4cb6916.jpg",
   price: 160,
+}).then((cerveza) => {
+  cerveza.addCategory(4);
 });
 
-product12.then((cerveza) => {
-  cerveza.addCategory(3);
-});
 const product13 = Products.create({
   title: "Brown Ale",
   picture:
-    "https://cdn.shortpixel.ai/client/q_glossy,ret_img,w_800/https://www.cerveza-artesanal.co/wp-content/uploads/2017/09/receta-brown-ale-800x600.jpg",
+  "https://cdn.shortpixel.ai/client/q_glossy,ret_img,w_800/https://www.cerveza-artesanal.co/wp-content/uploads/2017/09/receta-brown-ale-800x600.jpg",
   price: 180,
-});
-
-product13.then((cerveza) => {
+}).then((cerveza) => {
   cerveza.addCategory(3);
 });
 
 const product14 = Products.create({
   title: "Old Ale",
   picture:
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRR5NsDeC9pI0xhSj3itWlmXFByyiokcTwtaA&usqp=CAU",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRR5NsDeC9pI0xhSj3itWlmXFByyiokcTwtaA&usqp=CAU",
   price: 180,
-});
-
-product14.then((cerveza) => {
-  cerveza.addCategory(2);
+}).then((cerveza) => {
+  cerveza.addCategory(3);
 });
 
 const product15 = Products.create({
   title: "Altbier",
   picture:
-    "https://d26lpennugtm8s.cloudfront.net/stores/852/895/products/altbier-21-4be93e1494c96d7c8d15686489487938-1024-1024.jpg",
+  "https://d26lpennugtm8s.cloudfront.net/stores/852/895/products/altbier-21-4be93e1494c96d7c8d15686489487938-1024-1024.jpg",
   price: 135,
+}).then((cerveza) => {
+  cerveza.addCategory(4);
 });
 
-product15.then((cerveza) => {
-  cerveza.addCategory(3);
-});
 const product16 = Products.create({
   title: "Kölsch",
   picture:
-    "https://s3-us-west-2.amazonaws.com/homebrewassoc/wp-content/uploads/2016/04/kolshSLIDE.jpg",
+  "https://s3-us-west-2.amazonaws.com/homebrewassoc/wp-content/uploads/2016/04/kolshSLIDE.jpg",
   price: 135,
-});
-
-product16.then((cerveza) => {
-  cerveza.addCategory(1);
+}).then((cerveza) => {
+  cerveza.addCategory(2);
 });
 
 const product17 = Products.create({
   title: "Berliner weisse",
   picture:
-    "https://cocktail-glaeser.de/wp-content/uploads/RITZENHOFF-2er-Set-Berliner-Weisse-Pokal-Glaeser-von-RASTAL-0-3-Liter-mit-Logo.jpg",
+  "https://cocktail-glaeser.de/wp-content/uploads/RITZENHOFF-2er-Set-Berliner-Weisse-Pokal-Glaeser-von-RASTAL-0-3-Liter-mit-Logo.jpg",
   price: 250,
-});
-
-product17.then((cerveza) => {
-  cerveza.addCategory(0);
+}).then((cerveza) => {
+  cerveza.addCategory(4);
 });
 
 const product18 = Products.create({
   title: "Lambic",
   picture:
-    "https://recetasdecerveza.net/wp-content/uploads/2018/07/Recetas-de-Fruit-Lambic.jpg",
+  "https://recetasdecerveza.net/wp-content/uploads/2018/07/Recetas-de-Fruit-Lambic.jpg",
   price: 300,
-});
-
-product18.then((cerveza) => {
-  cerveza.addCategory(0);
+}).then((cerveza) => {
+  cerveza.addCategory(4);
 });
 
 const product19 = Products.create({
   title: "Rauchbier",
   picture:
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRIMX8oFu47qzDqw_Xm97rxZ-AUwqTVFBGoKw&usqp=CAU",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRIMX8oFu47qzDqw_Xm97rxZ-AUwqTVFBGoKw&usqp=CAU",
   price: 300,
-});
-
-product19.then((cerveza) => {
+}).then((cerveza) => {
   cerveza.addCategory(3);
 });
 
 const product20 = Products.create({
   title: "Steam beer",
   picture:
-    "https://i.pinimg.com/originals/e1/4b/b1/e14bb19fdbcc700d751ff3fd92bf1fe6.jpg",
+  "https://i.pinimg.com/originals/e1/4b/b1/e14bb19fdbcc700d751ff3fd92bf1fe6.jpg",
   price: 300,
+}).then((cerveza) => {
+  cerveza.addCategory(4);
 });
 
-product20.then((cerveza) => {
-  cerveza.addCategory(3);
-});
-
+/*
 */
 const categoriaPrincial = Category.create({
   name: "Todas",

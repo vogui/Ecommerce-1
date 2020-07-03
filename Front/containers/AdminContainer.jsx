@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import NavBarAdmin from "../components/NavBarAdmin";
-import AdminProductsContainer from './AdminProductsjsx'
+import AdminProductsContainer from './AdminProducts'
 import AdminCategories from "../containers/AdminCategories";
 import AdminUser from "../containers/AdminUser";
 

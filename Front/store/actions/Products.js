@@ -113,6 +113,10 @@ export const addToCart = (id) => {
     id,
   };
 };
+
+export const addToCartBack = (obj) => () => {
+  axios.post("/api/cart", obj)
+};
 //remove item action
 export const removeItem = (id) => {
   return {

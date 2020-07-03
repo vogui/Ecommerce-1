@@ -69,6 +69,13 @@ html {
   align-items: center;
 }
 
+.categoriesContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .productContainer {
   display: flex;
   flex-direction: column;
