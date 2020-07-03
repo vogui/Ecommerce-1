@@ -4,6 +4,7 @@ import Product from "../components/Product";
 import { giveTheProduct, addToCart, addToCartBack, addQuantity, subtractQuantity } from "../store/actions/Products";
 import ReviewsContainer from "../containers/ReviewsContainer";
 import NavBar from "../components/NavBar";
+import Gif from "../components/assets/tubrr-082.gif";
 
 const mapStateToProps = function (state, ownProps) {
   console.log(ownProps.match.params.id);
@@ -99,6 +100,7 @@ class ProductContainer extends React.Component {
     return (
       <div>
         <NavBar props={this.props} />
+
         <div className="productContainer">
           <div className="productSelf">
             <Product

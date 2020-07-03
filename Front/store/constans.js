@@ -2,7 +2,7 @@
 export const TRAE_PRODUCTS = "TRAE_PRODUCTS";
 export const TRAE_PRODUCT = "TRAE_PRODUCT";
 export const LOGIN_USER = "LOGIN_USER";
-export const TRAE_PRODUCTS_BY_TITLE = 'TRAE_PRODUCTS_BY_TITLE'
+export const TRAE_PRODUCTS_BY_TITLE = "TRAE_PRODUCTS_BY_TITLE";
 
 //User
 export const REGISTER_USER = "REGISTER_USER";
@@ -28,3 +28,5 @@ export const SET_REVIEW = "SET_REVIEW";
 export const SET_IDS = "SET_IDS";
 //Users
 export const GET_USERS = "GET_USERS";
+export const SET_ORDERS = "SET_ORDERS";
+export const SET_DATA = "SET_DATA";
