@@ -144,7 +144,7 @@ export default function InteractiveList({
                       <Avatar src={item.picture}></Avatar>
                     </ListItemAvatar>
                     <ListItemText
-                      secondary={secondary ? item.picture : null}
+                      secondary={secondary ? item.description : null}
                       primary={item.title}
                     />
                     <ListItemSecondaryAction>
@@ -210,6 +210,18 @@ export default function InteractiveList({
         </div>
       ) : (
         <div className='Carrito'>
+        <div xs={2}>
+                <Link to="/cart/orders">
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    color="secondary"
+                    onClick={() => gettingOrders(user)}
+                  >
+                    Last Orders
+                  </Button>
+                </Link>
+        </div>
         <h1 className= 'titulo'>Please choose a product</h1>
         <img src ={gifCarrito}></img>
         </div>
