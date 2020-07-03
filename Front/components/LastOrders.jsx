@@ -37,9 +37,7 @@ class Table1 extends React.Component {
    
     return this.props.orders.map((order, index) => {
         { 
-         const { id, date, total } = order 
-         console.log("ORDERMAP", order)
-      
+         const { id, date, total } = order       
          return (
             <Fragment>
               <TableHead>
