@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import NavBar from "../components/NavBar";
+import Table from '@material-ui/core/Table';
+
 
 const mapStateToProps = (state) => {
   return {
@@ -12,10 +14,10 @@ const mapStateToProps = (state) => {
   };
 }
 
-class Table extends React.Component {
+class Table1 extends React.Component {
    constructor() {
-      super() //since we are extending class Table so we have to use super in order to override Component class constructor
-      this.state = { //state is by default an object
+      super()
+      this.state = { 
       }
    }
 
@@ -28,24 +30,31 @@ class Table extends React.Component {
          return (
             <Fragment>
             <tr key={order.id}>
-               <td>ID: {order.id}</td>
-               <td>DATE: {order.date}</td>
-               <td>TOTAL: $ {order.total}</td>
+               <td>ORDER # </td>
+               <td>DATE</td>
+               <td>TOTAL $</td>
             </tr>
-
-            <tr >
-            {
+            <tr>
+              <td>{order.id}</td>
+              <td>{order.date}</td>
+              <td>{order.total}</td>
+            </tr>
+            List Products:
+            <tr>
+              <td>PRODUCT NAME</td>
+              <td>QTY</td>
+            </tr>
+              {
               order.Products.map((item) => {
               console.log("item", item)
               return (
-                <td>Products: $ {item.title}</td>          
-              )
-            }
-              )}
-            </tr>
+              <tr key={item.id}>
+                  <td key={item.id}>{item.title}</td>               
+                  <td>{item.quantity} </td>  
+              </tr>
+              )})}
             </Fragment>
             )}           
-            
         })
       }
 
@@ -67,5 +76,5 @@ class Table extends React.Component {
    }
 }
 
-export default connect(mapStateToProps)(Table);
+export default connect(mapStateToProps)(Table1);
 
