@@ -24,15 +24,13 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Fab from "@material-ui/core/Fab";
 import Paper from "@material-ui/core/Paper";
 import NavBar from "../components/NavBar";
-<<<<<<< HEAD
+
 import { Link, Route } from "react-router-dom";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
-=======
-import { Link, Route } from 'react-router-dom';
-import fotoBirra from "./assets/fotoBirra.png"
 
->>>>>>> 89a85e9b960761583bf251c4a21336d58b33ed2a
+import fotoBirra from "./assets/fotoBirra.png";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -101,8 +99,8 @@ export default function InteractiveList({
           Please check your email in the next minutes,thanks!
         </Alert>
       </Snackbar>
-      <img src={fotoBirra}/>
-      {items.length !== 0 ? (  
+      <img src={fotoBirra} />
+      {items.length !== 0 ? (
         <div className={"cart"}>
           {props.login.redirect ? (
             <div>

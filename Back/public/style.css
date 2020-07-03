@@ -1,20 +1,24 @@
 html {
   scroll-behavior: smooth;
-  background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(32,32,56,1) 50%, rgba(0,0,0,1) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(32, 32, 56, 1) 50%,
+    rgba(0, 0, 0, 1) 100%
+  );
 }
 
 .header {
   display: flex;
   flex-direction: row;
-  color:white;
+  color: white;
   justify-content: center;
 }
-.img{
+.img {
   position: absolute;
   margin-top: 0;
   margin-left: 0;
 }
-
 
 .loginContainer {
   display: flex;
@@ -64,15 +68,17 @@ html {
   margin-right: auto;
 }
 
-
 #carousel {
-  width: 100% ;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(32,32,56,1) 50%, rgba(0,0,0,1) 100%);
-  
-
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(32, 32, 56, 1) 50%,
+    rgba(0, 0, 0, 1) 100%
+  );
 }
 
 .itemsCarousel {
@@ -80,7 +86,7 @@ html {
   margin: 0 auto;
 }
 
-.ADDContainer{
+.ADDContainer {
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -88,7 +94,7 @@ html {
   align-items: center;
 }
 
-.categoriesContainer{
+.categoriesContainer {
   display: flex;
   background-color: white;
   flex-direction: column;
@@ -118,5 +124,9 @@ html {
 }
 
 .MuiGrid-container {
-  justify-content: center;
+  justify-content: "center";
+}
+
+.MuiGridList-root {
+  justify-content: "center";
 }
