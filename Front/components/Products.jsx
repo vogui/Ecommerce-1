@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   },
   root: {
     width: "100%",
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: '#343330',
   },
   text: {
     fontSize: 20,

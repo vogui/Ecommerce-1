@@ -6,6 +6,7 @@ import ProductosMain from "../components/ProductosMain";
 import { giveMeAllProducts } from "../store/actions/Products";
 import Carrousel from "./Carrousel";
 import { addToCart, addToCartBack, addQuantity, subtractQuantity } from "../store/actions/Products";
+import { Paper } from "@material-ui/core";
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -96,6 +97,12 @@ class MainContainer extends React.Component {
     return (
       <div>
         <NavBar props={this.props}></NavBar>
+        <div className='header'>
+          <img src='https://i.ibb.co/jvBCNCn/tomate1.jpg' width='100px'/>
+          <h1 color='white'>Tomate 1</h1>
+          <small>o mas de una...</small>
+        </div>
+        
         <Carrousel />
         <ProductosMain
           user={this.props.login}

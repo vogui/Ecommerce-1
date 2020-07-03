@@ -7,20 +7,16 @@ export default function Example(props) {
   var items = [
     {
       name: "Random Name #1",
-      Image: "https://source.unsplash.com/Lq1rOaigDoY/800x600",
+      Image: "https://source.unsplash.com/Lq1rOaigDoY/1000x250",
     },
     {
       name: "Random Name #2",
-      Image: "https://source.unsplash.com/c-fbj_fTFUM/800x600",
+      Image: "https://source.unsplash.com/8gBBHX_SqMo/1000x250",
     },
     {
       name: "Random Name #3",
-      Image: "https://source.unsplash.com/_8KV86shhPo/800x600",
-    },
-    {
-      name: "Random Name #4",
-      Image: "https://source.unsplash.com/0yqa0rMCsYk/800x600",
-    },
+      Image: "https://source.unsplash.com/_8KV86shhPo/1000x250",
+    }
   ];
 
   return (
