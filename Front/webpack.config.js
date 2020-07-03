@@ -12,15 +12,31 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
+      {
         test: /jsx?$/,
         exclude: /(node_modules|bower_components)/,
-        loader: "babel-loader",
+        loader: 'babel-loader',
         query: {
-          presets: ["@babel/preset-react", "@babel/env"],
-        },
-      },
-    ],
+          presets: [
+            "@babel/preset-react",
+            "@babel/env"
+          ]
+        }
+      }
+    ]
   },
+
   devtool: "source-map",
   
 };
