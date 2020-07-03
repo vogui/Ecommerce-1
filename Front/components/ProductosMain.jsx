@@ -37,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     justifyContent: "space-around",
     overflow: "hidden",
-
     // backgroundColor: "white",
     background:
       "linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(32,32,56,1) 50%, rgba(0,0,0,1) 100%)",
@@ -90,6 +89,8 @@ function ProductosMain({ tileData, user, addToCart, items, add, rest }) {
   };
 
   const [, forceUpdate] = React.useState(0);
+
+  console.log("tile ----------->", tileData);
 
   return (
     <div>
@@ -177,4 +178,4 @@ function ProductosMain({ tileData, user, addToCart, items, add, rest }) {
   );
 }
 
-export default ProductosMain;
+export default ProductosMain

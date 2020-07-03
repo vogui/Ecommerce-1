@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import ProductosMain from "../components/ProductosMain";
 import { giveMeAllProducts } from "../store/actions/Products";
 import Carrousel from "./Carrousel";
+import Gif from '../components/assets/tubrr-082.gif'
 
 import {
   addToCart,
@@ -14,7 +15,7 @@ import {
   getLastOrders,
 } from "../store/actions/Products";
 
-import { Paper } from "@material-ui/core";
+
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -109,16 +110,16 @@ class MainContainer extends React.Component {
         <NavBar props={this.props}></NavBar>
         <div className="img">
           <img
-            src="https://i.ibb.co/jvBCNCn/tomate1.jpg"
+            src={Gif}
             width="250px"
             height="250px"
           />
         </div>
         <div className="header">
           <h1 className="titulo">
-            Tomate 1 ...
-            <small> o mas de una!</small>
+            Tomate Una
           </h1>
+            <small className='chico'> o mas de una!</small>
         </div>
 
         <Carrousel />

@@ -25,6 +25,8 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    display:'flex',
+    alignItems: 'center',
     display: "none",
     [theme.breakpoints.up("sm")]: {
       display: "block",
@@ -58,6 +60,11 @@ const useStyles = makeStyles((theme) => ({
   },
   inputUser: {
     color: "white",
+  },
+  Div: {
+    display: "flex",
+    alignItems: "center",
+
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
@@ -99,13 +106,15 @@ function SearchAppBar({ props, actualPlace }) {
           </IconButton>
 
           <Typography className={classes.title} variant="h6" noWrap>
+              <div className={classes.Div}>
             <Link to="/">
               <Button color="inherit" className={classes.inputUser}>
                 Tomate una
               </Button>
             </Link>
-          </Typography>
           <img src={gif1}/>
+              </div>
+          </Typography>
 
           {props.isAdmin ? (
             <Link to="/admin">
