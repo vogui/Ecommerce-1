@@ -134,3 +134,10 @@ html {
 .MuiGridList-root {
   justify-content: "center";
 }
+
+.contenedorOrdenes {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

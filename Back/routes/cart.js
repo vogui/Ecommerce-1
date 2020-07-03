@@ -65,6 +65,70 @@ router.post("/", (req, res) => {
   });
 });
 
+router.get("/orders/:idOrder/:idUser", (req, res, next) => {
+  CartProducts.findAll({
+    where: {
+      CartId: req.params.idOrder,
+    },
+  }).then((order) => {
+    var orden = order;
+    console.log("Order:", order);
+    var productos = [];
+    for (var i = 0; i < order.length; i++) {
+      productos.push(Products.findByPk(order[i].ProductId));
+    }
+
+    Promise.all(productos).then((listaProductos) => {
+      var arrayQuantity = [];
+      var data = [];
+      for (var j = 0; j < listaProductos.length; j++) {
+        arrayQuantity.push(orden[j].quantity);
+      }
+
+      var arrayConTodaLaData = [];
+
+      for (var z = 0; z < listaProductos.length; z++) {
+        var obj = new Object();
+        obj.data = listaProductos[z];
+        obj.quantity = arrayQuantity[z];
+        arrayConTodaLaData.push(obj);
+      }
+
+      data[0] = arrayConTodaLaData;
+
+      User.findByPk(req.params.idUser).then((user) => {
+        data[1] = user;
+        res.send(data);
+      });
+    });
+  });
+});
+
+router.get("/orders", (req, res, next) => {
+  Cart.findAll({
+    where: {
+      completed: true,
+    },
+  }).then((orders) => {
+    res.send(orders);
+    /*   var arrayProductos = [];
+    for (var i = 0; i < orders.length; i++) {
+      arrayProductos.push(
+        CartProducts.findAll({
+          where: {
+            CartId: orders[i].id,
+          },
+        })
+      );
+      arrayProductos[i].total = orders[i].total;
+    }
+
+    Promise.all(arrayProductos).then((listaDeProductos) => {
+      res.send(listaDeProductos);
+    }); */
+  });
+});
+
 router.post("/orders", (req, res) => {
   let pastOrders = new Array();
   Cart.findAll({
@@ -154,7 +218,6 @@ router.put("/", (req, res) => {
             );
             arrayDeProductos[i].quantity = productos[i].dataValues.quantity;
           }
-
 
           Promise.all(arrayDeProductos).then((listaDeProductos) => {
             console.log("Lista de productos:", listaDeProductos);
