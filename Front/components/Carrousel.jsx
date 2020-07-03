@@ -2,24 +2,28 @@ import React from "react";
 import Carousel from "react-material-ui-carousel";
 import { Paper } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+import carrousel1 from "./assets/carrousel1.png"
+import carrousel2 from "./assets/carrousel2.png"
+import carrousel3 from "./assets/carrousel3.png"
+import carrousel4 from "./assets/carrousel4.png"
 
 export default function Example(props) {
   var items = [
     {
       name: "Random Name #1",
-      Image: "https://source.unsplash.com/Lq1rOaigDoY/800x600",
+      Image: carrousel1,
     },
     {
       name: "Random Name #2",
-      Image: "https://source.unsplash.com/c-fbj_fTFUM/800x600",
+      Image: carrousel2,
     },
     {
       name: "Random Name #3",
-      Image: "https://source.unsplash.com/_8KV86shhPo/800x600",
+      Image: carrousel3,
     },
     {
       name: "Random Name #4",
-      Image: "https://source.unsplash.com/0yqa0rMCsYk/800x600",
+      Image: carrousel4,
     },
   ];
 
@@ -36,8 +40,8 @@ export default function Example(props) {
 
 function Item({ item }) {
   return (
-    <Paper className="itemCarousel">
+   <div>
       <img src={item.Image} height="80%" width="100%" />
-    </Paper>
+    </div>
   );
 }

@@ -1,9 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import NavBarAdmin from "../components/NavBarAdmin";
-import AdminProductsContainer from './AdminProductsjsx'
+import AdminProductsContainer from './AdminProducts'
 import AdminCategories from "../containers/AdminCategories";
 import AdminUser from "../containers/AdminUser";
+import Gif from '../components/assets/tubrr-082.gif'
 
 class Admin extends React.Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class Admin extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div backgroundImage = {Gif}>
         <NavBarAdmin props={this.props} selected={this.selectedItem} />
         {this.state.selected == "products" ? <AdminProductsContainer/> : null}
         {this.state.selected == "categories" ? <AdminCategories /> : null}

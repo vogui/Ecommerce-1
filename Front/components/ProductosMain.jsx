@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     justifyContent: "space-around",
     overflow: "hidden",
-    backgroundColor: theme.palette.background.paper,
+    background: 'linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(32,32,56,1) 50%, rgba(0,0,0,1) 100%)'
   },
   gridList: {
     width: "80%",
