@@ -11,7 +11,10 @@ html {
 .header {
   display: flex;
   flex-direction: row;
+
   color: white;
+  font-size: 50px;
+  font-style: italic;
   justify-content: center;
 }
 .img {
@@ -48,6 +51,7 @@ html {
   justify-content: center;
   align-items: center;
 }
+
 .productoIndividual {
   margin-top: 15px;
   display: flex;

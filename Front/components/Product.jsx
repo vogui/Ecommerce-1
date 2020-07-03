@@ -57,7 +57,7 @@ export default ({ product, props, user, items, total, addToCart, add, rest}) => 
   const [, forceUpdate] = React.useState(0);
 
   return (
-    <div>
+    <div >
       <div className="productoIndividual">
         {product ? (
           <div className="product">
@@ -75,7 +75,7 @@ export default ({ product, props, user, items, total, addToCart, add, rest}) => 
                     {product.title}
                   </Typography>
                   <Typography gutterBottom variant="h5" component="h2">
-                    {product.price}
+                    ${product.price}
                   </Typography>
                   <Typography
                     variant="body2"

@@ -108,12 +108,16 @@ class MainContainer extends React.Component {
       <div>
         <NavBar props={this.props}></NavBar>
         <div className="img">
-          <img src="https://i.ibb.co/jvBCNCn/tomate1.jpg" width="100px" />
+          <img
+            src="https://i.ibb.co/jvBCNCn/tomate1.jpg"
+            width="250px"
+            height="250px"
+          />
         </div>
         <div className="header">
           <h1 className="titulo">
             Tomate 1 ...
-            <small>o mas de una!</small>
+            <small> o mas de una!</small>
           </h1>
         </div>
 
