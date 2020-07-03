@@ -197,9 +197,9 @@ export default ({
         className={classes.button}
         endIcon={<Icon>send</Icon>}
         >Create</Button>
-        <br/>
-        <br/>
         </div>
+        <br/>
+        <br/>
         <Divider />
         <div className = 'ADDContainer'>
         <br/>

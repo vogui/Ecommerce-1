@@ -26,8 +26,6 @@ const findProduct = (product) => ({
   product,
 });
 
-
-
 export const subtractQuantity = (id)=>{
   return { type: SUB_QUANTITY,
   id,
@@ -87,6 +85,10 @@ export const creatingProduct = (info)=> dispatch => {
   axios.post('/api/products/create', info)
 }
 
+export const addToCartBack = (obj) => () => {
+  axios.post("/api/cart", obj)
+};
+
 
 export const deletingProduct = (info) => (dispatch) =>{
   console.log(info.id)
@@ -114,9 +116,6 @@ export const addToCart = (id) => {
   };
 };
 
-export const addToCartBack = (obj) => () => {
-  axios.post("/api/cart", obj)
-};
 //remove item action
 export const removeItem = (id) => {
   return {

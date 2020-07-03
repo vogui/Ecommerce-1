@@ -82,7 +82,7 @@ export default ({ product, props, user, items, total, addToCart, add, rest}) => 
                     color="textSecondary"
                     component="p"
                   >
-                    Aca va una descripcion.
+                    {product.description}
                   </Typography>
                 </CardContent>
               </CardActionArea>

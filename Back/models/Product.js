@@ -24,6 +24,9 @@ Product.init(
     price: {
       type: S.INTEGER,
     },
+    description: {
+      type: S.TEXT
+    }
   },
   { sequelize: db, modelName: "Product" }
 );

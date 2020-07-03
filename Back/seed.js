@@ -3,56 +3,63 @@ const { Category } = require("./models/index");
 const { User } = require("./models/index");
 const { Review } = require("./models/index");
 
+
 const product1 = Products.create({
-  title: "Ale",
+  title: "Dav",
   picture:
-    "https://2.bp.blogspot.com/-Cplhr__WNpI/T4L7JzGya3I/AAAAAAAAATw/x7vcWStsr-o/s1600/RE%2BAle.jpg",
+    "https://source.unsplash.com/IwPk1o4hEr8/400x600",
   price: 150,
+  description:'Strong beer, double malt, perfect for cold nights'
 }).then((cerveza) => {
-  cerveza.addCategory(2);
+  cerveza.addCategory(3);
 });
 
 const product2 = Products.create({
-  title: "Lager",
+  title: "Ale",
   picture:
-    "https://img2.pngio.com/pilsners-and-pale-lagers-pilsners-and-pale-lagers-are-light-to-pale-lager-png-400_400.png",
+    "https://source.unsplash.com/p2KA3Q2lfSw/400x600",
   price: 120,
+  description:"Light body, strong flavor, with a bitter finish"
 }).then((cerveza) => {
   cerveza.addCategory(2);
 });
 
 const product3 = Products.create({
-  title: "Porter",
+  title: "Barley Wine",
   picture:
-    "https://www.cervezaback.com/wp-content/uploads/2018/08/BACK-BROWN-PORTER.png",
+    "https://source.unsplash.com/lGzhgzkN6UI/400x600",
   price: 170,
+  description:'Extravagant color but a spectacular flavor, very good beer for fun night'
 }).then((cerveza) => {
-  cerveza.addCategory(3);
+  cerveza.addCategory(4);
 });
 
 const product4 = Products.create({
   title: "Trigueña",
   picture:
-    "https://cdn.shopify.com/s/files/1/1103/5152/products/trigo-01_1024x1024.png?v=1580826501",
+    "https://source.unsplash.com/hplJX8Uy9Uo/400x600",
   price: 145,
+  description:'A classic wheat beer'
 }).then((cerveza) => {
-  cerveza.addCategory(4);
+  cerveza.addCategory(2);
 });
 
 const product5 = Products.create({
-  title: "Stout",
+  title: "Drought",
   picture:
-    "https://cdn.shopify.com/s/files/1/1103/5152/products/white_stout_1000x2048_2_1024x1024.png?v=1573142609",
+    "https://source.unsplash.com/4wnZbnW9Bv0/400x600 ",
   price: 135,
+  description:'Strong beer, double malt, strong flavor'
 }).then((cerveza) => {
   cerveza.addCategory(3);
 });
 
 const product6 = Products.create({
-  title: "Belga",
+  title: "Porter",
   picture:
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTLVIQY35P8lG-iAOPrUJcl-uxB6Y8THrZU4g&usqp=CAU",
+    "https://source.unsplash.com/9AgKficrJW4/400x600 ",
   price: 200,
+  description:'Double malt, strong flavor, with a bitter finish'
 }).then((cerveza) => {
   cerveza.addCategory(4);
 });
@@ -60,111 +67,124 @@ const product6 = Products.create({
 const product7 = Products.create({
   title: "Pilsner",
   picture:
-  "https://upload.wikimedia.org/wikipedia/commons/d/da/Pilsner_urquell_mug.jpg",
+  "https://source.unsplash.com/o2hRqvFYJWY/400x600 ",
   price: 135,
+  description:"Light body, strong flavor, with a bitter finish"
 }).then((cerveza) => {
   cerveza.addCategory(2);
 });
 
 const product8 = Products.create({
-  title: "Lager oscura",
+  title: "hop house lager",
   picture:
-  "https://www.cocinista.es/download/bancorecursos/recetas/receta-cerveza-grano-lager-oscura.jpg",
+  "https://source.unsplash.com/DJ5dSMndxFY/400x600 ",
   price: 125,
+  description:"Light body, strong flavor, with a bubbly finish"
 }).then((cerveza) => {
   cerveza.addCategory(4);
   
 });
 
 const product9 = Products.create({
-  title: "India Pale Ale ",
+  title: "Asperius",
   picture:
-  "https://www.cerveceroexperto.com/wp-content/uploads/2019/07/IPA-Pinta.jpg",
+  "https://source.unsplash.com/8zC07n1RTM0/400x600",
   price: 170,
+  description:"Light body, strong flavor, with a bitter finish"
 }).then((cerveza) => {
   cerveza.addCategory(4);
 });
 
 const product10 = Products.create({
   title: "Trigo",
-  picture: "https://lupulu.com/wp-content/uploads/2014/05/lupulu-trigo.jpg",
+  picture: "https://source.unsplash.com/6lUgzoBirxk/400x600",
   price: 135,
+  description:'A classic wheat beer'
 }).then((cerveza) => {
-  cerveza.addCategory(4);
+  cerveza.addCategory(2);
 });
 
 const product11 = Products.create({
-  title: "Barley Wine",
+  title: "Eschenbräu",
   picture:
-  "https://cervecerosdemexico.com/wp-content/uploads/2017/12/Barleywine.jpg",
+  "https://source.unsplash.com/o-EmieeOtrs/400x600",
   price: 135,
+  description:'Extravagant color but a spectacular flavor, very good beer for fun night'
 }).then((cerveza) => {
   cerveza.addCategory(4);
 });
 
 const product12 = Products.create({
-  title: "Bitter",
+  title: "grolsch",
   picture:
-  "https://i.pinimg.com/736x/a6/af/dd/a6afddb6a0cf03326f5e2626f4cb6916.jpg",
+  "https://source.unsplash.com/dFZn9RkFggs/400x600 ",
   price: 160,
+  description:"Light body, strong flavor, with a bitter finish"
 }).then((cerveza) => {
-  cerveza.addCategory(4);
+  cerveza.addCategory(2);
 });
 
 const product13 = Products.create({
-  title: "Brown Ale",
+  title: "pacifico clara",
   picture:
-  "https://cdn.shortpixel.ai/client/q_glossy,ret_img,w_800/https://www.cerveza-artesanal.co/wp-content/uploads/2017/09/receta-brown-ale-800x600.jpg",
+  "https://source.unsplash.com/zXl4QWaADLQ/400x600",
   price: 180,
+  description:"Light body, strong flavor, with a bitter finish"
 }).then((cerveza) => {
-  cerveza.addCategory(3);
+  cerveza.addCategory(2);
 });
 
 const product14 = Products.create({
-  title: "Old Ale",
+  title: "Brown Ale",
   picture:
-  "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRR5NsDeC9pI0xhSj3itWlmXFByyiokcTwtaA&usqp=CAU",
+  "https://source.unsplash.com/lGzhgzkN6UI/400x600",
   price: 180,
-}).then((cerveza) => {
-  cerveza.addCategory(3);
-});
-
-const product15 = Products.create({
-  title: "Altbier",
-  picture:
-  "https://d26lpennugtm8s.cloudfront.net/stores/852/895/products/altbier-21-4be93e1494c96d7c8d15686489487938-1024-1024.jpg",
-  price: 135,
 }).then((cerveza) => {
   cerveza.addCategory(4);
 });
+
+const product15 = Products.create({
+  title: "Nomono",
+  picture:
+  "https://source.unsplash.com/K5mv-fdIhb4/400x600",
+  price: 135,
+  description:"Light body, strong flavor, with a bitter finish"
+}).then((cerveza) => {
+  cerveza.addCategory(4);
+});
+
 
 const product16 = Products.create({
   title: "Kölsch",
   picture:
-  "https://s3-us-west-2.amazonaws.com/homebrewassoc/wp-content/uploads/2016/04/kolshSLIDE.jpg",
+  "https://source.unsplash.com/qqUk3gophLs/400x600 ",
   price: 135,
+  description:"Light body, strong flavor, with a bitter finish"
 }).then((cerveza) => {
   cerveza.addCategory(2);
 });
 
 const product17 = Products.create({
-  title: "Berliner weisse",
+  title: "Hoegaarden",
   picture:
-  "https://cocktail-glaeser.de/wp-content/uploads/RITZENHOFF-2er-Set-Berliner-Weisse-Pokal-Glaeser-von-RASTAL-0-3-Liter-mit-Logo.jpg",
+  "https://source.unsplash.com/Wj2-Kd7Uz70/400x600 ",
   price: 250,
+  description:"Light body, strong flavor, with a bitter finish"
 }).then((cerveza) => {
-  cerveza.addCategory(4);
+  cerveza.addCategory(2);
 });
 
 const product18 = Products.create({
-  title: "Lambic",
+  title: "Corona",
   picture:
-  "https://recetasdecerveza.net/wp-content/uploads/2018/07/Recetas-de-Fruit-Lambic.jpg",
+  "https://source.unsplash.com/K5mv-fdIhb4/400x600",
   price: 300,
+  description:'Light body but a spectacular flavor, very good beer for fun night'
 }).then((cerveza) => {
   cerveza.addCategory(4);
 });
 
+/* 
 const product19 = Products.create({
   title: "Rauchbier",
   picture:
@@ -181,7 +201,7 @@ const product20 = Products.create({
   price: 300,
 }).then((cerveza) => {
   cerveza.addCategory(4);
-});
+}); */
 
 /*
 */

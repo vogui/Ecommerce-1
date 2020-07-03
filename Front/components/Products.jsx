@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "stretch",
   },
   item: {
-    width: "30%",
+    width: "15%",
     marginLeft: 10,
     marginRight: 10,
     marginBottom: 15,
@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   },
   root: {
     width: "100%",
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: '#343330',
   },
   text: {
     fontSize: 20,
