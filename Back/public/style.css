@@ -62,7 +62,7 @@ html {
   margin: 0 auto;
 }
 
-.categoriesContainer {
+.ADDContainer{
   display: flex;
   flex-direction: column;
   justify-content: center;

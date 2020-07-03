@@ -35,7 +35,6 @@ class Main extends React.Component {
         <Route path="/cart/orders" render={() => <LastOrders orders={this.props.orders} /> }/>
         <Route path="/cart" component={CartContainer} />
         <Route path="/admin" component={AdminContainer} />
-        
       </Switch>
     );
   }

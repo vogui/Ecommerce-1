@@ -51,6 +51,7 @@ class MainContainer extends React.Component {
 
   componentDidMount() {
     this.props.giveMeAllProducts();
+
     this.props.getLastOrders({ UserId: this.props.idUser });
   }
 

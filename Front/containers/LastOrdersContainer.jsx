@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import NavBar from "../components/NavBar";
 import LastOrders from "../components/LastOrders";
 import { getLastOrders } from "../store/actions/Products";
 
@@ -8,6 +9,7 @@ const mapStateToProps = function (state, ownProps) {
   return {
     orders: state.products.lastOrders,
     id: ownProps.match.params.id,
+    login: state.login.data
   };
 };
 
@@ -30,7 +32,12 @@ class LastOrderContainer extends React.Component {
   }
 
   render() {
-    return <LastOrders orders={this.props.orders} />;
+    return(
+      <div>
+        <NavBar props={this.props}/>
+        <LastOrders orders={this.props.orders}/>;
+      </div>
+    )
   }
 }
 
