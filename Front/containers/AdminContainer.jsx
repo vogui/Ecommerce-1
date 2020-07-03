@@ -20,12 +20,14 @@ class Admin extends React.Component {
   }
   render() {
     return (
-      <div backgroundImage = {Gif}>
+      <div>
         <NavBarAdmin props={this.props} selected={this.selectedItem} />
-        {this.state.selected == "products" ? <AdminProductsContainer/> : null}
-        {this.state.selected == "categories" ? <AdminCategories /> : null}
+       
+        {this.state.selected == "products" ? <AdminProductsContainer/> :  null}
+        {this.state.selected == "categories" ? <AdminCategories /> :  null}
         {this.state.selected == "users" ? <AdminUser /> : null}
         {this.state.selected == "orders" ? <h1>orders</h1> : null}{" "}
+        <img width='100%' height='100%' src={Gif}/>
         {/*Esto lo vemos despues*/}
       </div>
     );
