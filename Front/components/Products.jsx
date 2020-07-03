@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "stretch",
   },
   item: {
-    width: "15%",
+    width: "20%",
     marginLeft: 10,
     marginRight: 10,
     marginBottom: 15,
