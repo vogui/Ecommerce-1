@@ -7,16 +7,32 @@ html {
     rgba(0, 0, 0, 1) 100%
   );
 }
-
+.titulo{
+  font-family: 'Damion', cursive;
+  color: white
+}
+.chico{
+  font-family: 'Damion', cursive;
+  display: flex;
+  align-items: flex-end;
+}
 .header {
   display: flex;
   flex-direction: row;
+  margin: 10px;
 
   color: white;
   font-size: 50px;
   font-style: italic;
   justify-content: center;
 }
+
+.Carrito{
+ margin-top: 15%;
+ display: flex;
+ justify-content: center;
+}
+
 .img {
   position: absolute;
   margin-top: 0;
