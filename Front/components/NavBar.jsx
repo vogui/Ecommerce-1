@@ -11,6 +11,7 @@ import { connect } from "react-redux";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 import LocalMallIcon from "@material-ui/icons/LocalMall";
+import gif1 from "./assets/gif1.gif"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -104,6 +105,7 @@ function SearchAppBar({ props, actualPlace }) {
               </Button>
             </Link>
           </Typography>
+          <img src={gif1}/>
 
           {props.isAdmin ? (
             <Link to="/admin">

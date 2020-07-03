@@ -92,8 +92,8 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500).send(err.message || "Internal server error.");
 });
 
-db.sync({ force: false })
 
+db.sync({ force: false })
   .then(() => {
     console.log("DB synched");
     app.listen(3000, () => console.log("listening on 3000"));

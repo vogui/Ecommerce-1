@@ -34,7 +34,6 @@ class LastOrderContainer extends React.Component {
   render() {
     return(
       <div>
-        <NavBar props={this.props}/>
         <LastOrders orders={this.props.orders}/>;
       </div>
     )
