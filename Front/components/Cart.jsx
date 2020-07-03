@@ -27,8 +27,7 @@ import NavBar from "../components/NavBar";
 import { Link, Route } from "react-router-dom";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
-
-import fotoBirra from "./assets/fotoBirra.png";
+import gifCarrito from "./assets/f5646695-webp-net-gifmaker-4.gif"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -99,7 +98,6 @@ export default function InteractiveList({
           Please check your email in the next minutes,thanks!
         </Alert>
       </Snackbar>
-      <img src={fotoBirra} />
       {items.length !== 0 ? (
         <div className={"cart"}>
           {props.login.redirect ? (
@@ -211,7 +209,11 @@ export default function InteractiveList({
           ) : null}
         </div>
       ) : (
-        <p>Nothing yet...</p>
+        <div className='Carrito'>
+        <h1 className= 'titulo'>Please choose a product</h1>
+        <img src ={gifCarrito}></img>
+        </div>
+        
       )}
     </div>
   );

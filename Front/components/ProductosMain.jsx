@@ -37,15 +37,8 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     justifyContent: "space-around",
     overflow: "hidden",
-
-    // backgroundColor: "white",
-    background: 'linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(32,32,56,1) 50%, rgba(0,0,0,1) 100%)'
-
-  },
-  gridList: {
-    width: "80%",
-    height: "100%",
-
+    background:
+      "linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(32,32,56,1) 50%, rgba(0,0,0,1) 100%)",
   },
   icon: {
     marginRight: 15,
@@ -92,6 +85,8 @@ function ProductosMain({ tileData, user, addToCart, items, add, rest }) {
 
   const [, forceUpdate] = React.useState(0);
 
+  console.log("tile ----------->", tileData);
+
   return (
     <div>
       {tileData != undefined ? (
@@ -100,7 +95,6 @@ function ProductosMain({ tileData, user, addToCart, items, add, rest }) {
             {tileData.map((tile) => {
               let item = items.find((element) => tile.id == element.id);
               return (
-                <GridListTile key={tile.id} style={{ height: "350" }}>
                 <GridListTile
                   key={tile.id}
                   style={{ height: "200", width: "350" }}
@@ -179,4 +173,4 @@ function ProductosMain({ tileData, user, addToCart, items, add, rest }) {
   );
 }
 
-export default ProductosMain;
+export default ProductosMain
