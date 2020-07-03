@@ -2,6 +2,7 @@ const { Products } = require("./models/index");
 const { Category } = require("./models/index");
 const { User } = require("./models/index");
 const { Review } = require("./models/index");
+
 const product1 = Products.create({
   title: "Ale",
   picture:

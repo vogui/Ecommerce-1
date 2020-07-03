@@ -31,9 +31,6 @@ router.post("/", (req, res, next) => {
       }
 
       Promise.all(listaCategorias).then((infoCategorias) => {
-        console.log("Lista productos: ", listaProductos);
-        console.log("REQ BODY ID", req.body.id);
-        console.log("infoCategorias", infoCategorias);
         for (var i = 0; i < listaProductos.length; i++) {
           if (infoCategorias[i] == req.body.id) {
             productosFiltrados.push(listaProductos[i]);
@@ -54,18 +51,6 @@ router.post("/", (req, res, next) => {
   //.catch(()=> res.sendStatus(400))
 });
 
-router.get("/category/:id", (req, res, next) => {
-  const id = req.params.id;
-  Category.findAll({
-    includes: {
-      model: Products,
-      through: "Product_Category",
-      where: {
-        id: id,
-      },
-    },
-  }).then((productos) => res.send(productos));
-});
 
 router.get("/:id", (req, res, next) => {
   let id = req.params.id;
@@ -76,46 +61,65 @@ router.get("/:id", (req, res, next) => {
     });
 });
 
-router.post("/", (req, res, next) => {
-  Products.create(req.body).then(() => {
+router.post("/create", (req, res, next) => {
+  Products.create(req.body).then((product) => {
+    product.addCategory(req.body.categoryId)
+  }).then(()=>{
     res.status(201).send("Su producto a sido creado exitosamente");
   });
-});
+  })
 
 router.put("/:id", (req, res, next) => {
-  const id = req.params.id;
+   console.log(req.body)
   Products.update(req.body, {
     returnig: true,
     where: {
-      id,
+      id: req.body.id,
     },
   })
     .then((productos) => {
-      res.status(204).send(productos[1][0]);
+      console.log(productos)
+      res.status(204)
     })
     .catch(() => {
       res.sendStatus(404);
     });
 });
 
-router.delete("/:id", (req, res, next) => {
-  const id = req.params.id;
-  Products.destroy({
-    where: {
-      id,
-    },
+router.delete("/delete", (req, res, next) => {
+console.log(req.body.source)
+  Products.findOne({
+    where:{
+     id:req.body.source
+    }
   })
+  .then((product)=>{
+    console.log(product)
+    product.destroy()
     .then(() => {
       res.status(200).send("Tu productos fue eliminado");
     })
+  })
     .catch(() => {
       res.sendStatus(404);
     });
 });
 
+router.get("/:title", (req, res, next) => {
+  console.log(req.params.title, '<---- titulo')
+  Products.findAll({
+    where:{
+      title:req.params.title
+    }
+  }).then((products) => {
+    var productosFiltrados = products.filter((x) =>
+    x.title.toLowerCase().includes(req.body.title.toLowerCase())
+  );
+    res.send(productosFiltrados);
+  })
+})
 router.get("/", (req, res, next) => [
   Products.findAll().then((products) => {
-    console.log("Productos:", products);
     var productosReviews = [];
     for (var i = 0; i < products.length; i++) {
       productosReviews.push(products[i].getReviews());
@@ -140,5 +144,7 @@ router.get("/", (req, res, next) => [
     });
   }),
 ]);
+
+
 
 module.exports = router;

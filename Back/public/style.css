@@ -1,6 +1,14 @@
 html {
   scroll-behavior: smooth;
+  background-color: #090909;
 }
+
+.header {
+  display: flex;
+  flex-direction: row;
+  color: white;
+}
+
 
 .loginContainer {
   display: flex;
@@ -62,7 +70,7 @@ html {
   margin: 0 auto;
 }
 
-.categoriesContainer {
+.ADDContainer{
   display: flex;
   flex-direction: column;
   justify-content: center;
