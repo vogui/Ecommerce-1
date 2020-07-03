@@ -1,6 +1,5 @@
 import { TRAE_PRODUCTS, TRAE_PRODUCT, ADD_TO_CART, REMOVE_ITEM, ADD_QUANTITY, SUB_QUANTITY, GET_CART, CHECKOUT, GET_ORDERS , TRAE_PRODUCTS_BY_TITLE} from '../constans'
 
-  
 const initialState = {
     product: {},
     products: [],

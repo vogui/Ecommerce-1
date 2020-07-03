@@ -40,8 +40,8 @@ export default function Example(props) {
 
 function Item({ item }) {
   return (
-    <Paper className="itemCarousel">
+   <div>
       <img src={item.Image} height="80%" width="100%" />
-    </Paper>
+    </div>
   );
 }

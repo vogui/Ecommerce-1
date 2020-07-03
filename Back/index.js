@@ -93,7 +93,6 @@ app.use(function (err, req, res, next) {
 });
 
 db.sync({ force: false})
-
   .then(() => {
     console.log("DB synched");
     app.listen(3000, () => console.log("listening on 3000"));

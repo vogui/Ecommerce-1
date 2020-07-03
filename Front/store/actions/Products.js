@@ -115,6 +115,7 @@ export const addToCart = (id) => {
     id,
   };
 };
+
 //remove item action
 export const removeItem = (id) => {
   return {

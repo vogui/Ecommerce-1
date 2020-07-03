@@ -97,10 +97,13 @@ class MainContainer extends React.Component {
     return (
       <div>
         <NavBar props={this.props}></NavBar>
-        <div className='header'>
+        <div className = 'img'>
           <img src='https://i.ibb.co/jvBCNCn/tomate1.jpg' width='100px'/>
-          <h1 color='white'>Tomate 1</h1>
-          <small>o mas de una...</small>
+          </div>
+        <div className='header'>
+          <h1 className ='titulo'>Tomate 1 ...
+          <small>o mas de una!</small>
+          </h1>
         </div>
         
         <Carrousel />
