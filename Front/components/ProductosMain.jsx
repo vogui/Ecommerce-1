@@ -39,13 +39,12 @@ const useStyles = makeStyles((theme) => ({
     overflow: "hidden",
 
     // backgroundColor: "white",
-    background: 'linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(32,32,56,1) 50%, rgba(0,0,0,1) 100%)'
-
+    background:
+      "linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(32,32,56,1) 50%, rgba(0,0,0,1) 100%)",
   },
   gridList: {
     width: "80%",
     height: "100%",
-
   },
   icon: {
     marginRight: 15,
@@ -100,7 +99,6 @@ function ProductosMain({ tileData, user, addToCart, items, add, rest }) {
             {tileData.map((tile) => {
               let item = items.find((element) => tile.id == element.id);
               return (
-                <GridListTile key={tile.id} style={{ height: "350" }}>
                 <GridListTile
                   key={tile.id}
                   style={{ height: "200", width: "350" }}
