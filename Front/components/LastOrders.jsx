@@ -1,103 +1,71 @@
+import React, { Fragment } from 'react';
+import { connect } from "react-redux";
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import NavBar from "../components/NavBar";
 
-/*
-=======
-// import React from 'react';
-// import { makeStyles } from '@material-ui/core/styles';
-// import ListSubheader from '@material-ui/core/ListSubheader';
-// import List from '@material-ui/core/List';
-// import ListItem from '@material-ui/core/ListItem';
-// import ListItemIcon from '@material-ui/core/ListItemIcon';
-// import ListItemText from '@material-ui/core/ListItemText';
-// import Collapse from '@material-ui/core/Collapse';
-// import InboxIcon from '@material-ui/icons/MoveToInbox';
-// import DraftsIcon from '@material-ui/icons/Drafts';
-// import SendIcon from '@material-ui/icons/Send';
-// import ExpandLess from '@material-ui/icons/ExpandLess';
-// import ExpandMore from '@material-ui/icons/ExpandMore';
-// import StarBorder from '@material-ui/icons/StarBorder';
+const mapStateToProps = (state) => {
+  return {
+    orders: state.products.lastOrders,
+    login: state.login.data,
+    isAdmin: state.login.data.dataUser.isAdmin
+  };
+}
 
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     width: '100%',
-//     maxWidth: 360,
-//     backgroundColor: theme.palette.background.paper,
-//   },
-//   nested: {
-//     paddingLeft: theme.spacing(4),
-//   },
-// }));
+class Table extends React.Component {
+   constructor() {
+      super() //since we are extending class Table so we have to use super in order to override Component class constructor
+      this.state = { //state is by default an object
+      }
+   }
 
+   renderTableData() {
+      return this.props.orders.map((order, index) => {
+        { 
+         const { id, date, total } = order 
+         console.log("ORDERMAP", order)
+      
+         return (
+            <Fragment>
+            <tr key={order.id}>
+               <td>ID: {order.id}</td>
+               <td>DATE: {order.date}</td>
+               <td>TOTAL: $ {order.total}</td>
+            </tr>
 
-// // export default ({ orders }) => {
+            <tr >
+            {
+              order.Products.map((item) => {
+              console.log("item", item)
+              return (
+                <td>Products: $ {item.title}</td>          
+              )
+            }
+              )}
+            </tr>
+            </Fragment>
+            )}           
+            
+        })
+      }
 
-// //   return (
-// //   <div>
-// //     <h3>Your Last Orders: </h3>
-// //     <div> 
-// //       {console.log("ORDERS!!!", orders)}
-// //       {orders.map((order) => (
+  render() {
+    
+    return (    
+      <div>
+        <NavBar props={this.props}/>
+        <Box bgcolor="success.main">
+           <h1 id='title'>Purchase History</h1>
+            <table id='students'>
+               <tbody>
+                  {this.renderTableData()}
+               </tbody>
+            </table>
+        </Box>
+       </div> 
+      )
+   }
+}
 
+export default connect(mapStateToProps)(Table);
 
-
-        
-// //         <ListItem key={order.id}>
-// //         Total  {order.total}
-// //         {order.Products.map((producto) => (
-        
-// //           <ListItemText key={producto.id} primary={producto.title}/>
-// //             // <ListItemSecondaryAction>
-// //             // Price=$ {producto.price}
-// //             // </ListItemSecondaryAction>
-// //             )
-// //         )}
-// //         </ListItem>
-// //         ))}
-// //     </div>
-// //   </div>
-// // )}
-
-
-// export default ({ orders }) => {
-//   const classes = useStyles();
-//   const [open, setOpen] = React.useState(true);
-
-//   const handleClick = () => {
-//     setOpen(!open);
-//   };
-
-//   return (
-//     <List
-//       component="nav"
-//       aria-labelledby="nested-list-subheader"
-//       subheader={
-//         <ListSubheader component="div" id="nested-list-subheader">
-//           Purchase History:
-//         </ListSubheader>
-//       }
-//       className={classes.root}
-//     >
-//       <ListItem button onClick={handleClick}>
-//         <ListItemIcon>
-//           <InboxIcon />
-//         </ListItemIcon>
-//          {orders.map((order) => (
-//         <ListItemText key={order.id} primary={order.date} />
-//         {open ? <ExpandLess /> : <ExpandMore />}
-//         ))}
-//       </ListItem>
-//       <Collapse in={open} timeout="auto" unmountOnExit>
-//         <List component="div" disablePadding>
-//         {order.Products.map((producto) => (
-//           <ListItem button className={classes.nested}>
-//             <ListItemIcon>
-//               <StarBorder />
-//             </ListItemIcon>
-//             <ListItemText primary={producto.title} />
-//           </ListItem>
-//           ))}
-//         </List>
-//       </Collapse>
-//     </List>
-//   );
-// }
-*/

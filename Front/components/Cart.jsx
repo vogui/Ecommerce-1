@@ -24,12 +24,12 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Fab from "@material-ui/core/Fab";
 import Paper from "@material-ui/core/Paper";
 import NavBar from "../components/NavBar";
-
 import { Link, Route } from "react-router-dom";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 
 import fotoBirra from "./assets/fotoBirra.png";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
