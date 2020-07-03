@@ -1,6 +1,20 @@
 html {
   scroll-behavior: smooth;
+  background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(32,32,56,1) 50%, rgba(0,0,0,1) 100%);
 }
+
+.header {
+  display: flex;
+  flex-direction: row;
+  color:white;
+  justify-content: center;
+}
+.img{
+  position: absolute;
+  margin-top: 0;
+  margin-left: 0;
+}
+
 
 .loginContainer {
   display: flex;
@@ -50,11 +64,15 @@ html {
   margin-right: auto;
 }
 
+
 #carousel {
+  width: 100% ;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(32,32,56,1) 50%, rgba(0,0,0,1) 100%);
+  
+
 }
 
 .itemsCarousel {
@@ -63,7 +81,16 @@ html {
 }
 
 .ADDContainer{
+  background-color: white;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.categoriesContainer{
+  display: flex;
+  background-color: white;
   flex-direction: column;
   justify-content: center;
   align-items: center;
