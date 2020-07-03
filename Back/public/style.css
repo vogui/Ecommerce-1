@@ -1,22 +1,43 @@
 html {
   scroll-behavior: smooth;
-  background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(32,32,56,1) 50%, rgba(0,0,0,1) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(32, 32, 56, 1) 50%,
+    rgba(0, 0, 0, 1) 100%
+  );
 }
-
+.titulo{
+  font-family: 'Damion', cursive;
+  color: white
+}
+.chico{
+  font-family: 'Damion', cursive;
+  display: flex;
+  align-items: flex-end;
+}
 .header {
   display: flex;
   flex-direction: row;
-  color:white;
-  font-size:50px;
+  margin: 10px;
+
+  color: white;
+  font-size: 50px;
   font-style: italic;
   justify-content: center;
 }
-.img{
+
+.Carrito{
+ margin-top: 15%;
+ display: flex;
+ justify-content: center;
+}
+
+.img {
   position: absolute;
   margin-top: 0;
   margin-left: 0;
 }
-
 
 .loginContainer {
   display: flex;
@@ -67,15 +88,17 @@ html {
   margin-right: auto;
 }
 
-
 #carousel {
-  width: 100% ;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(32,32,56,1) 50%, rgba(0,0,0,1) 100%);
-  
-
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(32, 32, 56, 1) 50%,
+    rgba(0, 0, 0, 1) 100%
+  );
 }
 
 .itemsCarousel {
@@ -83,7 +106,7 @@ html {
   margin: 0 auto;
 }
 
-.ADDContainer{
+.ADDContainer {
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -91,7 +114,7 @@ html {
   align-items: center;
 }
 
-.categoriesContainer{
+.categoriesContainer {
   display: flex;
   background-color: white;
   flex-direction: column;
@@ -121,5 +144,16 @@ html {
 }
 
 .MuiGrid-container {
+  justify-content: "center";
+}
+
+.MuiGridList-root {
+  justify-content: "center";
+}
+
+.contenedorOrdenes {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: row;
   justify-content: center;
 }

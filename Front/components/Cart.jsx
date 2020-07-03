@@ -24,7 +24,11 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Fab from "@material-ui/core/Fab";
 import Paper from "@material-ui/core/Paper";
 import NavBar from "../components/NavBar";
-import { Link, Route } from 'react-router-dom';
+import { Link, Route } from "react-router-dom";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
+import gifCarrito from "./assets/f5646695-webp-net-gifmaker-4.gif"
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -55,6 +59,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 export default function InteractiveList({
   items,
   add,
@@ -67,31 +75,50 @@ export default function InteractiveList({
   orders,
   props,
 }) {
-
+  console.log("Usuario:", user);
   const classes = useStyles();
   const [secondary, setSecondary] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
 
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
   return (
     <div>
       <NavBar props={props} />
-      {items.length !== 0 ? (  
+      <Snackbar open={open} autoHideDuration={3500} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success">
+          Please check your email in the next minutes,thanks!
+        </Alert>
+      </Snackbar>
+      {items.length !== 0 ? (
         <div className={"cart"}>
-          {props.login.redirect ? ( 
+          {props.login.redirect ? (
             <div>
               <div xs={10}>
                 <h2>Welcome {props.login.dataUser.name}, this is your Cart</h2>
               </div>
               <div xs={2}>
-               <Link to="/cart/orders">
-                  <Button variant="outlined" size="small" color="secondary" onClick={() => gettingOrders(user)} >
+                <Link to="/cart/orders">
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    color="secondary"
+                    onClick={() => gettingOrders(user)}
+                  >
                     Last Orders
                   </Button>
-               </Link>
+                </Link>
               </div>
             </div>
-          ) 
-          : 
-          null}
+          ) : null}
 
           <FormGroup row>
             <FormControlLabel
@@ -124,7 +151,6 @@ export default function InteractiveList({
                       <Tooltip title="One More" aria-label="One More">
                         <Fab
                           color="primary"
-                          
                           className={classes.fab}
                           onClick={() => add(item.id)}
                         >
@@ -134,7 +160,6 @@ export default function InteractiveList({
                       <Tooltip title="One Less">
                         <Fab
                           color="secondary"
-                          
                           className={classes.fab}
                           onClick={() => rest(item.id)}
                         >
@@ -160,19 +185,35 @@ export default function InteractiveList({
               {/*( <p>Nothing yet...</p>  )*/}
             </div>
           </Grid>
-          <Grid className={classes.paper}>
-            <Paper xs={6} className={classes.paper}>
-                {" "}
-                Total: ${total}
-              <Button variant="contained" size="small" color="primary" onClick={() => checkout({user})} >
-                CheckOut!
-              </Button>
-              {console.log("USER!!!!!",user)}
-            </Paper>
-          </Grid>
+          {user != undefined ? (
+            <div>
+              <Grid className={classes.paper}>
+                <Paper xs={6} className={classes.paper}>
+                  {" "}
+                  Total: ${total}
+                  <Button
+                    variant="contained"
+                    size="small"
+                    color="primary"
+                    onClick={() => {
+                      checkout({ user });
+                      handleClick();
+                    }}
+                  >
+                    CheckOut!
+                  </Button>
+                  {console.log("USER!!!!!", user)}
+                </Paper>
+              </Grid>
+            </div>
+          ) : null}
         </div>
       ) : (
-        <p>Nothing yet...</p>
+        <div className='Carrito'>
+        <h1 className= 'titulo'>Please choose a product</h1>
+        <img src ={gifCarrito}></img>
+        </div>
+        
       )}
     </div>
   );
