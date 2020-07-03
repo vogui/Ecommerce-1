@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from "react-redux";
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
@@ -21,31 +21,33 @@ class Table extends React.Component {
 
    renderTableData() {
       return this.props.orders.map((order, index) => {
-        // { order.map((item) => {
-        //  let productos = new Array();
-        //  productos.push(item)})
-        // }
+        { 
          const { id, date, total } = order 
          console.log("ORDERMAP", order)
+      
          return (
+            <Fragment>
             <tr key={order.id}>
                <td>ID: {order.id}</td>
                <td>DATE: {order.date}</td>
                <td>TOTAL: $ {order.total}</td>
             </tr>
 
-            // {for (let j = 0; j < productos.length; j++) {
-            //   let count = 0;
-            //   return(
-            //     <tr >
-            //       <td>Products: $ {productos[count].title}</td>
-            //     </tr>
-            //   )
-            //   count++;}
-            // }
+            <tr >
+            {
+              order.Products.map((item) => {
+              console.log("item", item)
+              return (
+                <td>Products: $ {item.title}</td>          
+              )
+            }
+              )}
+            </tr>
+            </Fragment>
             )}           
-            )
-        }
+            
+        })
+      }
 
   render() {
     
