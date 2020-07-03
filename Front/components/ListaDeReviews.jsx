@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
   export default ({ reviews /*usuario*/ }) => {
-  
+  const classes = useStyles();
   return (
       <ExpansionPanel>
         <ExpansionPanelSummary

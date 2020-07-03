@@ -25,7 +25,6 @@ import Fab from "@material-ui/core/Fab";
 import Paper from "@material-ui/core/Paper";
 import NavBar from "../components/NavBar";
 import { Link, Route } from 'react-router-dom';
-import fotoBirra from "./assets/fotoBirra.png"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -75,7 +74,6 @@ export default function InteractiveList({
   return (
     <div>
       <NavBar props={props} />
-      <img src={fotoBirra}/>
       {items.length !== 0 ? (  
         <div className={"cart"}>
           {props.login.redirect ? ( 

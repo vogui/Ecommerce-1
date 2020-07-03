@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     justifyContent: "space-around",
     overflow: "hidden",
-    backgroundColor: "#090909",
+    backgroundColor: "white",
   },
   gridList: {
     width: "80%",
@@ -85,8 +85,6 @@ function ProductosMain({ tileData, user, addToCart, items, add, rest }) {
   };
 
   const [, forceUpdate] = React.useState(0);
-
-  console.log("tile ----------->", tileData);
 
   return (
     <div>
