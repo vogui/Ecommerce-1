@@ -40,11 +40,12 @@ const useStyles = makeStyles((theme) => ({
   },
   imagen: {
     objectFit: "fill",
-    height: 500,
+    height: 400,
   },
   root: {
     width: "100%",
-    backgroundColor: '#343330',
+    backgroundColor: "#343330",
+    justifyContent: "center",
   },
   text: {
     fontSize: 20,
