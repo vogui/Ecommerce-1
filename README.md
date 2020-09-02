@@ -6,5 +6,5 @@
 * Hernan Hlace -> [Henry](https://github.com/hhlace)
 * Matias Ramos -> [Mati](https://github.com/MatiasRamosNOK)
 * Guillermo Vogueler -> [Vogui](https://github.com/vogui)
-* Sebastian Dominguez -> [Mati](https://github.com/sebasdominguez)
+* Sebastian Dominguez -> [Seba](https://github.com/sebasdominguez)
 
